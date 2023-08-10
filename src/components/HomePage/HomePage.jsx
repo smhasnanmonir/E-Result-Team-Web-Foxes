@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import bgImage from "../../../public/allImages/background.jpg";
+import HomePageSwipe from "../HomePageSwipe/HomePageSwipe";
 
 const HomePage = () => {
   return (
@@ -18,7 +19,8 @@ const HomePage = () => {
           }}
         >
           {/* Text content */}
-          <div className="px-14 py-4 h-full flex flex-col justify-center items-start">
+          <div className="px-14 py-4 h-full flex pt-80 gap-52 justify-center items-start">
+            <div>
             <h1 className="text-white font-semibold mt-24 text-6xl mb-6">
               E-Result
             </h1>
@@ -28,12 +30,16 @@ const HomePage = () => {
               students with quick and convenient access to their academic
               results.
             </p>
-            <button className="hover:bg-opacity-75 transition ease-in-out  hover:-translate-y-1 hover:scale-110 text-1xl font-bold mt-14 mb-4 bg-white text-black rounded-md px-6 py-2">
+            <button className="hover:bg-opacity-75 transition ease-in-out  hover:-translate-y-1 hover:scale-110 text-1xl font-bold mt-12 mb-4 bg-white text-black rounded-md px-6 py-2">
               See Your Result
             </button>
             <p className="text-white font-semibold ">
             Getting result is easier than ever !!!
             </p>
+            </div>
+            <div className="mt-24">
+                <HomePageSwipe></HomePageSwipe>
+            </div>
           </div>
         </div>
       </div>
