@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
-    <div className="mx-24 my-8 font-poppins font-bold">
-      <nav className="flex gap-14 ">
+    <div className="mx-24 my-[20px] font-poppins font-bold">
+      <nav className="flex  gap-14 ">
         <Link
           to="/"
           className="mr-16 transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-110"
