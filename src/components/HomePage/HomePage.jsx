@@ -19,9 +19,9 @@ const HomePage = () => {
           }}
         >
           {/* Text content */}
-          <div className="px-14 py-4 h-full flex pt-80 gap-52 justify-center items-start">
+          <div className="px-14 py-4 h-full flex-col md:flex md:flex-row pt-40 md:pt-80 gap-52 justify-center items-start">
             <div>
-            <h1 className="text-white font-semibold mt-24 text-6xl mb-6">
+            <h1 className="text-white font-semibold md:mt-24 text-6xl mb-6">
               E-Result
             </h1>
 
