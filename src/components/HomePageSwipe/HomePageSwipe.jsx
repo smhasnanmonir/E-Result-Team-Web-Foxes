@@ -19,11 +19,11 @@ const HomePageSwipe = () => {
         }}
       >
         {/* Slide 1 */}
-        <SwiperSlide className="bg-black font-poppins">
+        <SwiperSlide className="text-xs  bg-black font-poppins">
           <Fade className="text-white" delay={1e3} cascade damping={1e-2}>
             <div className="mx-4">
               <strong>Passed (80%)</strong>
-              <ul className="text-xs my-2">
+              <ul className="text-[9px] md:text-[12px]  my-2">
                 <li className="mb-2">
                   Successful Achievement:{" "}
                   <span className="font-normal">
@@ -39,7 +39,7 @@ const HomePageSwipe = () => {
                     outcome.
                   </span>
                 </li>
-                <li className="mb-2">
+                <li className="mb-4">
                   Accomplished Performance:{" "}
                   <span className="font-normal">
                     This group has performed at a level that meets the
@@ -53,11 +53,11 @@ const HomePageSwipe = () => {
         </SwiperSlide>
 
         {/* Slide 2 */}
-        <SwiperSlide className="bg-black font-poppins">
+        <SwiperSlide className="text-xs bg-black font-poppins">
           <Fade className="text-white" delay={1e3} cascade damping={1e-2}>
             <div className="mx-4">
               <strong>Failed (15%)</strong>
-              <ul className="text-xs my-2">
+              <ul className="text-[9px] md:text-[12px] my-2">
                 <li className="mb-2">
                   Unsuccessful Outcome:{" "}
                   <span className="font-normal">
@@ -73,7 +73,7 @@ const HomePageSwipe = () => {
                     them, ultimately leading to improvement in the future.
                   </span>
                 </li>
-                <li className="mb-2">
+                <li className="mb-4">
                   Learning Experience:{" "}
                   <span className="font-normal">
                     Failure is a valuable lesson, offering insights and
@@ -87,11 +87,11 @@ const HomePageSwipe = () => {
         </SwiperSlide>
 
         {/* Slide 3 */}
-        <SwiperSlide className="bg-black font-poppins">
+        <SwiperSlide className="text-xs bg-black font-poppins">
           <Fade className="text-white" delay={1e3} cascade damping={1e-2}>
             <div className="mx-4">
               <strong>A+ (5%)</strong>
-              <ul className="text-xs my-2">
+              <ul className="text-[8px] md:text-[12px] my-2">
                 <li className="mb-2">
                   Outstanding Achievement:{" "}
                   <span className="font-normal">
@@ -109,7 +109,7 @@ const HomePageSwipe = () => {
                     others.
                   </span>
                 </li>
-                <li className="mb-2">
+                <li className="mb-4">
                   Recognized Excellence{" "}
                   <span className="font-normal">
                     Earning an A+ recognizes individuals for their dedication,

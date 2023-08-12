@@ -5,19 +5,42 @@
   }
   
   .swiper {
-    width: 340px;
-    height: 320px;
+    width: 170px;
+    height: 330px;
   }
   
   .swiper-slide {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 18px;
-    font-size: 22px;
+    border-radius: 12px;
+    font-size: 18px;
     font-weight: bold;
     border: 1px solid white;
     opacity: 85%;
+    padding-top: 22px;
+    
   }
   
-  
+
+  @media (min-width: 344px)  {
+    .swiper {
+      width:210px;
+      height: 330px;
+    }
+  }
+
+  @media (min-width: 768px)  {
+    .swiper {
+      width:240px;
+      height: 330px;
+    }
+  }
+
+
+  @media (min-width: 1024px)  {
+    .swiper {
+      width:320px;
+      height: 330px;
+    }
+  }
