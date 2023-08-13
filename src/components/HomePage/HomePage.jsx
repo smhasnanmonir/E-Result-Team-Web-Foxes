@@ -10,7 +10,7 @@ const HomePage = () => {
       </Helmet>
       <div
         style={{ backgroundImage: `url(${bgImage})` }}
-        className="bg-no-repeat bg-cover font-poppins w-full h-[887.414px] relative"
+        className="bg-no-repeat overflow-hidden bg-cover font-poppins w-full h-[100vh] relative"
       >
         <div
           className="w-full h-full"
@@ -19,7 +19,7 @@ const HomePage = () => {
           }}
         >
           {/* Text content */}
-          <div className="px-4 py-4 h-full flex-col md:flex md:flex-row pt-20 md:pt-80 md:gap-x-24 lg:gap-x-44 justify-center  items-start">
+          <div className="px-4 py-4 h-full flex-col md:flex md:flex-row pt-10 md:pt-20  md:gap-x-14 lg:gap-x-44 justify-center  items-center">
             <div className="text-center md:text-start">
               <h1 className="text-white  font-semibold md:mt-24 text-5xl mb-6">
                 E-Result

@@ -11,7 +11,7 @@ const NavBar = () => {
   };
 
   return (
-    <div className="mx-4 my-4 md:mx-8 lg:mx-14  font-poppins font-bold">
+    <div className="mx-4 my-4 md:mx-8 lg:mx-14   font-poppins font-bold">
       <nav ref={navRef} className="flex justify-between items-center">
         <Link
           to="/"
@@ -31,12 +31,11 @@ const NavBar = () => {
         </div>
         {/* Menu items */}
         <div
-          className={`md:block ${
-            isMenuOpen ? "block" : "hidden"
+          className={`md:flex md:flex-row ${ isMenuOpen ? "block" : "hidden"
           } flex flex-col md:space-x-8 `}
         >
           <Link
-            to="/contact"
+            to="/"
             className="transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-110"
           >
             Home
