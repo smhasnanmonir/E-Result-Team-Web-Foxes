@@ -28,6 +28,12 @@ const NavBar = () => {
         >
           Login
         </Link>
+        <Link
+          to="/login"
+          className="transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-110"
+        >
+          Dashboard
+        </Link>
       </nav>
     </div>
   );
