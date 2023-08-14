@@ -2,10 +2,8 @@ import './AddResult.css'
 
 const AddResult = () => {
     return (
-        <div className="w-[70%] mx-auto">
+        <div className="lg:w-[70%] mx-auto">
             <div className="">
-                {/* The button to open modal */}
-                    {/* Put this part before </body> tag */}
                     <input type="checkbox" id="my_modal_6" className="modal-toggle" />
                     <div className="modal">
                     <div className="modal-box">
@@ -29,7 +27,7 @@ const AddResult = () => {
                     </div>
             </div>
             <div className="">
-               <form className='f-form lg:flex justify-between' action="">
+               <form className='f-form lg:flex lg:justify-between'>
                         <input  type="search" name="search1" id="search1" placeholder="Search Box (Student ID)"/>
                         <input className="bg-red-200" type="search" name="search2" id="search2" placeholder="Search Button"/>
                </form>
@@ -37,7 +35,7 @@ const AddResult = () => {
             <div className="">
                 <h1 className='bg-green-200 text-center py-4 my-10 rounded text-[20px]'>Student Result Table</h1>
             </div>
-            <div className="bg-green-200 p-20 rounded">
+            <div className="bg-green-200 lg:p-20 sm:p-2 rounded">
                 <div className="overflow-x-auto">
                     <table className="table table-zebra bg-green-100">
                         {/* head */}
