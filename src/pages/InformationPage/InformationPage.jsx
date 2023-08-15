@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 const InformationPage = () => {
     return (
@@ -24,9 +25,11 @@ const InformationPage = () => {
                             <label className="block font-medium">ID Number</label>
                             <input type="number" name="id-number" placeholder="22101517" id="id-number" className="w-1/2 h-[35px] rounded-xl border border-black placeholder-black form-control text-center" />
                         </div>
-                        <div className="flex justify-center mb-10">
-                            <button type="submit" className=" bg-[#ACE9D7] hover:bg-[#03A373]  w-2/3 btn btn-primary rounded-md h-[35px]">Show Result</button>
-                        </div>
+                        <Link to="/result-page">
+                            <div className="flex justify-center mb-10">
+                                <button type="submit" className=" bg-[#ACE9D7] hover:bg-[#03A373]  w-2/3 btn btn-primary rounded-md h-[35px]">Show Result</button>
+                            </div>
+                        </Link>
                     </form>
                 </div>
             </div>
