@@ -1,6 +1,15 @@
 import { Link } from "react-router-dom";
+import { FaBars, FaTimes } from "react-icons/fa";
+import { useRef, useState } from "react";
 
 const NavBar = () => {
+  const navRef = useRef();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
         <>
             <div className="mx-24 my-[20px] font-poppins font-bold">

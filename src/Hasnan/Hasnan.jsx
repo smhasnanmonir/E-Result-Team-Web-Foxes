@@ -1,7 +1,7 @@
 const Hasnan = () => {
   return (
     <div>
-      <h1>Hello</h1>
+      <h1>Development push</h1>
     </div>
   );
 };
