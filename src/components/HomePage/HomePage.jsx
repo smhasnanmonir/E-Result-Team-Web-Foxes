@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import bgImage from "../../assets/allImages/background.jpg";
+import bgImage from "../../../public/allImages/background.jpg";
 import HomePageSwipe from "../HomePageSwipe/HomePageSwipe";
 
 const HomePage = () => {
