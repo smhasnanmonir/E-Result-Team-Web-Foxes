@@ -1,8 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 import HomePage from "../components/HomePage/HomePage";
-import InformationPage from "../pages/InformationPage/InformationPage";
-import ResultPage from "../pages/ResultPage/ResultPage";
 import Dashboard from "../components/Dashborad/Dashboard";
 import AddResult from "../components/AddResult/AddResult";
 import ViewAll from "../components/ViewAll/ViewAll";
@@ -31,10 +29,6 @@ export const router = createBrowserRouter([
         element: <InformationPage></InformationPage>
       },
       {
-        path: "result-page",
-        element: <ResultPage></ResultPage>
-      }
-    ],
           path:'dashboard',
           element:<Dashboard></Dashboard>,
           children:[
