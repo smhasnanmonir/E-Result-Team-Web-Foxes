@@ -11,6 +11,9 @@ node_modules
 dist
 dist-ssr
 *.local
+HomePage
+HomePageSwipe
+NavBar
 
 # Editor directories and files
 .vscode/*
