@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import bgImage from "../../../public/allImages/background.jpg";
 import HomePageSwipe from "../HomePageSwipe/HomePageSwipe";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   return (
@@ -31,7 +32,7 @@ const HomePage = () => {
                 results.
               </p>
               <button className="hover:bg-opacity-75 transition ease-in-out hover:-translate-y-1 hover:scale-110 text-1xl font-bold mt-12 mb-4 bg-white text-black rounded-md px-6 py-2 ">
-                See Your Result
+                <Link to="/information-page">See Your Result</Link>
               </button>
 
               <p className="text-white font-semibold ">
