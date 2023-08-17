@@ -20,4 +20,19 @@
     opacity: 85%;
   }
   
-  
+  @media only screen and (max-width: 600px) {
+    .swiper {
+      width: 290px;
+      height: 270px;
+    }
+    .swiper-slide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      font-size: 15px;
+      font-weight: bold;
+      border: 1px solid white;
+      opacity: 85%;
+    }
+  }

@@ -3,10 +3,10 @@ import NavBar from "../components/NavBar/NavBar";
 
 const Main = () => {
   return (
-    <>
+    <div className="">
       <NavBar></NavBar>
       <Outlet></Outlet>
-    </>
+    </div>
   );
 };
 
