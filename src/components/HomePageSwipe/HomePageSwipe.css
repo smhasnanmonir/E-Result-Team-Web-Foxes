@@ -5,21 +5,21 @@
   }
   
   .swiper {
-    width: 170px;
-    height: 330px;
+    width: 340px;
+    height: 320px;
   }
   
   .swiper-slide {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 12px;
-    font-size: 18px;
+    border-radius: 18px;
+    font-size: 22px;
     font-weight: bold;
     border: 1px solid white;
     opacity: 85%;
-    padding-top: 22px;
-}
+  }
+  
   @media only screen and (max-width: 600px) {
     .swiper {
       width: 290px;
