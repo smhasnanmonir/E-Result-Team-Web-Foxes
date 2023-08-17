@@ -1,7 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import bgImage from "../../../public/allImages/background.jpg";
 import HomePageSwipe from "../HomePageSwipe/HomePageSwipe";
-import { Link } from "react-router-dom";
 
 const HomePage = () => {
   return (

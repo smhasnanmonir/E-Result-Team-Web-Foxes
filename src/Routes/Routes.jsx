@@ -1,8 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 import HomePage from "../components/HomePage/HomePage";
+<<<<<<< HEAD
 import InformationPage from "../pages/InformationPage/InformationPage";
 import ResultPage from "../pages/ResultPage/ResultPage";
+=======
+import Dashboard from "../components/Dashborad/Dashboard";
+>>>>>>> 5d82258ffef9dd05c892c10188994be6a4263d0e
 import AddResult from "../components/AddResult/AddResult";
 import ViewAll from "../components/ViewAll/ViewAll";
 import Login from "../components/Account/Login";
@@ -18,6 +22,7 @@ export const router = createBrowserRouter([
         element: <HomePage></HomePage>,
       },
       {
+<<<<<<< HEAD
         path: "/login",
         element: <Login></Login>,
       },
@@ -48,5 +53,23 @@ export const router = createBrowserRouter([
         ],
       },
     ],
+=======
+          path:'dashboard',
+          element:<Dashboard></Dashboard>,
+          children:[
+            {
+              path:'addResult',
+              element:<AddResult></AddResult>
+            },
+            {
+              path:'viewAll',
+              element:<ViewAll></ViewAll>
+            }
+
+          ],
+  {
+    path: '/login',
+    element: <Login></Login>
+>>>>>>> 5d82258ffef9dd05c892c10188994be6a4263d0e
   },
 ]);
