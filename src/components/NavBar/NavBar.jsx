@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { slide as Menu } from 'react-burger-menu'
 
 const NavBar = () => {
- 
   return (
     <div className="fixed w-full bg-black bg-opacity-20 px-[5%] py-[5%] md:py-[2%] font-poppins font-bold z-20 text-white max-w-screen-2xl">
       <nav className="flex justify-between items-center">
