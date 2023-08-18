@@ -11,3 +11,45 @@
     padding: 10px 0px;
   }
 }
+
+.PageNation {
+  display: flex;
+  gap: 7px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.PrevButton a,
+.NextButton a {
+  padding: 10px 20px;
+  background-color: #63e6be;
+  border-radius: 8px;
+  color: black;
+  width: 120px;
+  text-align: center;
+}
+
+.PrevButton > a:hover,
+.NextButton > a:hover,
+.PageClass:hover {
+  background-color: #099268;
+  color: white;
+  transition-duration: 200ms;
+  cursor: pointer;
+}
+
+.PageClass > a,
+.activePage > a {
+  padding: 10px 20px;
+  background-color: #63e6be;
+  border-radius: 8px;
+  color: black;
+  text-align: center;
+}
+
+.activePage > a {
+  background-color: #fd7e14;
+}
+.activePage > a:hover {
+  background-color: #f76707;
+}
