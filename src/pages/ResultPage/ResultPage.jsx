@@ -1,5 +1,8 @@
 import { useParams } from "react-router";
 import DataFetch from "../../components/DataFetch/DataFetch";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+import { useRef } from "react";
 
 const ResultPage = () => {
   const allData = DataFetch(); //from DataFetch.js in DataFetch files
@@ -11,9 +14,33 @@ const ResultPage = () => {
   );
   console.log(studentInformation);
   console.log(studentInformation?.result[0].midTerm);
+  const pdfRef = useRef();
+  const downloadPdf = () => {
+    const input = pdfRef.current;
+    html2canvas(input).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png", 0.95);
+      const pdf = new jsPDF("in", "mm", "A0", true);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = pdf.internal.pageSize.getHeight();
+      const imgWidth = canvas.width;
+      const imgHeight = canvas.height;
+      const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+      const imgX = (pdfWidth - imgWidth * ratio) / 2;
+      const imgY = 30;
+      pdf.addImage(
+        imgData,
+        "PNG",
+        imgX,
+        imgY,
+        imgWidth * ratio,
+        imgHeight * ratio
+      );
+      pdf.save("result.pdf");
+    });
+  };
   return (
     <>
-      <div className="lg:px-[250px] px-[35px]">
+      <div className="lg:px-[250px] px-[35px]" ref={pdfRef}>
         <div className="container bg-[#E4E4E4] mx-auto  rounded-xl pb-4 ">
           <div className="text-center mb-8 rounded-t-xl bg-[#ACE9D7] ">
             <h1 className="text-md font-medium py-4">Result Table</h1>
@@ -63,23 +90,24 @@ const ResultPage = () => {
               </tbody>
             </table>
           </div>
+        </div>
+      </div>
 
-          <div className="flex justify-end px-4 mt-4">
-            <div className="flex md:w-3/4 gap-4 justify-end">
-              <button
-                type="submit"
-                className=" bg-[#ACE9D7] text-black hover:bg-[#03A373]  w-1/3 btn btn-primary py- rounded-xl "
-              >
-                Download Result
-              </button>
-              <button
-                type="submit"
-                className=" bg-[#E9ACAC] text-black hover:bg-[#a11313]  w-1/3 btn btn-primary rounded-xl h-[35px]"
-              >
-                Apply For Recheck
-              </button>
-            </div>
-          </div>
+      <div className="flex items-center justify-center lg:px-[250px] md:px-[150px] mt-4">
+        <div className="flex md:flex-row items-center justify-center flex-col md:w-3/4  gap-4">
+          <button
+            onClick={downloadPdf}
+            type="submit"
+            className=" bg-[#ACE9D7] text-black hover:bg-[#03A373]  md:w-1/3 btn btn-primary py- rounded-xl "
+          >
+            Download Result
+          </button>
+          <button
+            type="submit"
+            className=" bg-[#E9ACAC] text-black hover:bg-[#a11313]  md:w-1/3 btn btn-primary rounded-xl h-[35px]"
+          >
+            Apply For Recheck
+          </button>
         </div>
       </div>
     </>

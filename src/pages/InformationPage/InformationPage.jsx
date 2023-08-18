@@ -10,15 +10,15 @@ const InformationPage = () => {
   };
   console.log(rollNumber);
   return (
-    <div className="w-full h-full font-poppins text-black">
-      <div className="container mx-auto w-1/2 py-10 ">
+    <div className="font-poppins text-black">
+      <div className="container lg:px-[250px] md:px-[150px] px-[25px] py-10 ">
         <div className="text-center rounded-t-xl bg-[#ACE9D7] ">
           <h1 className="text-md font-bold py-2">
             Welcome to Web Based Result Publication System
           </h1>
         </div>
         <div className=" flex justify-center w-full bg-[#F8F8F8]">
-          <form className="w-1/2 mt-10 px-4 ">
+          <form className=" mt-10 px-4 ">
             <div className="mb-10 flex justify-between">
               <label className="block font-medium">Examination</label>
               <select
@@ -32,14 +32,16 @@ const InformationPage = () => {
               </select>
             </div>
             <div className="mb-10 flex justify-between">
-              <label className="block font-medium w-1/4">Year</label>
-              <input
-                type="number"
-                placeholder="2023"
-                name="year"
-                id="year"
-                className="w-1/2 h-[35px] rounded-xl border border-black form-control placeholder-black text-center"
-              />
+              <label className="block font-medium">Examination</label>
+              <select
+                name="examination"
+                id="examination"
+                className=" px-[63px] py-[8px] rounded-xl border border-black form-control text-center"
+              >
+                <option value="First term / Final">2023</option>
+                <option value="Midterm">2022</option>
+                <option value="Final">2021</option>
+              </select>
             </div>
             <div className="mb-10 flex justify-between">
               <label className="block font-medium">ID Number</label>
@@ -49,7 +51,7 @@ const InformationPage = () => {
                 name="idNumber"
                 placeholder="Example: 22101517"
                 id="idNumber"
-                className="w-1/2 h-[35px] rounded-xl border border-black placeholder-black form-control text-center"
+                className="w-1/2 py-[8px] rounded-xl border border-black placeholder-black form-control text-center"
               />
             </div>
 
