@@ -37,7 +37,7 @@ const Dashboard = () => {
             <li>
               <span>
                 <img src={edit} alt="" />
-                <Link to={"addResult"} className="text-[18px]">
+                <Link to={"editResult"} className="text-[18px]">
                   Edit Result
                 </Link>
               </span>

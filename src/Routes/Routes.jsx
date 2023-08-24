@@ -3,11 +3,11 @@ import Main from "../Layout/Main";
 import HomePage from "../components/HomePage/HomePage";
 import InformationPage from "../pages/InformationPage/InformationPage";
 import ResultPage from "../pages/ResultPage/ResultPage";
-import AddResult from "../components/AddResult/AddResult";
 import ViewAll from "../components/ViewAll/ViewAll";
 import Login from "../components/Account/Login";
 import Signup from "../components/Account/Signup";
 import Dashboard from "../components/Dashboard/Dashboard";
+import EditResult from "../components/EditResult/EditResult";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -46,8 +46,8 @@ export const router = createBrowserRouter([
         element: <Dashboard></Dashboard>,
         children: [
           {
-            path: "addResult",
-            element: <AddResult></AddResult>,
+            path: "editResult",
+            element: <EditResult></EditResult>
           },
           {
             path: "viewAll",

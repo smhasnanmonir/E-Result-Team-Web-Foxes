@@ -1,6 +1,35 @@
-import "./AddResult.css";
+// import { useEffect, useState } from "react";
+import "./EditResult.css";
+// import DataFetch from "../DataFetch/DataFetch";
+import { useEffect, useState } from "react";
 
-const AddResult = () => {
+const EditResult = () => {
+  // const [allData] = DataFetch();
+  const [newData,setNewData] = useState([]);
+  console.log(newData)
+  const [oneData,setOneData] = useState([]);
+  console.log(oneData)
+  useEffect(()=> {
+    fetch("http://localhost:5000/allResults")
+    .then((res) => res.json())
+    .then((data) =>setNewData(data));
+  },[])  
+  const showEditResult = (id) => {
+    fetch(`/data.json/${id}`)
+    .then(res => res.json())
+    .then(data =>setOneData(data))
+}
+  const [items] = [newData];
+  const calculateGrade = (marks) => {
+    if (marks >= 400) {
+      return "A+";
+    } else if (marks >= 350) {
+      return "A";
+    } else {
+      return "B"; // You can add more conditions for other grades
+    }
+  };
+
   return (
     <div className="lg:w-[70%] mx-auto">
       <div className="">
@@ -63,15 +92,19 @@ const AddResult = () => {
               </tr>
             </thead>
             <tbody>
-              {/* row 1 */}
-              <tr>
-                <th>Demo Name</th>
-                <td>Demo Id</td>
-                <td>Result</td>
-                <td>
-                  <label htmlFor="my_modal_6">Edit button</label>
-                </td>
-              </tr>
+                 {items.map((item, i) => (
+                        <tr key={i}>
+                    <th>{item.Name}</th>
+                    <th>{item.classId}</th>
+                    <th>{calculateGrade(item.result[0].midTerm.reduce(
+                      (total, subject) => total + parseInt(subject.number),
+                      0
+                    ))}</th>
+                     <label htmlFor="my_modal_6" onClick={()=>showEditResult(item.classId)}>Edit</label>
+                  </tr>
+                ))}
+                <th> 
+               </th>
             </tbody>
           </table>
         </div>
@@ -80,4 +113,4 @@ const AddResult = () => {
   );
 };
 
-export default AddResult;
+export default EditResult;
