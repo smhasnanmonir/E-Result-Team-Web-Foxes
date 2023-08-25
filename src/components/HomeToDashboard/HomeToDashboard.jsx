@@ -20,12 +20,15 @@ const HomeToDashboard = () => {
         <div className="grid lg:grid-cols-3 gap-7 text-center text-[20px] w-[90%] mx-auto">
           <div className="">
             <img src={sImg} alt="" />
+            <Link>View Result</Link>
           </div>
           <div className="">
             <img src={sImg2} alt="" />
+            <Link>Download Result Sheet</Link>
           </div>
           <div className="">
             <img src={sImg3} alt="" />
+            <Link>Apply For Reevaluate</Link>
           </div>
         </div>
       </div>
@@ -37,12 +40,15 @@ const HomeToDashboard = () => {
         <div className="grid lg:grid-cols-3 gap-7 text-center text-[20px] w-[90%] mx-auto">
           <div className="">
             <img src={tImg} alt="" />
+            <Link>Publish Result</Link>
           </div>
           <div className="">
             <img src={tImg2} alt="" />
+            <Link>Update Marks</Link>
           </div>
           <div className="">
             <img src={tImg3} alt="" />
+            <Link>Check the Recheck</Link>
           </div>
         </div>
       </div>
