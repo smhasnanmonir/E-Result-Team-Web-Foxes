@@ -1,6 +1,34 @@
 import "./EditResult.css";
+import { useEffect, useState } from "react";
 
 const EditResult = () => {
+  const [newData, setNewData] = useState([]);
+  console.log(newData);
+  const [oneData, setOneData] = useState([]);
+  console.log(oneData);
+  useEffect(() => {
+    fetch("https://e-result-server.vercel.app/allResults")
+      .then((res) => res.json())
+      .then((data) => setNewData(data));
+  }, []);
+  const showEditResult = (id) => {
+    fetch(`https://e-result-server.vercel.app/allResults/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setOneData(data);
+      });
+  };
+  const [items] = [newData];
+  const calculateGrade = (marks) => {
+    if (marks >= 400) {
+      return "A+";
+    } else if (marks >= 350) {
+      return "A";
+    } else {
+      return "B";
+    }
+  };
+
   return (
     <div className="lg:w-[70%] mx-auto">
       <div className="">
@@ -11,12 +39,29 @@ const EditResult = () => {
               <div className="text-center bg-slate-300 p-5 text-[16px] rounded">
                 <h1 className="mb-5">Editing Result of</h1>
                 <div className="flex justify-between">
-                  <p>Name: Student Name</p>
-                  <p>ID: Student ID</p>
+                  <p>Name: {oneData.Name}</p>
+                  <p>ID: {oneData.classId}</p>
                 </div>
               </div>
-              <div className="text-center bg-slate-300 p-5 text-[16px] rounded my-5">
-                <p className="text-red-700">Result to json file</p>
+              <div className="text-center bg-slate-300 p-5 text-[16px] rounded my-5 grid grid-cols-3 gap-7">
+                {Array.isArray(oneData.result) ? (
+                  oneData.result.map((data) =>
+                    data?.finalTerm?.map((newData) => (
+                      <div key={newData._id} className="rounded">
+                        <p>{newData.subjectName}</p>
+                        <input
+                          className="rounded py-2 w-[50px] text-center"
+                          type="number"
+                          name="number"
+                          id="number"
+                          placeholder={newData.number}
+                        />
+                      </div>
+                    ))
+                  )
+                ) : (
+                  <p className="text-red-700">Result Not Found</p>
+                )}
               </div>
             </div>
             <div className="modal-action">
@@ -63,15 +108,29 @@ const EditResult = () => {
               </tr>
             </thead>
             <tbody>
-              {/* row 1 */}
-              <tr>
-                <th>Demo Name</th>
-                <td>Demo Id</td>
-                <td>Result</td>
-                <td>
-                  <label htmlFor="my_modal_6">Edit button</label>
-                </td>
-              </tr>
+              {items.map((item, i) => (
+                <tr key={i}>
+                  <th>{item.Name}</th>
+                  <th>{item.classId}</th>
+                  <th>
+                    {calculateGrade(
+                      item.result[0].midTerm.reduce(
+                        (total, subject) => total + parseInt(subject.number),
+                        0
+                      )
+                    )}
+                  </th>
+                  <th>
+                    <label
+                      htmlFor="my_modal_6"
+                      onClick={() => showEditResult(item.classId)}
+                    >
+                      Edit
+                    </label>
+                  </th>
+                </tr>
+              ))}
+              <th></th>
             </tbody>
           </table>
         </div>
