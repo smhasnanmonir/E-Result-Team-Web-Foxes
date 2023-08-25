@@ -1,72 +1,92 @@
+import { useState } from "react";
+import DataFetch from "../DataFetch/DataFetch";
 import "./ViewAll.css";
+import ReactPaginate from "react-paginate";
 
 const ViewAll = () => {
+  const [allData] = DataFetch();
+  const [items] = [allData];
+  console.log(allData);
+  let itemsPerPage = 3;
+  const [itemOffset, setItemOffset] = useState(0);
+  const endOffset = itemOffset + itemsPerPage;
+  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+  const currentItems = items.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(items.length / itemsPerPage);
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % items.length;
+    console.log(
+      `User requested page number ${event.selected}, which is offset ${newOffset}`
+    );
+    setItemOffset(newOffset);
+  };
+
   return (
-    <div className="lg:w-[70%] mx-auto">
-      <div className="">
-        <form className="v-form lg:flex justify-between" action="">
+    <div className="mx-auto">
+      <>
+        <form className="v-form flex md:flex-row flex-col gap-4" action="">
           <input
             type="search"
             name="search1"
             id="search1"
             placeholder="Search Box (Student ID)"
           />
-          <input
-            className="bg-red-200"
-            type="search"
-            name="search2"
-            id="search2"
-            placeholder="Search Button"
-          />
+          <button
+            type="submit"
+            className="bg-red-400 rounded-md hover:bg-red-700 hover:text-white transition-all duration-300 ease-in px-[120px]"
+          >
+            Search
+          </button>
         </form>
-      </div>
+      </>
       <div className="">
         <h1 className="bg-green-200 text-center py-4 my-10 rounded text-[20px]">
           Student Result Table
         </h1>
       </div>
       <div className="bg-green-200 lg:p-10 rounded">
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto mb-[35px]">
           <table className="table table-zebra bg-green-100">
-            {/* head */}
-            <thead>
+            <thead className="">
               <tr className="text-[18px] ">
                 <th>Name</th>
                 <th>ID</th>
-                <th>Result</th>
+                <th>Total Marks</th>
+                <th>Section</th>
               </tr>
             </thead>
             <tbody>
-              {/* row 1 */}
-              <tr>
-                <th>Demo Name</th>
-                <td>Demo Id</td>
-                <td>Result</td>
-              </tr>
-              <tr>
-                <th>Demo Name</th>
-                <td>Demo Id</td>
-                <td>Result</td>
-              </tr>
-              <tr>
-                <th>Demo Name</th>
-                <td>Demo Id</td>
-                <td>Result</td>
-              </tr>
-              <tr>
-                <th>Demo Name</th>
-                <td>Demo Id</td>
-                <td>Result</td>
-              </tr>
+              {currentItems.map((item, i) => (
+                <tr key={i}>
+                  <th>{item.Name}</th>
+                  <td>{item.classId}</td>
+                  <td>
+                    {item.result[0].midTerm.reduce(
+                      (total, subject) => total + parseInt(subject.number),
+                      0
+                    )}
+                  </td>
+                  <td>{item.section}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
-        <div className="mx-auto text-center lg:mt-5 btn-res">
-          <button className="btn  sm:btn-sm md:btn-md mr-[20px]">
-            Previous
-          </button>
-          <button className="btn  sm:btn-sm md:btn-md">Next</button>
-        </div>
+        <ReactPaginate
+          previousClassName="PrevButton"
+          nextClassName="NextButton"
+          breakLabel="..."
+          nextLabel="Next"
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={5}
+          pageClassName="PageClass"
+          pageCount={pageCount}
+          previousLabel="Previous"
+          activeClassName="activePage"
+          renderOnZeroPageCount={null}
+          containerClassName="PageNation"
+          activeLinkClassName="active"
+        />
       </div>
     </div>
   );
