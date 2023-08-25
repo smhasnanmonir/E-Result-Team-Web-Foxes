@@ -1,10 +1,8 @@
-// import { useEffect, useState } from "react";
 import "./EditResult.css";
-// import DataFetch from "../DataFetch/DataFetch";
 import { useEffect, useState } from "react";
 
 const EditResult = () => {
-  // const [allData] = DataFetch();
+
   const [newData,setNewData] = useState([]);
   console.log(newData)
   const [oneData,setOneData] = useState([]);
@@ -14,11 +12,13 @@ const EditResult = () => {
     .then((res) => res.json())
     .then((data) =>setNewData(data));
   },[])  
-  const showEditResult = (id) => {
-    fetch(`http://localhost:5000/allResults/${id}`)
-    .then(res => res.json())
-    .then(data =>setOneData(data))
-}
+      const showEditResult = (id) => {
+        fetch(`http://localhost:5000/allResults/${id}`)
+          .then((res) => res.json())
+          .then((data) => {
+            setOneData(data);
+          });
+      };
   const [items] = [newData];
   const calculateGrade = (marks) => {
     if (marks >= 400) {
@@ -26,9 +26,10 @@ const EditResult = () => {
     } else if (marks >= 350) {
       return "A";
     } else {
-      return "B"; // You can add more conditions for other grades
+      return "B";
     }
   };
+
 
   return (
     <div className="lg:w-[70%] mx-auto">
@@ -45,22 +46,20 @@ const EditResult = () => {
                 </div>
               </div>
               <div className="text-center bg-slate-300 p-5 text-[16px] rounded my-5 grid grid-cols-3 gap-7">
-              {oneData.result && Array.isArray(oneData.result) ? (
-                      oneData.result.map(data => (
-                        data?.finalTerm?.map(newData => <div  key={newData._id} className="rounded">
-                          <p>{newData.subjectName}</p>
-                          <p className="bg-red-400 rounded py-2">{newData.number}</p>
-                          {/* <input type="text" placeholder={newData.number}/> */}
-                        </div> )
-                        // console.log(data?.finalTerm?.number)
-                      ))
-                    ) : (
-                      <p className="text-red-700">Result Not Found</p>
-                    )}
+              {Array.isArray(oneData.result) ? (
+                    oneData.result.map(data => (
+                      data?.finalTerm?.map(newData => <div  key={newData._id} className="rounded">
+                        <p>{newData.subjectName}</p>
+                           <input className="rounded py-2 w-[50px] text-center" type="number" name="number" id="number" placeholder={newData.number}/>
+                      </div> )
+                    ))
+                  ) : (
+                    <p className="text-red-700">Result Not Found</p>
+                  )}
               </div>
             </div>
             <div className="modal-action">
-              <button className="btn btn-outline btn-success">Save</button>
+              <button  className="btn btn-outline btn-success">Save</button>
               <label htmlFor="my_modal_6" className="btn btn-outline btn-error">
                 Close
               </label>
