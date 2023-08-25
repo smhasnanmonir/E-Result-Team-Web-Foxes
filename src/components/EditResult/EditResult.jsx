@@ -15,7 +15,7 @@ const EditResult = () => {
     .then((data) =>setNewData(data));
   },[])  
   const showEditResult = (id) => {
-    fetch(`/data.json/${id}`)
+    fetch(`http://localhost:5000/allResults/${id}`)
     .then(res => res.json())
     .then(data =>setOneData(data))
 }
@@ -40,12 +40,23 @@ const EditResult = () => {
               <div className="text-center bg-slate-300 p-5 text-[16px] rounded">
                 <h1 className="mb-5">Editing Result of</h1>
                 <div className="flex justify-between">
-                  <p>Name: Student Name</p>
-                  <p>ID: Student ID</p>
+                  <p>Name: {oneData.Name}</p>
+                  <p>ID: {oneData.classId}</p>
                 </div>
               </div>
-              <div className="text-center bg-slate-300 p-5 text-[16px] rounded my-5">
-                <p className="text-red-700">Result to json file</p>
+              <div className="text-center bg-slate-300 p-5 text-[16px] rounded my-5 grid grid-cols-3 gap-7">
+              {oneData.result && Array.isArray(oneData.result) ? (
+                      oneData.result.map(data => (
+                        data?.finalTerm?.map(newData => <div  key={newData._id} className="rounded">
+                          <p>{newData.subjectName}</p>
+                          <p className="bg-red-400 rounded py-2">{newData.number}</p>
+                          {/* <input type="text" placeholder={newData.number}/> */}
+                        </div> )
+                        // console.log(data?.finalTerm?.number)
+                      ))
+                    ) : (
+                      <p className="text-red-700">Result Not Found</p>
+                    )}
               </div>
             </div>
             <div className="modal-action">
@@ -100,7 +111,10 @@ const EditResult = () => {
                       (total, subject) => total + parseInt(subject.number),
                       0
                     ))}</th>
-                     <label htmlFor="my_modal_6" onClick={()=>showEditResult(item.classId)}>Edit</label>
+                     <th>
+                       <label htmlFor="my_modal_6" onClick={()=>showEditResult(item._id)}>Edit</label>
+                     </th>
+
                   </tr>
                 ))}
                 <th> 
