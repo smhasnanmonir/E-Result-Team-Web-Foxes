@@ -39,9 +39,11 @@ const AddResult = () => {
                 className=" rounded-xl py-2 bg-[#f68080] hover:bg-[#ffffff] text-black w-full text-center"
                 {...register("Term")}
               >
-                <option value="First">FirstTerm</option>
-                <option value="Mid">MidTerm</option>
-                <option value="Final">FinalTerm</option>
+                <option value="First" disabled>
+                  Select
+                </option>
+                <option value="midTerm">MidTerm</option>
+                <option value="finalTerm">FinalTerm</option>
               </select>
             </div>
 
