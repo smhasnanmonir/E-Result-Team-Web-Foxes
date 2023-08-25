@@ -8,6 +8,7 @@ import ViewAll from "../components/ViewAll/ViewAll";
 import Login from "../components/Account/Login";
 import Signup from "../components/Account/Signup";
 import Dashboard from "../components/Dashboard/Dashboard";
+import EditResult from "../components/EditResult/EditResult";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -46,8 +47,12 @@ export const router = createBrowserRouter([
         element: <Dashboard></Dashboard>,
         children: [
           {
+            path: "editResult",
+            element: <EditResult></EditResult>
+          },
+          {
             path: "addResult",
-            element: <AddResult></AddResult>,
+            element: <AddResult></AddResult>
           },
           {
             path: "viewAll",

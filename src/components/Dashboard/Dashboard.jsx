@@ -25,7 +25,7 @@ const Dashboard = () => {
             <li className="bg-green-200">
               <span>
                 <img src={result} alt="" />
-                <Link className="text-[18px]">Add Result</Link>
+                <Link to={"addResult"} className="text-[18px]">Add Result</Link>
               </span>
             </li>
             <li>
@@ -37,7 +37,7 @@ const Dashboard = () => {
             <li>
               <span>
                 <img src={edit} alt="" />
-                <Link to={"addResult"} className="text-[18px]">
+                <Link to={"editResult"} className="text-[18px]">
                   Edit Result
                 </Link>
               </span>

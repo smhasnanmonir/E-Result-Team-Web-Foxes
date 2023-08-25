@@ -1,79 +1,86 @@
-import "./AddResult.css";
+
+import { useForm } from "react-hook-form"
 
 const AddResult = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
+
+  const onSubmit = (data) => console.log(data)
   return (
     <div className="lg:w-[70%] mx-auto">
       <div className="">
-        <input type="checkbox" id="my_modal_6" className="modal-toggle" />
-        <div className="modal">
-          <div className="modal-box">
-            <div className="">
-              <div className="text-center bg-slate-300 p-5 text-[16px] rounded">
-                <h1 className="mb-5">Editing Result of</h1>
-                <div className="flex justify-between">
-                  <p>Name: Student Name</p>
-                  <p>ID: Student ID</p>
-                </div>
-              </div>
-              <div className="text-center bg-slate-300 p-5 text-[16px] rounded my-5">
-                <p className="text-red-700">Result to json file</p>
-              </div>
-            </div>
-            <div className="modal-action">
-              <button className="btn btn-outline btn-success">Save</button>
-              <label htmlFor="my_modal_6" className="btn btn-outline btn-error">
-                Close
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="">
-        <form className="f-form lg:flex lg:justify-between">
-          <input
-            type="search"
-            name="search1"
-            id="search1"
-            placeholder="Search Box (Student ID)"
-          />
-          <input
-            className="bg-red-200"
-            type="search"
-            name="search2"
-            id="search2"
-            placeholder="Search Button"
-          />
-        </form>
       </div>
       <div className="">
         <h1 className="bg-green-200 text-center py-4 my-10 rounded text-[20px]">
           Student Result Table
         </h1>
       </div>
+
+
       <div className="bg-green-200 lg:p-20 sm:p-2 rounded">
-        <div className="overflow-x-auto">
-          <table className="table table-zebra bg-green-100">
-            {/* head */}
-            <thead>
-              <tr className="text-[18px] ">
-                <th>Name</th>
-                <th>ID</th>
-                <th>Result</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {/* row 1 */}
-              <tr>
-                <th>Demo Name</th>
-                <td>Demo Id</td>
-                <td>Result</td>
-                <td>
-                  <label htmlFor="my_modal_6">Edit button</label>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div className="bg-[#EAEAEA] pb-10 rounded-md overflow-x-auto">
+          <form onSubmit={handleSubmit(onSubmit)} className='grid  grid-cols-3 gap-4 text-center px-4 mx-auto'>
+
+            <div className='flex justify-center items-center mt-11'>
+              <select className=" rounded-xl py-2 bg-[#f68080] hover:bg-[#ffffff] text-black w-full text-center" {...register("Term")}>
+                <option value="First">FirstTerm</option>
+                <option value="Mid">MidTerm</option>
+                <option value="Final">FinalTerm</option>
+              </select>
+            </div>
+
+            <div className='flex justify-center items-center mt-11'>
+              <select className="  rounded-xl py-2 bg-[#f68080] text-black w-full text-center" {...register("Section")}>
+                <option value="Section">Section</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+
+            <div className="mt-5">
+              <p className="mr-2">Roll</p>
+              <input type='number' placeholder='123456' className='bg-[#f68080] text-center text-black placeholder-black hover:bg-[#ffffff] rounded-xl py-2' {...register("roll", { required: true })} />
+            </div>
+
+            <div className="mt-5">
+              <p className="mr-2">Bangla</p>
+              <input type='number' placeholder='80' className='bg-[#f68080] text-center text-black placeholder-black hover:bg-[#ffffff]  rounded-xl py-2' {...register("bangla", { required: true })} />
+            </div>
+
+            <div className="mt-5">
+              <p className="mr-2">English</p>
+              <input type='number' placeholder='80' className='bg-[#f68080] text-center text-black placeholder-black hover:bg-[#ffffff]  rounded-xl py-2' {...register("english", { required: true })} />
+            </div>
+
+            <div className="mt-5">
+              <p className="mr-2">Math</p>
+              <input type='number' placeholder='80' className='bg-[#f68080] text-center text-black placeholder-black hover:bg-[#ffffff]  rounded-xl py-2' {...register("math", { required: true })} />
+            </div>
+
+            <div className="mt-5">
+              <p className="mr-2">Science</p>
+              <input type='number' placeholder='80' className='bg-[#f68080] text-center text-black placeholder-black hover:bg-[#ffffff]  rounded-xl py-2' {...register("science", { required: true })} />
+            </div>
+
+            <div className="mt-5">
+              <p className="mr-2">Physics</p>
+              <input type='number' placeholder='80' className='bg-[#f68080] text-center text-black placeholder-black hover:bg-[#ffffff]  rounded-xl py-2' {...register("physics", { required: true })} />
+            </div>
+
+            <div className="mt-5">
+              <p className="mr-2">Biology</p>
+              <input type='number' placeholder='80' className='bg-[#f68080] text-center text-black placeholder-black hover:bg-[#ffffff]  rounded-xl py-2' {...register("biology", { required: true })} />
+            </div>
+
+            <div className="mt-6 mx-auto col-span-full">
+              <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-green-600 rounded-md hover:bg-green-400 focus:outline-none" type="submit"> submit</button>
+            </div>
+
+          </form>
         </div>
       </div>
     </div>
