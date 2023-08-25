@@ -57,7 +57,7 @@ const ResultPage = () => {
       confirmButtonText: "Yes send my application!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch("http://localhost:5000/reCheck", {
+        fetch("https://e-result-server.vercel.app/reCheck", {
           method: "POST",
           body: JSON.stringify(dataBody),
           headers: {

@@ -1,6 +1,6 @@
-import "./AddResult.css";
+import "./EditResult.css";
 
-const AddResult = () => {
+const EditResult = () => {
   return (
     <div className="lg:w-[70%] mx-auto">
       <div className="">
@@ -80,4 +80,4 @@ const AddResult = () => {
   );
 };
 
-export default AddResult;
+export default EditResult;

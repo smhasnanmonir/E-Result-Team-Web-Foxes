@@ -2,6 +2,8 @@ import { Helmet } from "react-helmet-async";
 import bgImage from "../../../public/allImages/background.jpg";
 import HomePageSwipe from "../HomePageSwipe/HomePageSwipe";
 import { Link } from "react-router-dom";
+import HomeToDashboard from "../HomeToDashboard/HomeToDashboard";
+import Management from "../Management/Management";
 
 const HomePage = () => {
   return (
@@ -44,6 +46,12 @@ const HomePage = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="my-10">
+        <HomeToDashboard></HomeToDashboard>
+      </div>
+      <div className="my-5">
+        <Management></Management>
       </div>
     </>
   );

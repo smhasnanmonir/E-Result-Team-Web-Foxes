@@ -25,19 +25,23 @@ const Dashboard = () => {
             <li className="bg-green-200">
               <span>
                 <img src={result} alt="" />
-                <Link className="text-[18px]">Add Result</Link>
+                <Link to="addResult" className="text-[18px]">
+                  Add Result
+                </Link>
               </span>
             </li>
             <li>
               <span>
-                <img src={review} alt="" />{" "}
-                <Link className="text-[18px]">Review Result</Link>
+                <img src={review} alt="" />
+                <Link to={"reviewResults"} className="text-[18px]">
+                  Review Result
+                </Link>
               </span>
             </li>
             <li>
               <span>
                 <img src={edit} alt="" />
-                <Link to={"addResult"} className="text-[18px]">
+                <Link to={"editResult"} className="text-[18px]">
                   Edit Result
                 </Link>
               </span>
