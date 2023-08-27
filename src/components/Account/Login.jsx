@@ -39,14 +39,34 @@ const Login = () => {
         .then(result => {
             const loggedUser = result.user;
             if(loggedUser){
-                navigate('/');
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: `Welcome ${loggedUser.displayName}`,
-                    showConfirmButton: false,
-                    timer: 2000
+                const userData = {
+                    name: loggedUser.displayName,
+                    email: loggedUser.email,
+                    photo: loggedUser.photoURL,
+                    role: 'student'
+                }
+                fetch("http://localhost:5000/addUser", {
+                    method: "POST",
+                    body: JSON.stringify(userData),
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
                   })
+                    .then((res) => res.json())
+                    .then((data) => {
+                    //   console.log(data);
+                      if (data.insertedId || data.message) {
+                        navigate('/');
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: `Welcome ${loggedUser.displayName}`,
+                            showConfirmButton: false,
+                            timer: 2000
+                          })
+                      }
+                    });
+                
             }      
             })
     }
