@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
 import { AuthContext } from "./Provider/AuthProvider";
@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 
 const Login = () => {
     const {signin, signInGoogle} = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
@@ -19,12 +20,13 @@ const Login = () => {
             const user  = result.user;
             console.log(user);
             if(user){
+                navigate('/');
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: 'Logged In Successfully',
+                    title: `Welcome ${user.displayName}`,
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 2000
                   })
             }
             
@@ -37,13 +39,13 @@ const Login = () => {
         .then(result => {
             const loggedUser = result.user;
             if(loggedUser){
-                console.log(loggedUser); 
+                navigate('/');
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: 'Logged In Successfully',
+                    title: `Welcome ${loggedUser.displayName}`,
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 2000
                   })
             }      
             })
