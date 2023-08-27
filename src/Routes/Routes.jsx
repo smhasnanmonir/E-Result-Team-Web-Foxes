@@ -3,11 +3,13 @@ import Main from "../Layout/Main";
 import HomePage from "../components/HomePage/HomePage";
 import InformationPage from "../pages/InformationPage/InformationPage";
 import ResultPage from "../pages/ResultPage/ResultPage";
-import AddResult from "../components/AddResult/AddResult";
+import EditResult from "../pages/EditResult/EditResult";
+import AddResult from "../pages/AddResult/AddResult";
 import ViewAll from "../components/ViewAll/ViewAll";
 import Login from "../components/Account/Login";
 import Signup from "../components/Account/Signup";
 import Dashboard from "../components/Dashboard/Dashboard";
+import ReviewResults from "../pages/ReviewResults/ReviewResults";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -52,6 +54,14 @@ export const router = createBrowserRouter([
           {
             path: "viewAll",
             element: <ViewAll></ViewAll>,
+          },
+          {
+            path: "reviewResults",
+            element: <ReviewResults></ReviewResults>,
+          },
+          {
+            path: "editResult",
+            element: <EditResult></EditResult>,
           },
         ],
       },

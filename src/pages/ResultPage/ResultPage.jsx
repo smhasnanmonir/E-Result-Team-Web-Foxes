@@ -3,6 +3,7 @@ import DataFetch from "../../components/DataFetch/DataFetch";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { useRef } from "react";
+import Swal from "sweetalert2";
 
 const ResultPage = () => {
   const allData = DataFetch(); //from DataFetch.js in DataFetch files
@@ -38,6 +39,42 @@ const ResultPage = () => {
       pdf.save("result.pdf");
     });
   };
+
+  //check if the student has already applied for recheck or not.
+
+  const reCheckFuntion = () => {
+    let dataBody = {
+      classId: idNumber,
+      rechecked: "No",
+    };
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to recheck?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes send my application!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch("https://e-result-server.vercel.app/reCheck", {
+          method: "POST",
+          body: JSON.stringify(dataBody),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.insertedId) {
+              Swal.fire("Your application has been granted.");
+            }
+          });
+      }
+    });
+  };
+
   return (
     <>
       <div className="lg:px-[250px] px-[35px]" ref={pdfRef}>
@@ -103,8 +140,8 @@ const ResultPage = () => {
             Download Result
           </button>
           <button
-            type="submit"
-            className=" bg-[#E9ACAC] text-black hover:bg-[#a11313]  md:w-1/3 btn btn-primary rounded-xl h-[35px]"
+            onClick={reCheckFuntion}
+            className="bg-[#E9ACAC] text-black hover:bg-[#a11313]  md:w-1/3 btn btn-primary rounded-xl h-[35px]"
           >
             Apply For Recheck
           </button>
