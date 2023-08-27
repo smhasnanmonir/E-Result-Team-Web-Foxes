@@ -1,11 +1,15 @@
 import { useParams } from "react-router";
+import { useNavigate } from "react-router-dom";
 import DataFetch from "../../components/DataFetch/DataFetch";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../components/Account/Provider/AuthProvider";
 
 const ResultPage = () => {
+  const {user} = useContext(AuthContext);
+  const navigate = useNavigate();
   const allData = DataFetch(); //from DataFetch.js in DataFetch files
   console.log(allData);
   const { idNumber } = useParams();
@@ -42,11 +46,98 @@ const ResultPage = () => {
 
   //check if the student has already applied for recheck or not.
 
-  const reCheckFuntion = () => {
-    let dataBody = {
-      classId: idNumber,
-      rechecked: "No",
-    };
+  // const reCheckFuntion = () => {
+  //   let dataBody = {
+  //     classId: idNumber,
+  //     rechecked: "No",
+  //     email : user.email,
+      
+  //   };
+  //   Swal.fire({
+  //     title: "Are you sure?",
+  //     text: "Do you want to recheck?",
+  //     icon: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonColor: "#3085d6",
+  //     cancelButtonColor: "#d33",
+  //     confirmButtonText: "Yes send my application!",
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       fetch("http://localhost:5000/reCheck", {
+  //         method: "POST",
+  //         body: JSON.stringify(dataBody),
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //       })
+  //         .then((res) => res.json())
+  //         .then((data) => {
+  //           console.log(data);
+  //           if (data.insertedId) {
+  //             Swal.fire("Your application has been granted.");
+  //           }
+  //         });
+  //     }
+  //   });
+  // };
+
+
+   const reCheckFuntion  = async() => {
+    
+
+    const { value: text } = await Swal.fire({
+      title: "Type Subject Name & Reason",
+      icon: "warning",
+      input: 'textarea',
+      inputPlaceholder: 'Type your message here...',
+      inputAttributes: {
+        'aria-label': 'Type your message here'
+      },
+      showCancelButton: true
+    })
+    
+    if (text) {
+      let dataBody = {
+        classId: idNumber,
+        rechecked: "No",
+        email : user.email,
+        message : text
+      };
+      Swal.fire({
+        title: "Are you sure?",
+        text: "Do you want to recheck?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes send my application!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // console.log(dataBody);
+          fetch("http://localhost:5000/reCheck", {
+            method: "POST",
+            body: JSON.stringify(dataBody),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              if (data.insertedId) {
+                Swal.fire({
+                  title: 'Applied Successfully',
+                  icon: 'success'
+                });
+              }
+            });
+        }
+      });
+    }
+    
+  };
+
+  const recheckforLogin = () =>{
     Swal.fire({
       title: "Are you sure?",
       text: "Do you want to recheck?",
@@ -54,26 +145,14 @@ const ResultPage = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes send my application!",
+      confirmButtonText: "Login Now!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch("https://e-result-server.vercel.app/reCheck", {
-          method: "POST",
-          body: JSON.stringify(dataBody),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            if (data.insertedId) {
-              Swal.fire("Your application has been granted.");
-            }
-          });
+        navigate('/login')
+          
       }
     });
-  };
+  }
 
   return (
     <>
@@ -139,12 +218,19 @@ const ResultPage = () => {
           >
             Download Result
           </button>
-          <button
+          {
+            user ? <button
             onClick={reCheckFuntion}
-            className="bg-[#E9ACAC] text-black hover:bg-[#a11313]  md:w-1/3 btn btn-primary rounded-xl h-[35px]"
+            className="bg-[#fda2a2] text-black hover:bg-[#a11313]  md:w-1/3 btn btn-primary rounded-xl h-[35px]"
           >
             Apply For Recheck
+          </button> : <button
+            onClick={recheckforLogin}
+            className="bg-[#fdb3b3] text-black hover:bg-[#a11313]  md:w-1/3 btn btn-primary rounded-xl h-[35px]"
+          >
+            Login for Recheck
           </button>
+          }
         </div>
       </div>
     </>

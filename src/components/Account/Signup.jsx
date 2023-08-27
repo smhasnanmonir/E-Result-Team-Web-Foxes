@@ -30,7 +30,7 @@ const Signup = () => {
                         console.log(loggedUser);
                         updateUser( data.Name, imgURL)
                         .then(() => {
-                            // sendVerificationEmail();
+                            // sendVerificationEmail();  //Turned off because of development purpose , will turn on after development finished
                             Swal.fire({
                                 position: 'center',
                                 icon: 'success',

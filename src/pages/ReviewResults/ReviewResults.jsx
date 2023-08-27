@@ -15,10 +15,18 @@ const ReviewResults = () => {
             className="p-5 bg-fuchsia-200 w-96 h-full text-center rounded-md"
             key={reCheck._id}
           >
-            <h1>
+            <h1 className="text-left">
               <h1>
-                Student Id:{" "}
+                Student Id:{"  "} 
                 <span className="font-semibold">{reCheck.classId}</span>
+              </h1>
+              <h1>
+                Email :{" "}
+                <span className="font-semibold">{reCheck.email}</span>
+              </h1>
+              <h1 className="my-2">
+                Reason :{" "}
+                <span className="font-medium">{reCheck.message}</span>
               </h1>
               <h1>
                 Rechecked Status :{" "}
