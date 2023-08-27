@@ -7,12 +7,12 @@ const EditResult = () => {
   const [oneData, setOneData] = useState([]);
   console.log(oneData);
   useEffect(() => {
-    fetch("http://localhost:5000/allResults")
+    fetch("https://e-result-server.vercel.app/allResults")
       .then((res) => res.json())
       .then((data) => setNewData(data));
   }, []);
   const showEditResult = (id) => {
-    fetch(`http://localhost:5000/allResults/${id}`)
+    fetch(`https://e-result-server.vercel.app/allResults/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setOneData(data);

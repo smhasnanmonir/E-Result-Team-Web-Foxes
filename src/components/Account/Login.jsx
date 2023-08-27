@@ -45,7 +45,7 @@ const Login = () => {
                     photo: loggedUser.photoURL,
                     role: 'student'
                 }
-                fetch("http://localhost:5000/addUser", {
+                fetch("https://e-result-server.vercel.app/addUser", {
                     method: "POST",
                     body: JSON.stringify(userData),
                     headers: {
