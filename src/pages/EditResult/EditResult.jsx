@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./EditResult.css";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 const EditResult = () => {
   const [editItem,setEditItem] = useState([]);
   const [oneData,setOneData] = useState([]);
@@ -23,50 +24,74 @@ const EditResult = () => {
   console.log(oneData._id)
 
   
-const onSubmit = (data) => {
-    const finalTerm = {
-      Bangla: parseInt(data.Bangla),
-      Biology: parseInt(data.Biology),
-      Chemistry: parseInt(data.Chemistry),
-      English: parseInt(data.English),
-      Math: parseInt(data.Math),
-      Physics: parseInt(data.Physics),
-    };
+  const onSubmit = (data) => {
+    Swal.fire({
+      title: "Update the result",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Update it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const finalTerm = {
+          Bangla: parseInt(data.Bangla),
+          Biology: parseInt(data.Biology),
+          Chemistry: parseInt(data.Chemistry),
+          English: parseInt(data.English),
+          Math: parseInt(data.Math),
+          Physics: parseInt(data.Physics),
+        };
   
-    fetch(`http://localhost:5000/allResults/${oneData._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(finalTerm),
-    })
-      .then((res) => res.json())
-      .then((updatedResult) => {
-        console.log(updatedResult);
-        // Update the oneData state with the updated finalTerm
-        setOneData((prevOneData) => ({
-          ...prevOneData,
-          finalTerm: finalTerm,
-        }));
-      })
-      .catch((error) => {
-        console.error("Error updating data:", error);
-      });
+        fetch(`http://localhost:5000/allResults/${oneData._id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(finalTerm),
+        })
+          .then((res) => res.json())
+          .then((updatedResult) => {
+            console.log(updatedResult);
+            setOneData((prevOneData) => ({
+              ...prevOneData,
+              finalTerm: finalTerm,
+            }));
+            setEditItem((prevEditItems) =>
+              prevEditItems.map((item) =>
+                item._id === oneData._id
+                  ? { ...item, finalTerm: finalTerm }
+                  : item
+              )
+            );
+  
+            Swal.fire("Result has been Update", "", "success");
+          })
+          .catch((error) => {
+            console.error("Error updating data:", error);
+            Swal.fire("Error updating data", "", "error");
+          });
+      }
+    });
   };
+  
   
   
     // Update the oneData state with the updated subject marks
   
   
-   const calculateGrade = (marks) => {
-    if (marks >= 400) {
-      return "A+";
-    } else if (marks >= 350) {
-      return "A";
-    } else {
-      return "B";
-    }
-  };
+    const calculateGrade = (marks) => {
+      if (marks >= 350) {
+        return "A+";
+      } else if (marks >= 300) {
+        return "A";
+      } else if (marks >= 250) {
+        return "A-";
+      } else {
+        return "B";
+      }
+    };
+    
   return (
     <div className="lg:w-[70%] mx-auto">
       <div className="">
