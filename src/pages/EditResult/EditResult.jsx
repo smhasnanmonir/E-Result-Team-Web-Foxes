@@ -3,27 +3,26 @@ import "./EditResult.css";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 const EditResult = () => {
-  const [editItem,setEditItem] = useState([]);
-  const [oneData,setOneData] = useState([]);
+  const [editItem, setEditItem] = useState([]);
+  const [oneData, setOneData] = useState([]);
   const { register, handleSubmit } = useForm();
-   
-  useEffect(()=>{
-    fetch(`http://localhost:5000/allResults`)
-    .then(res => res.json())
-    .then(data => setEditItem(data))
-   },[]);
 
-   const showEditResult = (id) => {
-    fetch(`http://localhost:5000/allResults/${id}`)
+  useEffect(() => {
+    fetch(`https://e-result-server.vercel.app/allResults`)
+      .then((res) => res.json())
+      .then((data) => setEditItem(data));
+  }, []);
+
+  const showEditResult = (id) => {
+    fetch(`https://e-result-server.vercel.app/allResults/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setOneData(data);
       });
   };
 
-  console.log(oneData._id)
+  console.log(oneData._id);
 
-  
   const onSubmit = (data) => {
     Swal.fire({
       title: "Update the result",
@@ -42,8 +41,8 @@ const EditResult = () => {
           Math: parseInt(data.Math),
           Physics: parseInt(data.Physics),
         };
-  
-        fetch(`http://localhost:5000/allResults/${oneData._id}`, {
+
+        fetch(`https://e-result-server.vercel.app/allResults/${oneData._id}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -64,7 +63,7 @@ const EditResult = () => {
                   : item
               )
             );
-  
+
             Swal.fire("Result has been Update", "", "success");
           })
           .catch((error) => {
@@ -74,24 +73,21 @@ const EditResult = () => {
       }
     });
   };
-  
-  
-  
-    // Update the oneData state with the updated subject marks
-  
-  
-    const calculateGrade = (marks) => {
-      if (marks >= 350) {
-        return "A+";
-      } else if (marks >= 300) {
-        return "A";
-      } else if (marks >= 250) {
-        return "A-";
-      } else {
-        return "B";
-      }
-    };
-    
+
+  // Update the oneData state with the updated subject marks
+
+  const calculateGrade = (marks) => {
+    if (marks >= 350) {
+      return "A+";
+    } else if (marks >= 300) {
+      return "A";
+    } else if (marks >= 250) {
+      return "A-";
+    } else {
+      return "B";
+    }
+  };
+
   return (
     <div className="lg:w-[70%] mx-auto">
       <div className="">
@@ -106,76 +102,87 @@ const EditResult = () => {
                   <p>ID:{oneData.classId}</p>
                 </div>
               </div>
-              <div >
-              <form onSubmit={handleSubmit(onSubmit)} className="text-center bg-slate-300 p-5 text-[16px] rounded my-5 grid grid-cols-3 gap-7">
-            <div className="mt-5">
-              <p className="mr-2">Bangla</p>
-              <input
-                type="number"
-                defaultValue={oneData?.finalTerm?.Bangla}
-                className=" w-20 text-center text-black placeholder-black hover:bg-[#ffffff]  rounded-xl py-2"
-                {...register("Bangla")}
-              />
-            </div>
+              <div>
+                <form
+                  onSubmit={handleSubmit(onSubmit)}
+                  className="text-center bg-slate-300 p-5 text-[16px] rounded my-5 grid grid-cols-3 gap-7"
+                >
+                  <div className="mt-5">
+                    <p className="mr-2">Bangla</p>
+                    <input
+                      type="number"
+                      defaultValue={oneData?.finalTerm?.Bangla}
+                      className=" w-20 text-center text-black placeholder-black hover:bg-[#ffffff]  rounded-xl py-2"
+                      {...register("Bangla")}
+                    />
+                  </div>
 
-            <div className="mt-5">
-              <p className="mr-2">Biology</p>
-              <input
-                type="number"
-                defaultValue={oneData?.finalTerm?.Biology}
-                className=" w-20 text-center text-black placeholder-black hover:bg-[#ffffff]  rounded-xl py-2"
-                {...register("Biology")}
-              />
-            </div>
+                  <div className="mt-5">
+                    <p className="mr-2">Biology</p>
+                    <input
+                      type="number"
+                      defaultValue={oneData?.finalTerm?.Biology}
+                      className=" w-20 text-center text-black placeholder-black hover:bg-[#ffffff]  rounded-xl py-2"
+                      {...register("Biology")}
+                    />
+                  </div>
 
-            <div className="mt-5">
-              <p className="mr-2">Chemistry</p>
-              <input
-                type="number"
-                defaultValue={oneData?.finalTerm?.Chemistry}
-                className=" w-20 text-center text-black placeholder-black hover:bg-[#ffffff]  rounded-xl py-2"
-                {...register("Chemistry")}
-              />
-            </div>
+                  <div className="mt-5">
+                    <p className="mr-2">Chemistry</p>
+                    <input
+                      type="number"
+                      defaultValue={oneData?.finalTerm?.Chemistry}
+                      className=" w-20 text-center text-black placeholder-black hover:bg-[#ffffff]  rounded-xl py-2"
+                      {...register("Chemistry")}
+                    />
+                  </div>
 
-            <div className="mt-5">
-              <p className="mr-2">English</p>
-              <input
-                type="number"
-                defaultValue={oneData?.finalTerm?.English}
-                className=" w-20 text-center text-black placeholder-black hover:bg-[#ffffff]  rounded-xl py-2"
-                {...register("English")}
-              />
-            </div>
+                  <div className="mt-5">
+                    <p className="mr-2">English</p>
+                    <input
+                      type="number"
+                      defaultValue={oneData?.finalTerm?.English}
+                      className=" w-20 text-center text-black placeholder-black hover:bg-[#ffffff]  rounded-xl py-2"
+                      {...register("English")}
+                    />
+                  </div>
 
-            <div className="mt-5">
-              <p className="mr-2">Math</p>
-              <input
-                type="number"
-                defaultValue={oneData?.finalTerm?.Math}
-                className=" w-20 text-center text-black placeholder-black hover:bg-[#ffffff]  rounded-xl py-2"
-                {...register("Math")}
-              />
-            </div>
+                  <div className="mt-5">
+                    <p className="mr-2">Math</p>
+                    <input
+                      type="number"
+                      defaultValue={oneData?.finalTerm?.Math}
+                      className=" w-20 text-center text-black placeholder-black hover:bg-[#ffffff]  rounded-xl py-2"
+                      {...register("Math")}
+                    />
+                  </div>
 
-            <div className="mt-5">
-              <p className="mr-2">Physics</p>
-              <input
-                type="number"
-                defaultValue={oneData?.finalTerm?.Physics}
-                className=" w-20 text-center text-black placeholder-black hover:bg-[#ffffff]  rounded-xl py-2"
-                {...register("Physics")}
-              />
-            </div>
-            <div className="mt-6 mx-auto col-span-full">
-              <div className="modal-action">
-                <button className="btn btn-outline btn-success" type="submit">Save</button>
-                <label htmlFor="my_modal_6" className="btn btn-outline btn-error">
-                  Close
-                </label>
-              </div>
-            </div>
-          </form>
+                  <div className="mt-5">
+                    <p className="mr-2">Physics</p>
+                    <input
+                      type="number"
+                      defaultValue={oneData?.finalTerm?.Physics}
+                      className=" w-20 text-center text-black placeholder-black hover:bg-[#ffffff]  rounded-xl py-2"
+                      {...register("Physics")}
+                    />
+                  </div>
+                  <div className="mt-6 mx-auto col-span-full">
+                    <div className="modal-action">
+                      <button
+                        className="btn btn-outline btn-success"
+                        type="submit"
+                      >
+                        Save
+                      </button>
+                      <label
+                        htmlFor="my_modal_6"
+                        className="btn btn-outline btn-error"
+                      >
+                        Close
+                      </label>
+                    </div>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
@@ -216,18 +223,21 @@ const EditResult = () => {
               </tr>
             </thead>
             <tbody>
-              {
-                editItem.map((data,i) => 
-                      <tr key={i}>
-                      <th>{data.Name}</th>
-                      <th>{data.classId}</th>
-                      <th>{calculateGrade(data.marks)}</th>
-                      <th>
-                        <label onClick={()=> showEditResult(data?._id)}  htmlFor="my_modal_6">Edit</label>
-                      </th>
-                    </tr>
-                )
-              }
+              {editItem.map((data, i) => (
+                <tr key={i}>
+                  <th>{data.Name}</th>
+                  <th>{data.classId}</th>
+                  <th>{calculateGrade(data.marks)}</th>
+                  <th>
+                    <label
+                      onClick={() => showEditResult(data?._id)}
+                      htmlFor="my_modal_6"
+                    >
+                      Edit
+                    </label>
+                  </th>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
