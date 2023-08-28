@@ -37,7 +37,7 @@ const Signup = () => {
                                 role: 'student'
                             }
                             // sendVerificationEmail();  //Turned off because of development purpose , will turn on after development finished
-                            fetch("https://e-result-server.vercel.app/addUser", {
+                            fetch("http://localhost:5000/addUser", {
                                 method: "POST",
                                 body: JSON.stringify(userData),
                                 headers: {

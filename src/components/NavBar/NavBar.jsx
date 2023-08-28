@@ -49,6 +49,12 @@ const NavBar = () => {
           >
             Dashboard
           </Link>
+          <Link
+            to="userdashboard"
+            className="transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-110"
+          >
+            User Dashboard
+          </Link>
           {
             user? <p className="text-center transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-110">Hi, {user.displayName}</p> : ''
           }

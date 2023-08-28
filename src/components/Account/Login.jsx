@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
 import { AuthContext } from "./Provider/AuthProvider";
@@ -10,6 +10,8 @@ import Swal from "sweetalert2";
 const Login = () => {
     const {signin, signInGoogle} = useContext(AuthContext);
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
@@ -20,7 +22,7 @@ const Login = () => {
             const user  = result.user;
             console.log(user);
             if(user){
-                navigate('/');
+                navigate(from, { replace: true });
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
@@ -45,7 +47,7 @@ const Login = () => {
                     photo: loggedUser.photoURL,
                     role: 'student'
                 }
-                fetch("https://e-result-server.vercel.app/addUser", {
+                fetch("http://localhost:5000/addUser", {
                     method: "POST",
                     body: JSON.stringify(userData),
                     headers: {
@@ -56,7 +58,7 @@ const Login = () => {
                     .then((data) => {
                     //   console.log(data);
                       if (data.insertedId || data.message) {
-                        navigate('/');
+                        navigate(from, { replace: true });
                         Swal.fire({
                             position: 'center',
                             icon: 'success',

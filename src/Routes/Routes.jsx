@@ -10,6 +10,8 @@ import Login from "../components/Account/Login";
 import Signup from "../components/Account/Signup";
 import Dashboard from "../components/Dashboard/Dashboard";
 import ReviewResults from "../pages/ReviewResults/ReviewResults";
+import PrivateRoute from "./PrivateRoute";
+import UserDashboard from "../pages/UserDashboard/UserDashboard";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -45,7 +47,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "dashboard",
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
           {
             path: "addResult",
@@ -64,6 +66,10 @@ export const router = createBrowserRouter([
             element: <EditResult></EditResult>,
           },
         ],
+      },
+      {
+        path: "userdashboard",
+        element: <PrivateRoute><UserDashboard></UserDashboard></PrivateRoute>,
       },
     ],
   },
