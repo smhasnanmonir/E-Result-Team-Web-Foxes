@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../components/Account/Provider/AuthProvider";
 
 const ResultPage = () => {
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const allData = DataFetch(); //from DataFetch.js in DataFetch files
   console.log(allData);
@@ -18,7 +18,15 @@ const ResultPage = () => {
     (user) => user.classId == idNumber
   );
   console.log(studentInformation);
-  console.log(studentInformation?.result[0].midTerm);
+  const finalTermValue = studentInformation?.finalTerm;
+  const finalTermArray = [];
+  if (finalTermValue) {
+    for (let key in finalTermValue) {
+      finalTermArray.push({ key, value: finalTermValue[key] });
+    }
+  }
+  console.log(finalTermArray);
+
   const pdfRef = useRef();
   const downloadPdf = () => {
     const input = pdfRef.current;
@@ -51,7 +59,7 @@ const ResultPage = () => {
   //     classId: idNumber,
   //     rechecked: "No",
   //     email : user.email,
-      
+
   //   };
   //   Swal.fire({
   //     title: "Are you sure?",
@@ -81,27 +89,24 @@ const ResultPage = () => {
   //   });
   // };
 
-
-   const reCheckFuntion  = async() => {
-    
-
+  const reCheckFuntion = async () => {
     const { value: text } = await Swal.fire({
       title: "Type Subject Name & Reason",
       icon: "warning",
-      input: 'textarea',
-      inputPlaceholder: 'Type your message here...',
+      input: "textarea",
+      inputPlaceholder: "Type your message here...",
       inputAttributes: {
-        'aria-label': 'Type your message here'
+        "aria-label": "Type your message here",
       },
-      showCancelButton: true
-    })
-    
+      showCancelButton: true,
+    });
+
     if (text) {
       let dataBody = {
         classId: idNumber,
         rechecked: "No",
-        email : user.email,
-        message : text
+        email: user.email,
+        message: text,
       };
       Swal.fire({
         title: "Are you sure?",
@@ -126,18 +131,17 @@ const ResultPage = () => {
               console.log(data);
               if (data.insertedId) {
                 Swal.fire({
-                  title: 'Applied Successfully',
-                  icon: 'success'
+                  title: "Applied Successfully",
+                  icon: "success",
                 });
               }
             });
         }
       });
     }
-    
   };
 
-  const recheckforLogin = () =>{
+  const recheckforLogin = () => {
     Swal.fire({
       title: "Are you sure?",
       text: "Do you want to recheck?",
@@ -148,11 +152,10 @@ const ResultPage = () => {
       confirmButtonText: "Login Now!",
     }).then((result) => {
       if (result.isConfirmed) {
-        navigate('/login')
-          
+        navigate("/login");
       }
     });
-  }
+  };
 
   return (
     <>
@@ -180,30 +183,29 @@ const ResultPage = () => {
                   <th className="font-medium">Mark</th>
                   <th className="font-medium">Grade</th>
                 </tr>
-              </thead>
-              <tbody className=" [&>*:nth-child(odd)]:bg-white [&>*:nth-child(even)]:bg-[#ACE9D7]">
-                {studentInformation?.result[0].midTerm.map((res, i) => (
-                  <tr key={i}>
-                    <td className="py-1">{res?.subjectName}</td>
-                    <td>{res?.number}</td>
-                    {res?.number >= 80 ? (
+                {finalTermArray?.map((subject, index) => (
+                  <tr key={index}>
+                    <td className="py-1">{subject?.key}</td>
+                    <td>{subject?.value}</td>
+                    {subject?.value >= 80 ? (
                       <td>A+</td>
-                    ) : res?.number >= 70 ? (
+                    ) : subject?.value >= 70 ? (
                       <td>A</td>
-                    ) : res?.number >= 60 ? (
+                    ) : subject?.value >= 60 ? (
                       <td>A</td>
-                    ) : res?.number >= 50 ? (
+                    ) : subject?.value >= 50 ? (
                       <td>B</td>
-                    ) : res?.number >= 40 ? (
+                    ) : subject?.value >= 40 ? (
                       <td>C</td>
-                    ) : res?.number >= 33 ? (
+                    ) : subject?.value >= 33 ? (
                       <td>D</td>
                     ) : (
                       "F"
                     )}
                   </tr>
                 ))}
-              </tbody>
+              </thead>
+              <tbody className=" [&>*:nth-child(odd)]:bg-white [&>*:nth-child(even)]:bg-[#ACE9D7]"></tbody>
             </table>
           </div>
         </div>
@@ -218,19 +220,21 @@ const ResultPage = () => {
           >
             Download Result
           </button>
-          {
-            user ? <button
-            onClick={reCheckFuntion}
-            className="bg-[#fda2a2] text-black hover:bg-[#a11313]  md:w-1/3 btn btn-primary rounded-xl h-[35px]"
-          >
-            Apply For Recheck
-          </button> : <button
-            onClick={recheckforLogin}
-            className="bg-[#fdb3b3] text-black hover:bg-[#a11313]  md:w-1/3 btn btn-primary rounded-xl h-[35px]"
-          >
-            Login for Recheck
-          </button>
-          }
+          {user ? (
+            <button
+              onClick={reCheckFuntion}
+              className="bg-[#fda2a2] text-black hover:bg-[#a11313]  md:w-1/3 btn btn-primary rounded-xl h-[35px]"
+            >
+              Apply For Recheck
+            </button>
+          ) : (
+            <button
+              onClick={recheckforLogin}
+              className="bg-[#fdb3b3] text-black hover:bg-[#a11313]  md:w-1/3 btn btn-primary rounded-xl h-[35px]"
+            >
+              Login for Recheck
+            </button>
+          )}
         </div>
       </div>
     </>
