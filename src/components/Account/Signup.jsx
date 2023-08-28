@@ -30,14 +30,34 @@ const Signup = () => {
                         console.log(loggedUser);
                         updateUser( data.Name, imgURL)
                         .then(() => {
-                            sendVerificationEmail();
-                            Swal.fire({
-                                position: 'center',
-                                icon: 'success',
-                                title: 'Responded..! Check your email',
-                                showConfirmButton: false,
-                                timer: 1500
+                            const userData = {
+                                name: data.Name,
+                                email: data.Email,
+                                photo: imgURL,
+                                role: 'student'
+                            }
+                            // sendVerificationEmail();  //Turned off because of development purpose , will turn on after development finished
+                            fetch("https://e-result-server.vercel.app/addUser", {
+                                method: "POST",
+                                body: JSON.stringify(userData),
+                                headers: {
+                                  "Content-Type": "application/json",
+                                },
                               })
+                                .then((res) => res.json())
+                                .then((data) => {
+                                  console.log(data);
+                                  if (data.insertedId) {
+                                    Swal.fire({
+                                        position: 'center',
+                                        icon: 'success',
+                                        title: 'Responded..! Check your email',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                      })
+                                  }
+                                });
+                            
                             reset();    
                             navigate('/login');
                         })
