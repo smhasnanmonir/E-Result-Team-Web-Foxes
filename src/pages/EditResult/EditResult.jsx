@@ -99,7 +99,7 @@ const EditResult = () => {
         <div className="modal">
           <div className="modal-box">
             <div className="">
-              <div className="text-center bg-slate-300 p-5 text-[16px] rounded">
+              <div className="text-center bg-green-300 p-5 text-[16px] rounded">
                 <h1 className="mb-5">Editing Result of</h1>
                 <div className="flex justify-between">
                   <p>Name: {oneData.Name}</p>
@@ -107,7 +107,7 @@ const EditResult = () => {
                 </div>
               </div>
               <div >
-              <form onSubmit={handleSubmit(onSubmit)} className="text-center bg-slate-300 p-5 text-[16px] rounded my-5 grid grid-cols-3 gap-7">
+              <form onSubmit={handleSubmit(onSubmit)} className="text-center bg-green-300 p-5 text-[16px] rounded my-5 grid grid-cols-3 gap-7">
             <div className="mt-5">
               <p className="mr-2">Bangla</p>
               <input
