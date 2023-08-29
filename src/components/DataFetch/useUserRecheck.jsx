@@ -4,9 +4,10 @@ import { AuthContext } from "../Account/Provider/AuthProvider";
 
 const useUserRecheck = () => {
   const {user} = useContext(AuthContext);
+  // console.log(user);
   const [userRecheckAll, setallRecheck] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/reCheckUser?email=${user.email}`)
+    fetch(`https://e-result-server.vercel.app/reCheckUser?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setallRecheck(data);

@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../Account/Provider/AuthProvider";
+import useAdmin from "../DataFetch/useAdmin";
+
+
 
 const NavBar = () => {
   const {user, logOut} = useContext(AuthContext);
@@ -17,6 +20,8 @@ const NavBar = () => {
     logOut();
   }
 
+  
+
   return (
     <>
       <div className="mx-24 my-[20px] font-poppins font-bold">
@@ -25,7 +30,7 @@ const NavBar = () => {
             to="/"
             className="text-3xl transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-110"
           >
-            Home
+            <img className="h-[50px]" src="https://i.ibb.co/n80R2cQ/eresult.png" alt="" />
           </Link>
 
 
@@ -43,18 +48,14 @@ const NavBar = () => {
             View Roll
           </Link>
 
-          <Link
-            to="dashboard"
+          {
+            user? <Link
+            to="differdashboard"
             className="transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-110"
           >
             Dashboard
-          </Link>
-          <Link
-            to="userdashboard"
-            className="transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-110"
-          >
-            User Dashboard
-          </Link>
+          </Link> : ''
+          }
           {
             user? <p className="text-center transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-110">Hi, {user.displayName}</p> : ''
           }

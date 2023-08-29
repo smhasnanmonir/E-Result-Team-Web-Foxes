@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { AuthContext } from "../../components/Account/Provider/AuthProvider";
-import useUserRecheck from "../../components/DataFetch/useUserRecheck";
+import { AuthContext } from "../../Account/Provider/AuthProvider";
+import useUserRecheck from "../../DataFetch/useUserRecheck";
 import {FaHourglassHalf} from 'react-icons/fa'
 import {MdDoneOutline} from 'react-icons/md'
 
@@ -8,7 +8,7 @@ import {MdDoneOutline} from 'react-icons/md'
 const UserDashboard = () => {
     const {user, loading} = useContext(AuthContext);
     const [userRecheckAll] = useUserRecheck();
-    console.log(userRecheckAll);
+    // console.log(userRecheckAll);
     return (
         <div>
             <div className="flex py-10 gap-10">
