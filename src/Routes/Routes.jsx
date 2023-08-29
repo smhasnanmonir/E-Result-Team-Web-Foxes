@@ -3,7 +3,6 @@ import Main from "../Layout/Main";
 import HomePage from "../components/HomePage/HomePage";
 import InformationPage from "../pages/InformationPage/InformationPage";
 import ResultPage from "../pages/ResultPage/ResultPage";
-import EditResult from "../pages/EditResult/EditResult";
 import AddResult from "../pages/AddResult/AddResult";
 import ViewAll from "../components/ViewAll/ViewAll";
 import Login from "../components/Account/Login";
@@ -14,7 +13,7 @@ import PrivateRoute from "./PrivateRoute";
 import UserDashboard from "../components/Dashboard/UserDashboard/UserDashboard";
 import DifferDashboard from "../components/Dashboard/DifferDashboard";
 import Admin from "./Admin";
-
+import EditResult from "../pages/EditResult/EditResult";
 export const router = createBrowserRouter([
   {
     path: "/",
