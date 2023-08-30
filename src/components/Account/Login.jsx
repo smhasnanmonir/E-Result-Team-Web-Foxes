@@ -33,7 +33,6 @@ const Login = () => {
             .then(data => {
                 console.log(data)
                 if(user){
-                    navigate(from, { replace: true });
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
@@ -41,6 +40,7 @@ const Login = () => {
                         showConfirmButton: false,
                         timer: 2000
                       })
+                      navigate(from, { replace: true });
                 }
             })            
         })
