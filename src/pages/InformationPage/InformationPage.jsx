@@ -19,8 +19,8 @@ const InformationPage = () => {
         </div>
         <div className=" flex justify-center w-full bg-[#F8F8F8]">
           <form className=" mt-10 px-4 ">
-            <div className="mb-10 flex justify-between">
-              <label className="block font-medium">Examination</label>
+            <div className="mb-10 flex justify-between items-center gap-1">
+              <label className="block font-medium">Examination :</label>
               <select
                 name="examination"
                 id="examination"
@@ -31,8 +31,8 @@ const InformationPage = () => {
                 <option value="Final">Final</option>
               </select>
             </div>
-            <div className="mb-10 flex justify-between">
-              <label className="block font-medium">Examination</label>
+            <div className="mb-10 flex justify-between items-center gap-1">
+              <label className="block font-medium">Examination :</label>
               <select
                 name="examination"
                 id="examination"
@@ -43,15 +43,15 @@ const InformationPage = () => {
                 <option value="Final">2021</option>
               </select>
             </div>
-            <div className="mb-10 flex justify-between">
-              <label className="block font-medium">ID Number</label>
+            <div className="mb-10 flex justify-between items-center gap-1">
+              <label className="block font-medium">ID Number :</label>
               <input
                 onChange={studentInfo}
                 type="number"
                 name="idNumber"
                 placeholder="Example: 22101517"
                 id="idNumber"
-                className="w-1/2 py-[8px] rounded-xl border border-black placeholder-black form-control text-center"
+                className=" py-[8px] rounded-xl border border-black placeholder-black form-control text-center"
               />
             </div>
 
