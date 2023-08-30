@@ -20,18 +20,29 @@ const Login = () => {
         signin(data.Email, data.Password)
         .then((result) => {
             const user  = result.user;
+            const logUser = {email: user.email}
             console.log(user);
-            if(user){
-                navigate(from, { replace: true });
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: `Welcome ${user.displayName}`,
-                    showConfirmButton: false,
-                    timer: 2000
-                  })
-            }
-            
+            fetch('http://localhost:5000/jwt',{
+                method:'POST',
+                headers:{
+                    'content-type': 'application/json'
+                },
+                body:JSON.stringify(logUser)
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if(user){
+                    navigate(from, { replace: true });
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: `Welcome ${user.displayName}`,
+                        showConfirmButton: false,
+                        timer: 2000
+                      })
+                }
+            })            
         })
     } 
     
@@ -56,7 +67,6 @@ const Login = () => {
                   })
                     .then((res) => res.json())
                     .then((data) => {
-                    //   console.log(data);
                       if (data.insertedId || data.message) {
                         navigate(from, { replace: true });
                         Swal.fire({
