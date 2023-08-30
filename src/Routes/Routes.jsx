@@ -14,6 +14,7 @@ import UserDashboard from "../components/Dashboard/UserDashboard/UserDashboard";
 import DifferDashboard from "../components/Dashboard/DifferDashboard";
 import Admin from "./Admin";
 import EditResult from "../pages/EditResult/EditResult";
+import ManageUser from "../pages/ManageUser/ManageUser";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -70,6 +71,10 @@ export const router = createBrowserRouter([
           {
             path: "editResult",
             element: <Admin><EditResult></EditResult></Admin>,
+          },
+          {
+            path: "manageusers",
+            element: <Admin><ManageUser></ManageUser></Admin>,
           },
         ],
       },
