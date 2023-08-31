@@ -3,6 +3,7 @@ import result from "../../assets/plus 1.png";
 import review from "../../assets/reviews 1.png";
 import edit from "../../assets/edit 1.png";
 import viewAll from "../../assets/analysis 1.png";
+import manage from "../../assets/settings.png";
 import "./Dashboard.css";
 const Dashboard = () => {
   return (
@@ -24,7 +25,7 @@ const Dashboard = () => {
             {/* Sidebar content here */}
             <li className="bg-green-200">
               <span>
-                <img src={result} alt="" />
+                <img className="h-[45px]" src={result} alt="" />
                 <Link to="addResult" className="text-[18px]">
                   Add Result
                 </Link>
@@ -32,7 +33,7 @@ const Dashboard = () => {
             </li>
             <li>
               <span>
-                <img src={review} alt="" />
+                <img className="h-[45px]" src={review} alt="" />
                 <Link to={"reviewResults"} className="text-[18px]">
                   Review Result
                 </Link>
@@ -40,7 +41,7 @@ const Dashboard = () => {
             </li>
             <li>
               <span>
-                <img src={edit} alt="" />
+                <img className="h-[45px]" src={edit} alt="" />
                 <Link to={"editResult"} className="text-[18px]">
                   Edit Result
                 </Link>
@@ -48,9 +49,17 @@ const Dashboard = () => {
             </li>
             <li>
               <span>
-                <img src={viewAll} alt="" />
+                <img className="h-[45px]" src={viewAll} alt="" />
                 <Link to={"viewAll"} className="text-[18px]">
                   View All Result
+                </Link>
+              </span>
+            </li>
+            <li>
+              <span>
+                <img className="h-[45px]" src={manage} alt="" />
+                <Link to={"manageusers"} className="text-[18px]">
+                  Manage User
                 </Link>
               </span>
             </li>
