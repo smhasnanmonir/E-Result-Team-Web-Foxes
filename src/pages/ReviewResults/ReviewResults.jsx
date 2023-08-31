@@ -7,8 +7,42 @@ const ReviewResults = () => {
   const [axiosSecure] = useAxiosSecure();
   const [reCheck, refetch] = useRecheck();
   console.log(reCheck);
-  const handleFeedback = (id) => {
-    console.log(id);
+  const handleFeedback = async (id) => {
+    const { value: text } = await Swal.fire({
+      input: "textarea",
+      inputLabel: "Write feedback",
+      inputPlaceholder: "Type your feedback here...",
+      inputAttributes: {
+        "aria-label": "Type your feedback here",
+      },
+      showCancelButton: true,
+    });
+
+    if (text) {
+      let dataBody = {
+        feedback: text,
+      };
+      fetch(`http://localhost:5100/reCheckDelete/${id}`, {
+        method: "PATCH",
+        body: JSON.stringify(dataBody),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          console.log(data?.insertedId);
+          if (data.modifiedCount > 0) {
+            Swal.fire({
+              title: "Feedback has been sent",
+              icon: "success",
+              showConfirmButton: true,
+              timer: 1500,
+            });
+          }
+        });
+    }
   };
   const handleDelete = (id) => {
     Swal.fire({
@@ -74,7 +108,7 @@ const ReviewResults = () => {
               </Link>
               <button
                 onClick={() => handleFeedback(reCheck?._id)}
-                className="px-[25px] block py-[9px] mt-[13px] bg-red-300"
+                className="px-[25px] block py-[9px] mt-[13px] bg-orange-300"
               >
                 Feedback
               </button>
