@@ -14,10 +14,12 @@ import UserDashboard from "../components/Dashboard/UserDashboard/UserDashboard";
 import DifferDashboard from "../components/Dashboard/DifferDashboard";
 import Admin from "./Admin";
 import EditResult from "../pages/EditResult/EditResult";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
