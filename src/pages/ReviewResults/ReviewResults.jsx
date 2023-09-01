@@ -22,7 +22,7 @@ const ReviewResults = () => {
       let dataBody = {
         feedback: text,
       };
-      fetch(`http://localhost:5100/reCheckDelete/${id}`, {
+      fetch(`https://e-result-server.vercel.app/reCheckDelete/${id}`, {
         method: "PATCH",
         body: JSON.stringify(dataBody),
         headers: {
@@ -102,7 +102,7 @@ const ReviewResults = () => {
             <div className="grid lg:grid-cols-2 grid-cols-1 gap-1 items-center justify-center">
               <Link
                 className="px-[25px] block py-[9px] mt-[13px] bg-green-300"
-                to="/addResult"
+                to="/differdashboard/editResult"
               >
                 Edit
               </Link>
