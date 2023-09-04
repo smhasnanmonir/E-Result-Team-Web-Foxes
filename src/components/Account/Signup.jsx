@@ -70,11 +70,11 @@ const Signup = () => {
     };
     
     return (
-       <div className="flex justify-center items-center gap-5">
+       <div className="flex flex-col lg:flex-row justify-center items-center gap-5">
          <div className="">
-            <Lottie className="h-[600px]" animationData={ani}></Lottie>
+            <Lottie className="lg:h-[600px]" animationData={ani}></Lottie>
         </div>
-         <div className="flex justify-center items-center py-[5%]">
+         <div className="flex justify-center items-center lg:py-[5%]">
             <form className="max-w-sm w-full text-center" onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-control">
                     <h1 className="text-3xl font-semibold text-center my-5">Sign Up</h1>

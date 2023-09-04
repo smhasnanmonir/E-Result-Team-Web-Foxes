@@ -15,14 +15,14 @@ const UpdateProfile = () => {
             <div className='divider'></div>
             <h1 className='text-3xl my-3'>Update Profile</h1>
             <div className='divider'></div>
-            <div className='flex justify-center items-center gap-3'>
+            <div className='flex flex-col lg:flex-row  justify-center items-center gap-3'>
                 <div>
                     <Lottie animationData={ani}></Lottie>
                 </div>
-                <form className='flex flex-col justify-center items-center' onSubmit={handleSubmit(onSubmit)}>
+                <form className='flex flex-col justify-center items-center px-2' onSubmit={handleSubmit(onSubmit)}>
                     
                     <div className='text-center'>
-                        <div className='flex justify-center items-center gap-5'>
+                        <div className='flex flex-col md:flex-row justify-center items-center gap-5'>
                             <div className="form-control w-full max-w-lg">
                                 <label className="label">
                                     <span className="label-text font-semibold">Email (Can not be Change)</span>
@@ -38,7 +38,7 @@ const UpdateProfile = () => {
                             </div>
                         </div>
 
-                        <div className='flex justify-center items-center gap-5'>
+                        <div className='flex flex-col md:flex-row justify-center items-center gap-5'>
                             <div className="form-control w-full max-w-lg">
                                     <label className="label">
                                         <span className="label-text font-semibold">*Age</span>
