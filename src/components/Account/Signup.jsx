@@ -4,6 +4,8 @@ import { AuthContext } from "./Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 const img_hosting_token = import.meta.env.VITE_IMAGE_TOKEN;
+import Lottie from "lottie-react";
+import ani from './signup.json'
 
 
 const Signup = () => {
@@ -68,10 +70,14 @@ const Signup = () => {
     };
     
     return (
-        <div className="flex justify-center items-center py-[5%]">
+       <div className="flex justify-center items-center gap-5">
+         <div className="">
+            <Lottie className="h-[600px]" animationData={ani}></Lottie>
+        </div>
+         <div className="flex justify-center items-center py-[5%]">
             <form className="max-w-sm w-full text-center" onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-control">
-                    <h1 className="text-3xl font-semibold text-center my-5">Sign Up Now..!</h1>
+                    <h1 className="text-3xl font-semibold text-center my-5">Sign Up</h1>
                     <label className="label">
                         <span className="label-text font-semibold">*Enter Your Email</span>
                     </label>
@@ -100,6 +106,8 @@ const Signup = () => {
                 
              </form>
         </div>
+       
+       </div>
     );
 };
 
