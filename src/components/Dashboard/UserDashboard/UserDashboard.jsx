@@ -3,11 +3,46 @@ import { AuthContext } from "../../Account/Provider/AuthProvider";
 import useUserRecheck from "../../DataFetch/useUserRecheck";
 import { FaHourglassHalf } from "react-icons/fa";
 import { MdDoneOutline } from "react-icons/md";
-
+import ResultChart from "./ResultChart";
+import DataFetch from "../../DataFetch/DataFetch";
 const UserDashboard = () => {
+  const [allData] = DataFetch();
   const { user, loading } = useContext(AuthContext);
   const [userRecheckAll] = useUserRecheck();
-  // console.log(userRecheckAll);
+  const finalTermValue = allData[1]?.finalTerm;
+  const midTermValue = allData[1]?.midTerm;
+  const arrayConvert = (termValue) => {
+    const termArray = [];
+    if (termValue) {
+      for (let key in termValue) {
+        let key1 = key.slice(0, 3).toUpperCase();
+        termArray.push({ key1, value: termValue[key] });
+      }
+    }
+    return termArray;
+  };
+  const finalConvertedArray = arrayConvert(finalTermValue);
+  console.log(finalConvertedArray);
+  const midConvertedArray = arrayConvert(midTermValue);
+
+  const finalTotalValue = finalConvertedArray.reduce(
+    (total, item) => total + item.value,
+    0
+  );
+
+  const midTotalValue = midConvertedArray.reduce(
+    (total, item) => total + item.value,
+    0
+  );
+
+  const calculateComparison = (a, b) => {
+    if (a > b) {
+      return a - b;
+    } else {
+      return b - a;
+    }
+  };
+  calculateComparison(finalTotalValue, midTotalValue);
   return (
     <div className="lg:px-[50px] px-[35px]">
       <div className="md:flex py-10 gap-10">
@@ -77,6 +112,59 @@ const UserDashboard = () => {
               </div>
             ))}
           </div>
+        </div>
+      </div>
+      <div>
+        <h1 className="text-2xl font-bold text-center py-[15px] bg-slate-200 mb-[20px]">
+          Result Comparison
+        </h1>
+        <div className="grid place-items-center lg:grid-cols-2 grid-cols-1 lg:px-[110px] md:px-[70px] px-[35px]">
+          <div>
+            <h1 className="text-xl font-semibold text-center">
+              Your Final term result
+            </h1>
+            <ResultChart data={finalConvertedArray}></ResultChart>
+          </div>
+          <div>
+            <h1 className="text-xl font-semibold text-center">
+              Your Mid term result
+            </h1>
+            <ResultChart data={midConvertedArray}></ResultChart>
+          </div>
+        </div>
+        <div className="text-center space-y-[10px] py-5">
+          <h1 className="text-2xl font-semibold py-[10px] mb-[20px] bg-slate-200">
+            Your result analysis
+          </h1>
+          <h1 className="text-xl">
+            Your Final marks is:{" "}
+            <span className="font-semibold">{finalTotalValue}</span>
+          </h1>
+          <h1 className="text-xl">
+            Your Mid marks is:{" "}
+            <span className="font-semibold">{midTotalValue}</span>
+          </h1>
+          {finalTermValue < midTotalValue ? (
+            <div>
+              <h1 className="text-xl text-green-500">
+                Which is{" "}
+                <span className="font-semibold">
+                  {calculateComparison(finalTotalValue, midTotalValue)}{" "}
+                </span>
+                marks than you scored in Midterms.
+              </h1>
+            </div>
+          ) : (
+            <div>
+              <h1 className="text-xl text-red-500">
+                Which is{" "}
+                <span className="font-semibold">
+                  {calculateComparison(finalTotalValue, midTotalValue)}{" "}
+                </span>
+                marks less than you scored in Midterms.
+              </h1>
+            </div>
+          )}
         </div>
       </div>
     </div>
