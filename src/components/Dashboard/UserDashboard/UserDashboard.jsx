@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Account/Provider/AuthProvider";
 import useUserRecheck from "../../DataFetch/useUserRecheck";
 import { FaHourglassHalf } from "react-icons/fa";
@@ -7,10 +7,19 @@ import ResultChart from "./ResultChart";
 import DataFetch from "../../DataFetch/DataFetch";
 const UserDashboard = () => {
   const [allData] = DataFetch();
+  const [videoData, setVideoData] = useState([]);
   const { user, loading } = useContext(AuthContext);
   const [userRecheckAll] = useUserRecheck();
   const finalTermValue = allData[1]?.finalTerm;
   const midTermValue = allData[1]?.midTerm;
+  console.log("real mid", midTermValue);
+  useEffect(() => {
+    fetch("/subjectVideo.json")
+      .then((res) => res.json())
+      .then((data) => setVideoData(data));
+  }, []);
+  console.log(videoData);
+  console.log(videoData[0]?.Biology);
   const arrayConvert = (termValue) => {
     const termArray = [];
     if (termValue) {
@@ -21,9 +30,22 @@ const UserDashboard = () => {
     }
     return termArray;
   };
+
+  const arrayConvertForSub = (termValue) => {
+    const termArray = [];
+    if (termValue) {
+      for (let key in termValue) {
+        let key1 = key;
+        termArray.push({ key1, value: termValue[key] });
+      }
+    }
+    return termArray;
+  };
   const finalConvertedArray = arrayConvert(finalTermValue);
   console.log(finalConvertedArray);
   const midConvertedArray = arrayConvert(midTermValue);
+  // const midConvertedArrayForSub = arrayConvertForSub(midTermValue);
+  const finalConvertedArrayForSub = arrayConvertForSub(finalTermValue);
 
   const finalTotalValue = finalConvertedArray.reduce(
     (total, item) => total + item.value,
@@ -132,7 +154,7 @@ const UserDashboard = () => {
             <ResultChart data={midConvertedArray}></ResultChart>
           </div>
         </div>
-        <div className="text-center space-y-[10px] py-5">
+        <div className="text-center space-y-[15px]">
           <h1 className="text-2xl font-semibold py-[10px] mb-[20px] bg-slate-200">
             Your result analysis
           </h1>
@@ -145,7 +167,7 @@ const UserDashboard = () => {
             <span className="font-semibold">{midTotalValue}</span>
           </h1>
           {finalTermValue < midTotalValue ? (
-            <div>
+            <div className="">
               <h1 className="text-xl text-green-500">
                 Which is{" "}
                 <span className="font-semibold">
@@ -165,6 +187,33 @@ const UserDashboard = () => {
               </h1>
             </div>
           )}
+        </div>
+        <div className="text-center space-y-[10px] py-5">
+          <h1 className="text-2xl font-semibold py-[10px] mb-[20px] bg-slate-200">
+            Improve Yourself
+          </h1>
+          <div>
+            {finalConvertedArrayForSub?.map((sub) => (
+              <div key={sub.key1}>
+                <div className="py-2">
+                  {sub.value < 80 && (
+                    <div className="space-y-[15px] p-[45px] bg-fuchsia-100 rounded-md">
+                      <h1 className="lg:text-2xl font-medium">
+                        You have low marks in {sub.key1}
+                      </h1>
+                      <p className="md:text-xl text-red-500">
+                        Please go through the playlist
+                      </p>
+                      <iframe
+                        className="w-full md:h-[420px] h-[250px] mx-auto rounded-md border-none"
+                        src={videoData[0]?.[sub.key1]}
+                      ></iframe>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
