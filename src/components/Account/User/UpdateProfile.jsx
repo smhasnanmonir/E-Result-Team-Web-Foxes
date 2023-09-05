@@ -10,6 +10,7 @@ import {BsCalendarDate, BsFillTelephoneFill} from 'react-icons/bs'
 import {FaAddressBook} from 'react-icons/fa'
 import {BiMaleFemale} from 'react-icons/bi'
 import {PiStudentFill} from 'react-icons/pi'
+import {MdBloodtype} from 'react-icons/md'
 
 const UpdateProfile = () => {
     const {user} = useContext(AuthContext);
@@ -86,6 +87,25 @@ const UpdateProfile = () => {
                                             <p>Roll</p></span>
                                     </label>
                                     <input className="input input-bordered border-green-400 w-full " type="text" placeholder="Class Roll"  {...register("roll", {})} />
+                            </div>
+
+                            <div className="form-control w-full ">
+                                    <label className="label">
+                                        <span className="label-text font-semibold flex justify-center items-center gap-2">
+                                            <MdBloodtype className='text-lg text-red-500'></MdBloodtype>
+                                            <p>Blood Group</p></span>
+                                    </label>
+                                    <select {...register("blood")} className="select select-bordered border-green-400 w-full max-w-xs">
+                                    <option disabled selected>Select Group</option>
+                                    <option>A+</option>
+                                    <option>A-</option>
+                                    <option>B+</option>
+                                    <option>B-</option>
+                                    <option>O+</option>
+                                    <option>O-</option>
+                                    <option>AB+</option>
+                                    <option>AB-</option>
+                                    </select>
                             </div>
                         </div>
 

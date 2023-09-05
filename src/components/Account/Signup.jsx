@@ -36,7 +36,8 @@ const Signup = () => {
                                 name: data.Name,
                                 email: data.Email,
                                 photo: imgURL,
-                                role: 'student'
+                                role: 'student',
+                                roll : data.Roll
                             }
                             // sendVerificationEmail();  //Turned off because of development purpose , will turn on after development finished
                             fetch("https://e-result-server.vercel.app/addUser", {
@@ -77,7 +78,7 @@ const Signup = () => {
          <div className="flex justify-center items-center lg:py-[5%]">
             <form className="max-w-sm w-full text-center" onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-control">
-                    <h1 className="text-3xl font-semibold text-center my-5">Sign Up</h1>
+                    <h1 className="text-3xl font-semibold text-center my-5">Registration Now</h1>
                     <label className="label">
                         <span className="label-text font-semibold">*Enter Your Email</span>
                     </label>
@@ -89,10 +90,22 @@ const Signup = () => {
                     </label>
                     <input type="password" placeholder="Password" {...register("Password", {required: true})} className="input input-bordered input-accent w-full " />
 
-                    <label className="label">
-                        <span className="label-text font-semibold">*Enter Your Name</span>
-                    </label>
-                    <input type="text" placeholder="Name" {...register("Name", {})}  className="input input-bordered input-accent w-full" />
+
+                    <div className='flex flex-col md:flex-row justify-center items-center gap-5'>
+                            <div className="form-control w-full ">
+                                <label className="label">
+                                    <span className="label-text font-semibold">*Enter Your Name</span>
+                                </label>
+                                <input type="text" placeholder="Name" {...register("Name", {})}  className="input input-bordered input-accent w-full" />
+                            </div>
+
+                            <div className="form-control w-full ">
+                                <label className="label">
+                                    <span className="label-text font-semibold">*Class Roll</span>
+                                </label>
+                                <input type="number" placeholder="Roll" {...register("Roll", {required: true})}  className="input input-bordered input-accent w-full" />
+                            </div>
+                        </div>
 
                     <label className="label">
                         <span className="label-text font-semibold">*Choose Photo</span>
@@ -100,7 +113,7 @@ const Signup = () => {
                     <input type="file" placeholder="image" {...register("image", {})} className="file-input file-input-bordered file-input-success w-full" />
 
                     <div className="text-center mt-[4%]">
-                        <button type="submit" className="btn btn-accent">Sign Up</button>
+                        <button type="submit" className="btn btn-accent">Create</button>
                     </div>
                 </div>
                 

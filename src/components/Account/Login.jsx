@@ -40,7 +40,7 @@ const Login = () => {
  
     const handleGoogleSignin = () =>{
         signInGoogle()
-        .then(result => {
+        .then(async(result) => {
             const loggedUser = result.user;
             if(loggedUser){
                 const userData = {
@@ -72,7 +72,8 @@ const Login = () => {
                     });
                 
             }      
-            })
+        
+        })
     }
     
     return (
