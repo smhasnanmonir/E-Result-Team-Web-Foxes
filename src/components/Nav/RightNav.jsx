@@ -34,7 +34,7 @@ const RightNav = ({ open }) => {
   return (
 
     <>
-      <div className='mt-5'>
+      <div className='mt-5 z-10'>
 
         <Ul open={open}>
           <Link to="/" className='me-5 font-bold'>Home</Link>
