@@ -2,10 +2,15 @@ import { useEffect, useState } from "react";
 import "./EditResult.css";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import SearchBar from "./SearchBar";
+import SearchResult from "./SearchResult";
+// import { useActionData } from "react-router-dom";
 const EditResult = () => {
   const [editItem, setEditItem] = useState([]);
   const [oneData, setOneData] = useState([]);
   const { register, handleSubmit } = useForm();
+
+  const [searchResult, setSearchResult] = useState([]);
 
   useEffect(() => {
     fetch(`https://e-result-server.vercel.app/allResults`)
@@ -188,9 +193,18 @@ const EditResult = () => {
           </div>
         </div>
       </div>
-      <div className="">
-        <form className="f-form lg:flex lg:justify-between">
+      <div>
+        <SearchBar setSearchResult={setSearchResult}></SearchBar>
+        <SearchResult
+          searchResult={searchResult}
+          showEditResult={showEditResult}
+          calculateGrade={calculateGrade}
+        ></SearchResult>
+      </div>
+      {/* <div className="">
+        <div className="f-form lg:flex lg:justify-between">
           <input
+            onChange={(e) => setSearchResult(e.target.value)}
             type="search"
             name="search1"
             id="search1"
@@ -203,8 +217,15 @@ const EditResult = () => {
             id="search2"
             placeholder="Search Button"
           />
-        </form>
-      </div>
+        </div>
+        <div>
+          {
+            searchStudent.filter((student => {
+              return searchResult.toLocaleLowerCase() === '' ? student : (student.Name.toLocaleLowerCase()).includes(searchResult)
+            })).map(student => <SearchResult key={student._id} calculateGrade={calculateGrade} showEditResult={showEditResult} student={student}></SearchResult>)
+          }
+        </div>
+      </div> */}
       <div className="">
         <h1 className="bg-green-200 text-center py-4 my-10 rounded text-[20px]">
           Student Result Table

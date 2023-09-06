@@ -2,7 +2,6 @@ import { Link, Outlet } from "react-router-dom";
 import result from "../../assets/plus 1.png";
 import review from "../../assets/reviews 1.png";
 import edit from "../../assets/edit 1.png";
-import viewAll from "../../assets/analysis 1.png";
 import manage from "../../assets/settings.png";
 import "./Dashboard.css";
 const Dashboard = () => {
@@ -44,14 +43,6 @@ const Dashboard = () => {
                 <img className="h-[45px]" src={edit} alt="" />
                 <Link to={"editResult"} className="text-[18px]">
                   Edit Result
-                </Link>
-              </span>
-            </li>
-            <li>
-              <span>
-                <img className="h-[45px]" src={viewAll} alt="" />
-                <Link to={"viewAll"} className="text-[18px]">
-                  View All Result
                 </Link>
               </span>
             </li>

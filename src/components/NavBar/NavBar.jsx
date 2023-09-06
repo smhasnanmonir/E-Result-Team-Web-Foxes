@@ -4,10 +4,8 @@ import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../Account/Provider/AuthProvider";
 import useAdmin from "../DataFetch/useAdmin";
 
-
-
 const NavBar = () => {
-  const {user, logOut} = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
 
   const navRef = useRef();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,11 +14,9 @@ const NavBar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const logout = ()=>{
+  const logout = () => {
     logOut();
-  }
-
-  
+  };
 
   return (
     <>
@@ -30,48 +26,47 @@ const NavBar = () => {
             to="/"
             className="text-3xl transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-110"
           >
-            <img className="h-[50px]" src="https://i.ibb.co/n80R2cQ/eresult.png" alt="" />
+            <img
+              className="h-[50px]"
+              src="https://i.ibb.co/n80R2cQ/eresult.png"
+              alt=""
+            />
           </Link>
-
 
           <div className="flex justify-center items-center gap-6">
-          <Link
-            to="/contact"
-            className="transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-110"
-          >
-            Contact
-          </Link>
-          <Link
-            to="/view-roll"
-            className="transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-110"
-          >
-            View Roll
-          </Link>
+            <Link
+              to="/contact"
+              className="transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-110"
+            >
+              Contact
+            </Link>
 
-          {
-            user? <Link
-            to="differdashboard"
-            className="transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-110"
-          >
-            Dashboard
-          </Link> : ''
-          }
-          {
-            user? <p className="text-center transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-110">Hi, {user.displayName}</p> : ''
-          }
-          {
-            user? <Link
-            onClick={logout}
-            className="btn btn-error"
-          >
-            Logout
-          </Link> : <Link
-            to="/login"
-            className="btn btn-success"
-          >
-            Login
-          </Link>
-          }
+            {user ? (
+              <Link
+                to="differdashboard"
+                className="transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-110"
+              >
+                Dashboard
+              </Link>
+            ) : (
+              ""
+            )}
+            {user ? (
+              <p className="text-center transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-110">
+                Hi, {user.displayName}
+              </p>
+            ) : (
+              ""
+            )}
+            {user ? (
+              <Link onClick={logout} className="btn btn-error">
+                Logout
+              </Link>
+            ) : (
+              <Link to="/login" className="btn btn-success">
+                Login
+              </Link>
+            )}
           </div>
         </nav>
       </div>
