@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
 import { AuthContext } from "./Provider/AuthProvider";
@@ -9,6 +9,9 @@ import Swal from "sweetalert2";
 
 const Login = () => {
     const {signin, signInGoogle} = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
@@ -19,12 +22,13 @@ const Login = () => {
             const user  = result.user;
             console.log(user);
             if(user){
+                navigate(from, { replace: true });
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: 'Logged In Successfully',
+                    title: `Welcome ${user.displayName}`,
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 2000
                   })
             }
             
@@ -37,14 +41,34 @@ const Login = () => {
         .then(result => {
             const loggedUser = result.user;
             if(loggedUser){
-                console.log(loggedUser); 
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Logged In Successfully',
-                    showConfirmButton: false,
-                    timer: 1500
+                const userData = {
+                    name: loggedUser.displayName,
+                    email: loggedUser.email,
+                    photo: loggedUser.photoURL,
+                    role: 'student'
+                }
+                fetch("https://e-result-server.vercel.app/addUser", {
+                    method: "POST",
+                    body: JSON.stringify(userData),
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
                   })
+                    .then((res) => res.json())
+                    .then((data) => {
+                    //   console.log(data);
+                      if (data.insertedId || data.message) {
+                        navigate(from, { replace: true });
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: `Welcome ${loggedUser.displayName}`,
+                            showConfirmButton: false,
+                            timer: 2000
+                          })
+                      }
+                    });
+                
             }      
             })
     }
