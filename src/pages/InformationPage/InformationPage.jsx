@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
+import Lottie from "lottie-react";
+import ani from './result.json'
 const InformationPage = () => {
   const [rollNumber, setRollNumber] = useState();
   const studentInfo = (e) => {
@@ -17,7 +18,11 @@ const InformationPage = () => {
             Welcome to Web Based Result Publication System
           </h1>
         </div>
-        <div className=" flex justify-center w-full bg-[#F8F8F8]">
+        <div className="flex flex-col lg:flex-row justify-center items-center bg-[#F8F8F8]">
+          <div className="bg-[#F8F8F8]">
+            <Lottie animationData={ani}></Lottie>
+          </div>
+          <div className=" flex justify-center w-full bg-[#F8F8F8]">
           <form className=" mt-10 px-4 ">
             <div className="mb-10 flex justify-between items-center gap-1">
               <label className="block font-medium">Examination :</label>
@@ -63,6 +68,7 @@ const InformationPage = () => {
               </div>
             </Link>
           </form>
+        </div>
         </div>
       </div>
     </div>
