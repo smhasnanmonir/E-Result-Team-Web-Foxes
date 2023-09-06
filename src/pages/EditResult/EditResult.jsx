@@ -201,31 +201,6 @@ const EditResult = () => {
           calculateGrade={calculateGrade}
         ></SearchResult>
       </div>
-      {/* <div className="">
-        <div className="f-form lg:flex lg:justify-between">
-          <input
-            onChange={(e) => setSearchResult(e.target.value)}
-            type="search"
-            name="search1"
-            id="search1"
-            placeholder="Search Box (Student ID)"
-          />
-          <input
-            className="bg-red-200"
-            type="search"
-            name="search2"
-            id="search2"
-            placeholder="Search Button"
-          />
-        </div>
-        <div>
-          {
-            searchStudent.filter((student => {
-              return searchResult.toLocaleLowerCase() === '' ? student : (student.Name.toLocaleLowerCase()).includes(searchResult)
-            })).map(student => <SearchResult key={student._id} calculateGrade={calculateGrade} showEditResult={showEditResult} student={student}></SearchResult>)
-          }
-        </div>
-      </div> */}
       <div className="">
         <h1 className="bg-green-200 text-center py-4 my-10 rounded text-[20px]">
           Student Result Table

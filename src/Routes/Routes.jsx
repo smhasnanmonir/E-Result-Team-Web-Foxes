@@ -7,14 +7,13 @@ import AddResult from "../pages/AddResult/AddResult";
 import ViewAll from "../components/ViewAll/ViewAll";
 import Login from "../components/Account/Login";
 import Signup from "../components/Account/Signup";
-import Dashboard from "../components/Dashboard/Dashboard";
 import ReviewResults from "../pages/ReviewResults/ReviewResults";
 import PrivateRoute from "./PrivateRoute";
 import UserDashboard from "../components/Dashboard/UserDashboard/UserDashboard";
 import DifferDashboard from "../components/Dashboard/DifferDashboard";
 import Admin from "./Admin";
-import EditResult from "../pages/EditResult/EditResult";
 import ManageUser from "../pages/ManageUser/ManageUser";
+import EditResult2 from "../pages/UpdateResult/EditResult2/EditResult2";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -70,7 +69,7 @@ export const router = createBrowserRouter([
           },
           {
             path: "editResult",
-            element: <Admin><EditResult></EditResult></Admin>,
+            element: <Admin><EditResult2></EditResult2> </Admin>,
           },
           {
             path: "manageusers",
