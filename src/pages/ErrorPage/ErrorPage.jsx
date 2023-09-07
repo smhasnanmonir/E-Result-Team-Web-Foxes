@@ -8,7 +8,7 @@ const ErrorPage = () => {
     <>
       <div className="  flex justify-center items-center">
         <Link to="/">
-          <button className=" text-center flex justify-center items-center gap-2 lg:mt-40 md:mt-10 mt-5 px-6 py-2 rounded-md bg-cyan-600 text-white">
+          <button className=" text-center flex justify-center items-center gap-2 lg:mt-40 md:mt-10 mt-5 px-6 py-2 rounded-md btn-success text-black">
             <FaArrowLeft />
             Back to Home
           </button>

@@ -15,6 +15,7 @@ import DifferDashboard from "../components/Dashboard/DifferDashboard";
 import Admin from "./Admin";
 import EditResult from "../pages/EditResult/EditResult";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import Contact from "../pages/Contact/Contact";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
       {
         path: "/signup",
         element: <Signup></Signup>,
+      },
+      {
+        path: "/contact",
+        element: <Contact></Contact>,
       },
       {
         path: "/information-page",
