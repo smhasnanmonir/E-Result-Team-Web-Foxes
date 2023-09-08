@@ -38,8 +38,8 @@ const UserDashboard = () => {
           )}
         </div>
         <div className="md:w-2/3 p-[20px]  mx-auto lg:mt-0 mt-[25px] border-2 shadow-md shadow-gray-400 lg:px-2 py-8 rounded-md h-[100%]">
-          <h1 className="text-center font-semibold text-2xl">
-            My Recheck List
+          <h1 data-testid='listLength' className="text-center font-semibold text-2xl">
+            My Recheck List : {userRecheckAll.length}
           </h1>
           <div className="divider"></div>
           <div className="grid grid-cols-1 gap-1">
