@@ -1,8 +1,20 @@
-# React + Vite
+# E-Result
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Student Education Result Generating Platform | Developed By Team Web Foxes
 
-Currently, two official plugins are available:
+## Site Link
+Live Site :
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+https://e-result-team-web-foxes.vercel.app/
+```
+Server Repository :
+
+```bash
+https://github.com/smhasnanmonir/E-Result-server
+```
+
+## Contributors
+
+S.M Hasnan Monir | Md Habib Ullah | Abadat Hossain |Israfil Hossain | Nabil Hossain | Alif Chowdhury Apurba | Md Amzadul Islam
+
