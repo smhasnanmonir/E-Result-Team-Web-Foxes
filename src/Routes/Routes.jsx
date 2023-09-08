@@ -15,6 +15,7 @@ import Admin from "./Admin";
 import ManageUser from "../pages/ManageUser/ManageUser";
 import EditResult2 from "../pages/UpdateResult/EditResult2/EditResult2";
 import UpdateProfile from "../components/Account/User/UpdateProfile";
+import ContactForm from "../components/ContactForm/ContactForm";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -51,6 +52,10 @@ export const router = createBrowserRouter([
       {
         path: "updateProfile",
         element: <UpdateProfile></UpdateProfile>,
+      },
+      {
+        path: "/contact",
+        element: <ContactForm></ContactForm>,
       },
       {
         path: "differdashboard",
