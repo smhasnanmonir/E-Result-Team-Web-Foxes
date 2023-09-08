@@ -13,6 +13,7 @@ import UserDashboard from "../components/Dashboard/UserDashboard/UserDashboard";
 import DifferDashboard from "../components/Dashboard/DifferDashboard";
 import Admin from "./Admin";
 import ManageUser from "../pages/ManageUser/ManageUser";
+import EditResult2 from "../pages/UpdateResult/EditResult2/EditResult2";
 import UpdateProfile from "../components/Account/User/UpdateProfile";
 export const router = createBrowserRouter([
   {
@@ -48,36 +49,64 @@ export const router = createBrowserRouter([
         element: <ResultPage></ResultPage>,
       },
       {
-        path: 'updateProfile',
-        element: <UpdateProfile></UpdateProfile>
+        path: "updateProfile",
+        element: <UpdateProfile></UpdateProfile>,
       },
       {
         path: "differdashboard",
-        element: <PrivateRoute><DifferDashboard></DifferDashboard></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <DifferDashboard></DifferDashboard>
+          </PrivateRoute>
+        ),
         children: [
           {
             path: "userdashboard",
-            element: <PrivateRoute><UserDashboard></UserDashboard></PrivateRoute>,
+            element: (
+              <PrivateRoute>
+                <UserDashboard></UserDashboard>
+              </PrivateRoute>
+            ),
           },
           {
             path: "addResult",
-            element: <Admin><AddResult></AddResult></Admin>,
+            element: (
+              <Admin>
+                <AddResult></AddResult>
+              </Admin>
+            ),
           },
           {
             path: "viewAll",
-            element: <Admin><ViewAll></ViewAll></Admin>,
+            element: (
+              <Admin>
+                <ViewAll></ViewAll>
+              </Admin>
+            ),
           },
           {
             path: "reviewResults",
-            element: <Admin><ReviewResults></ReviewResults></Admin>,
+            element: (
+              <Admin>
+                <ReviewResults></ReviewResults>
+              </Admin>
+            ),
           },
           {
             path: "editResult",
-            element: <Admin><EditResult2></EditResult2> </Admin>,
+            element: (
+              <Admin>
+                <EditResult2></EditResult2>{" "}
+              </Admin>
+            ),
           },
           {
             path: "manageusers",
-            element: <Admin><ManageUser></ManageUser></Admin>,
+            element: (
+              <Admin>
+                <ManageUser></ManageUser>
+              </Admin>
+            ),
           },
         ],
       },
