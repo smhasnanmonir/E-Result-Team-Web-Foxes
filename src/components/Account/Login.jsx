@@ -1,14 +1,19 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
 import { AuthContext } from "./Provider/AuthProvider";
 import { useContext } from 'react';
 import Swal from "sweetalert2";
+import Lottie from "lottie-react";
+import ani from './login.json'
 
 
 const Login = () => {
     const {signin, signInGoogle} = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
@@ -19,12 +24,13 @@ const Login = () => {
             const user  = result.user;
             console.log(user);
             if(user){
+                navigate(from, { replace: true });
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: 'Logged In Successfully',
+                    title: `Welcome ${user.displayName}`,
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 2000
                   })
             }
             
@@ -34,26 +40,49 @@ const Login = () => {
  
     const handleGoogleSignin = () =>{
         signInGoogle()
-        .then(result => {
+        .then(async(result) => {
             const loggedUser = result.user;
             if(loggedUser){
-                console.log(loggedUser); 
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Logged In Successfully',
-                    showConfirmButton: false,
-                    timer: 1500
+                const userData = {
+                    name: loggedUser.displayName,
+                    email: loggedUser.email,
+                    photo: loggedUser.photoURL,
+                    role: 'student'
+                }
+                fetch("https://e-result-server.vercel.app/addUser", {
+                    method: "POST",
+                    body: JSON.stringify(userData),
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
                   })
+                    .then((res) => res.json())
+                    .then((data) => {
+                    //   console.log(data);
+                      if (data.insertedId || data.message) {
+                        navigate(from, { replace: true });
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: `Welcome ${loggedUser.displayName}`,
+                            showConfirmButton: false,
+                            timer: 2000
+                          })
+                      }
+                    });
+                
             }      
-            })
+        
+        })
     }
     
     return (
-        <div className="flex justify-center items-center py-[5%] px-[2%]">
+        <div className="flex flex-col-reverse lg:flex-row justify-center items-center gap-3">
+            
+            <div className="flex justify-center items-center lg:py-[5%] px-[2%] md:w-1/2">
              <form className="max-w-sm w-full text-center" onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-control">
-                    <h1 className="text-3xl font-semibold text-center my-5">Login Now..!</h1>
+                    <h1 className="text-3xl font-semibold text-center my-5 shadow-md py-2">Login Now</h1>
                     <label className="label">
                         <span className="label-text font-semibold">*Enter Your Email</span>
                     </label>
@@ -88,6 +117,10 @@ const Login = () => {
                 </div>
                 
              </form>
+        </div>
+        <div className="md:w-1/2">
+                <Lottie className="h-[400px] lg:h-[600px]" animationData={ani}></Lottie>
+            </div>
         </div>
     );
 };
