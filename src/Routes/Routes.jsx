@@ -13,7 +13,7 @@ import UserDashboard from "../components/Dashboard/UserDashboard/UserDashboard";
 import DifferDashboard from "../components/Dashboard/DifferDashboard";
 import Admin from "./Admin";
 import ManageUser from "../pages/ManageUser/ManageUser";
-import EditResult2 from "../pages/UpdateResult/EditResult2/EditResult2";
+import UpdateProfile from "../components/Account/User/UpdateProfile";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -46,6 +46,10 @@ export const router = createBrowserRouter([
       {
         path: "/result-page/:idNumber",
         element: <ResultPage></ResultPage>,
+      },
+      {
+        path: 'updateProfile',
+        element: <UpdateProfile></UpdateProfile>
       },
       {
         path: "differdashboard",

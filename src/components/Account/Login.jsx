@@ -5,6 +5,8 @@ import { FaGithub } from 'react-icons/fa';
 import { AuthContext } from "./Provider/AuthProvider";
 import { useContext } from 'react';
 import Swal from "sweetalert2";
+import Lottie from "lottie-react";
+import ani from './login.json'
 
 
 const Login = () => {
@@ -38,7 +40,7 @@ const Login = () => {
  
     const handleGoogleSignin = () =>{
         signInGoogle()
-        .then(result => {
+        .then(async(result) => {
             const loggedUser = result.user;
             if(loggedUser){
                 const userData = {
@@ -70,14 +72,17 @@ const Login = () => {
                     });
                 
             }      
-            })
+        
+        })
     }
     
     return (
-        <div className="flex justify-center items-center py-[5%] px-[2%]">
+        <div className="flex flex-col-reverse lg:flex-row justify-center items-center gap-3">
+            
+            <div className="flex justify-center items-center lg:py-[5%] px-[2%] md:w-1/2">
              <form className="max-w-sm w-full text-center" onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-control">
-                    <h1 className="text-3xl font-semibold text-center my-5">Login Now..!</h1>
+                    <h1 className="text-3xl font-semibold text-center my-5 shadow-md py-2">Login Now</h1>
                     <label className="label">
                         <span className="label-text font-semibold">*Enter Your Email</span>
                     </label>
@@ -112,6 +117,10 @@ const Login = () => {
                 </div>
                 
              </form>
+        </div>
+        <div className="md:w-1/2">
+                <Lottie className="h-[400px] lg:h-[600px]" animationData={ani}></Lottie>
+            </div>
         </div>
     );
 };
