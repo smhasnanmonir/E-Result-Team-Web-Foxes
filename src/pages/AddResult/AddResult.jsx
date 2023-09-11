@@ -34,6 +34,17 @@ const AddResult = () => {
             onSubmit={handleSubmit(onSubmit)}
             className="grid  grid-cols-3 gap-4 text-center px-4 mx-auto"
           >
+
+            <div className="mt-5">
+              <p className="mr-2">Name</p>
+              <input
+                type="text"
+                placeholder="name"
+                className="bg-[#f68080] text-center text-black placeholder-black hover:bg-[#ffffff]  rounded-xl py-2"
+                {...register("name", { required: true })}
+              />
+            </div>
+
             <div className="flex justify-center items-center mt-11">
               <select
                 className=" rounded-xl py-2 bg-[#f68080] hover:bg-[#ffffff] text-black w-full text-center"
@@ -127,7 +138,7 @@ const AddResult = () => {
               />
             </div>
 
-            <div className="mt-5">
+            <div className="mt-5 col-span-3">
               <p className="mr-2">Biology</p>
               <input
                 type="number"
