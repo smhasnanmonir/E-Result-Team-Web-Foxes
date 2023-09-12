@@ -4,6 +4,7 @@ import HomePageSwipe from "../HomePageSwipe/HomePageSwipe";
 import { Link } from "react-router-dom";
 import HomeToDashboard from "../HomeToDashboard/HomeToDashboard";
 import Management from "../Management/Management";
+import Review from "../Review/Review";
 
 const HomePage = () => {
   return (
@@ -52,6 +53,9 @@ const HomePage = () => {
       </div>
       <div className="my-5">
         <Management></Management>
+      </div>
+      <div>
+        <Review></Review>
       </div>
     </>
   );
