@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 import Burger from './Burger';
-import logo from '../../assets/allimage/logo.jpg'
 import { Link } from 'react-router-dom';
+import './Nav.css'
 
 const Nav = styled.nav`
   width: 100%;
-  height: 55px;
-  border-bottom: 2px solid #f1f1f1;
-  padding: 0 20px;
+  height: 100px;
+  padding: 0px 20px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   .logo {
     padding: 15px 0;
@@ -19,10 +19,8 @@ const Nav = styled.nav`
 const Navbar = () => {
   return (
     <Nav>
-      <div>
-        <Link to="/"><img className="w-20 h-20 mb-2 rounded-2xl" src={logo} alt="" /></Link>
-      </div>
-      <Burger />
+        <Link to="/"><img className="h-[40px] lg:h-[50px]" src="https://i.ibb.co/n80R2cQ/eresult.png" alt="" /></Link>
+        <Burger />
     </Nav>
   )
 }
