@@ -5,10 +5,11 @@ import UserDashboard from "./UserDashboard/UserDashboard";
 
 const DifferDashboard = () => {
     const [checkAdmin] = useAdmin();
+    console.log(checkAdmin)
     return (
         <div>
             {
-            checkAdmin ? <Dashboard/> : <UserDashboard/>
+            checkAdmin ?  <Dashboard/> : <UserDashboard/>
         }
         </div>
     );
