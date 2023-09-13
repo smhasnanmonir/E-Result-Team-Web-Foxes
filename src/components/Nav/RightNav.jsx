@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { AuthContext } from "../Account/Provider/AuthProvider";
 import { LuSettings2 } from "react-icons/lu";
 import { BiSolidUserCheck } from "react-icons/bi";
+import { MdNotificationsActive } from "react-icons/md";
 
 const Ul = styled.ul`
   list-style: none;
@@ -88,6 +89,19 @@ const RightNav = ({ open }) => {
             ) : (
               ""
             )}
+            {user ? (
+              <div className="dropdown dropdown-bottom dropdown-end">
+              <label tabIndex={0} className=" m-1 relative">
+                <MdNotificationsActive className="text-5xl text-blue-500 p-1 border-2 rounded-full border-green-500"></MdNotificationsActive>
+                <div className="badge badge-accent badge-md p-1 rounded-full  text-center  absolute top-4 left-7">2</div>
+              </label>
+              <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                <li><a>Your Account Updated</a></li>
+                <li><a>Marks Updated</a></li>
+              </ul>
+            </div>
+              
+            ) : ''}
             {user ? (
               <Link onClick={logout} className="btn btn-error">
                 Logout
