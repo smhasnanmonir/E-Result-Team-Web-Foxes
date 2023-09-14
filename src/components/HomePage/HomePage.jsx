@@ -4,6 +4,9 @@ import HomePageSwipe from "../HomePageSwipe/HomePageSwipe";
 import { Link } from "react-router-dom";
 import HomeToDashboard from "../HomeToDashboard/HomeToDashboard";
 import Management from "../Management/Management";
+import HomePageStudent from "./HomePageStudent/HomePageStudent";
+import HomePageTeacher from "./HomePageTeacher/HomePageTeachar";
+import Roles from "./Roles/Roles";
 
 const HomePage = () => {
   return (
@@ -46,6 +49,15 @@ const HomePage = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="my-10">
+        <HomePageStudent></HomePageStudent>
+      </div>
+      <div className="my-10">
+        <HomePageTeacher></HomePageTeacher>
+      </div>
+      <div className="my-10">
+        <Roles></Roles>
       </div>
       <div className="my-10">
         <HomeToDashboard></HomeToDashboard>
