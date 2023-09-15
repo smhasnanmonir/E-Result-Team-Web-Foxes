@@ -3,10 +3,11 @@ import Management from "../Management/Management";
 import HomepageLottie from "../../assets/NewHomePageImg/israfil.json";
 import Lottie from "lottie-react";
 import { Link } from "react-router-dom";
-import ReviewSection from "./ReviewSection/ReviewSection";
-import HomePageStudent from "./HomePageStudent/HomePageStudent";
-import HomePageTeacher from "./HomePageTeacher/HomePageTeacher";
-import Roles from "./Roles/Roles";
+
+import ReviewSectionHome from "../ReviewSectionHome/ReviewSectionHome";
+import HomePageStudent from "../HomePageStudent/HomePageStudent";
+import HomePageTeacher from "../HomePageTeacher/HomePageTeacher";
+import RolesHomepage from "../RolesHomepage/RolesHomepage";
 
 const HomePage = () => {
   return (
@@ -41,13 +42,13 @@ const HomePage = () => {
         <HomePageTeacher></HomePageTeacher>
       </div>
       <div className="my-5">
-        <Roles></Roles>
+        <RolesHomepage></RolesHomepage>
       </div>
       <div className="my-5">
         <Management></Management>
       </div>
       <div className="my-5">
-        <ReviewSection></ReviewSection>
+        <ReviewSectionHome></ReviewSectionHome>
       </div>
     </>
   );
