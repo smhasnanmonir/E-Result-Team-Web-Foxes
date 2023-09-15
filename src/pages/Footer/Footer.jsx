@@ -3,7 +3,7 @@ import logo from "../../assets/logo.jpg";
 import SocialIcon from "./SocialIcon";
 const Footer = () => {
   return (
-    <footer>
+    <footer className="relative z-[-1]">
       <div>
         <div className="footer p-10 bg-white text-black">
           <div>

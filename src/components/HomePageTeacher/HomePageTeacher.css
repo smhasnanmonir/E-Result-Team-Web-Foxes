@@ -1,0 +1,28 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.animated-image {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 0.9s ease-in-out, transform 0.9s ease-in-out;
+}
+
+.visible .animated-image {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.9s ease-in-out, transform 0.9s ease-in-out;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  .text-4xl {
+    font-size: 2rem;
+  }
+}

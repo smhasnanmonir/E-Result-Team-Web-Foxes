@@ -10,8 +10,8 @@ const EditResult2 = () => {
     setSelectedTrim(event.target.value);
   };
   return (
-    <>
-      <div className="f-form lg:flex gap-5 w-[80%] mx-auto">
+    <div className="lg:px-0 px-[25px]">
+      <div className="f-form lg:flex gap-5 w-[80%] mx-auto hidden">
         <input
           type="search"
           name="search1"
@@ -48,7 +48,7 @@ const EditResult2 = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
