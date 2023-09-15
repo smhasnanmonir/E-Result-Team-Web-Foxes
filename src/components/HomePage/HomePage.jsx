@@ -20,8 +20,8 @@ const HomePage = () => {
           <h1 className="text-5xl text-red-300">E-Result</h1>
           <p className="text-4xl my-5">Education</p>
           <p>
-            Lorem ipsum dolor sit amet, <br /> consectetur adipisicing elit.
-            Libero, mollitia?
+            E-Result is an innovative online platform designed to provide
+            students with quick and convenient access to their academic results.
           </p>
           <div className="my-5">
             <button>

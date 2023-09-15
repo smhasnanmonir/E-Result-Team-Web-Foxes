@@ -8,7 +8,7 @@ const RolesHomepage = () => {
     setButtonVisible(!isButtonVisible);
   };
   return (
-    <div className="h-screen" id="role">
+    <div className="relative z-0 grid place-items-center" id="role">
       <h1 className="text-4xl font-semibold text-center my-3">
         Choose your role
       </h1>

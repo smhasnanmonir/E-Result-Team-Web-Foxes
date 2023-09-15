@@ -26,6 +26,10 @@ const HomePageStudent = () => {
         <h1 className="md:text-3xl text-2xl font-semibold text-center">
           How this works for Students
         </h1>
+        <p className="text-center lg:w-[30%] w-1/2 mx-auto text-[18px] pt-[12px]">
+          Student can see their result and there is a dashboard for them for
+          further usage.
+        </p>
         <div className="relative flex justify-center items-center">
           <img
             src="https://i.ibb.co/98yS2db/Mac-Book-Air-1student-ss.png"
