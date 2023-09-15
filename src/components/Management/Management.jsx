@@ -8,7 +8,7 @@ import collage2 from "../../assets/NewHomePageImg/download (2) (1).png";
 import collage3 from "../../assets/NewHomePageImg/download (4).png";
 import collage4 from "../../assets/NewHomePageImg/download (5) (1).png";
 
-import "./management.css";
+import "./Management.css";
 import { useEffect } from "react";
 import Aos from "aos";
 import "aos/dist/aos.css";
