@@ -72,7 +72,7 @@ const RightNav = ({ open }) => {
           <Link to="/contact" className="me-5 font-bold ">
             Contact
           </Link>
-          <Link to="/differdashboard" className="me-10 font-bold ">
+          <Link to="/differdashboard/home" className="me-10 font-bold ">
             Dashboard
           </Link>
           {user ? (
