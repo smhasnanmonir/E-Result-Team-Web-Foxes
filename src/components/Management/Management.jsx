@@ -18,7 +18,7 @@ const Management = () => {
     Aos.init({ duration: 1500 });
   }, []);
   return (
-    <div className="">
+    <div className="lg:pt-0 pt-[25px] relative z-0">
       <div className="">
         <h1 className="text-3xl text-center my-5">Our Values</h1>
         <div className="grid lg:grid-cols-3 w-[90%] mx-auto items-center lk my-10">
