@@ -1,17 +1,30 @@
-
 import useGetInfo from '../DataFetch/useGetInfo';
 import './Dashboard.css'
 import {BiSolidUserBadge,BiSolidDonateBlood,BiSolidPhoneCall} from 'react-icons/bi'
 import {BsCalendar2Date,BsGenderAmbiguous,BsFillFileEarmarkSpreadsheetFill} from 'react-icons/bs'
 import {MdMarkEmailRead} from 'react-icons/md'
 import {FaMapLocationDot, FaUserGraduate, FaUserGear} from 'react-icons/fa6'
-import {HiUserGroup} from 'react-icons/hi'
-import {ImCheckboxChecked} from 'react-icons/im'
-import {GiSandsOfTime} from 'react-icons/gi'
-import {VscOpenPreview,VscPass} from 'react-icons/vsc'
-import {RxCrossCircled} from 'react-icons/rx'
+// import {HiUserGroup} from 'react-icons/hi'
+// import {ImCheckboxChecked} from 'react-icons/im'
+// import {GiSandsOfTime} from 'react-icons/gi'
+// import {VscOpenPreview,VscPass} from 'react-icons/vsc'
+// import {RxCrossCircled} from 'react-icons/rx'
 import useStats from '../DataFetch/useStats';
 import { Link } from 'react-router-dom';
+
+import stu from './icons/group.png'
+import us from './icons/crowd.png'
+import ad from './icons/admin.png'
+import revi from './icons/evaluation.png'
+import rec from './icons/search.png'
+import pen from './icons/deadline.png'
+
+import tot from './icons/complaint.png'
+import pas from './icons/pass.png'
+import fai from './icons/fail.png'
+
+
+
 const AdminHome = () => {
     const [userInfo]= useGetInfo();
     const [getStats] = useStats();
@@ -73,17 +86,20 @@ const AdminHome = () => {
                     <div className='flex flex-col justify-center items-left gap-5'>
                         <div className='grid md:grid-cols-3'>
                             <p className='stat-box border-2 rounded-md border-green-500 flex flex-col justify-center items-center gap-1 p-2'>
-                                <HiUserGroup className='text-3xl text-blue-700'></HiUserGroup>
+                                <img className='h-[50px]' src={us} alt="" />
+                                {/* <HiUserGroup className='text-3xl text-blue-700'></HiUserGroup> */}
                                 <p className='font-semibold'>Total User</p>
                                 <p className='font-semibold text-2xl text-blue-900'>{getStats.totaluser}</p>
                             </p>
                             <p className='stat-box border-2 rounded-md border-green-500 flex flex-col justify-center items-center gap-1 p-2'>
-                                <FaUserGear className='text-3xl text-blue-700'></FaUserGear>
+                                {/* <FaUserGear className='text-3xl text-blue-700'></FaUserGear> */}
+                                <img className='h-[50px]' src={ad} alt="" />
                                 <p className='font-semibold'>Admin</p>
                                 <p className='font-semibold text-2xl text-blue-900'>{getStats.admin}</p>
                             </p>
                             <p className='stat-box border-2 rounded-md border-green-500 flex flex-col justify-center items-center gap-1 p-2'>
-                                <FaUserGraduate className='text-3xl text-blue-700'></FaUserGraduate>
+                                {/* <FaUserGraduate className='text-3xl text-blue-700'></FaUserGraduate> */}
+                                <img className='h-[50px]' src={stu} alt="" />
                                 <p className='font-semibold'>Students</p>
                                 <p className='font-semibold text-2xl text-blue-900'>{getStats.students}</p>
                             </p>
@@ -91,17 +107,20 @@ const AdminHome = () => {
 
                         <div className='grid md:grid-cols-3'>
                             <p className='stat-box border-2 rounded-md border-green-500 flex flex-col justify-center items-center gap-1 p-2'>
-                                <VscOpenPreview className='text-3xl text-blue-700'></VscOpenPreview>
+                                {/* <VscOpenPreview className='text-3xl text-blue-700'></VscOpenPreview> */}
+                                <img className='h-[50px]' src={tot} alt="" />
                                 <p className='font-semibold'>Total Reviews</p>
                                 <p className='font-semibold text-2xl text-blue-900'>{getStats.reviews}</p>
                             </p>
                             <p className='stat-box border-2 rounded-md border-green-500 flex flex-col justify-center items-center gap-1 p-2'>
-                                <GiSandsOfTime className='text-3xl text-blue-700'></GiSandsOfTime>
+                                {/* <GiSandsOfTime className='text-3xl text-blue-700'></GiSandsOfTime> */}
+                                <img className='h-[50px]' src={pen} alt="" />
                                 <p className='font-semibold'>Pending</p>
                                 <p className='font-semibold text-2xl text-blue-900'>{getStats.pending}</p>
                             </p>
                             <p className='stat-box border-2 rounded-md border-green-500 flex flex-col justify-center items-center gap-1 p-2'>
-                                <ImCheckboxChecked className='text-3xl text-blue-700'></ImCheckboxChecked>
+                                {/* <ImCheckboxChecked className='text-3xl text-blue-700'></ImCheckboxChecked> */}
+                                <img className='h-[50px]' src={rec} alt="" />
                                 <p className='font-semibold'>Rechecked</p>
                                 <p className='font-semibold text-2xl text-blue-900'>{getStats.rechecked}</p>
                             </p>
@@ -109,17 +128,20 @@ const AdminHome = () => {
 
                         <div className='grid md:grid-cols-3'>
                             <p className='stat-box border-2 rounded-md border-green-500 flex flex-col justify-center items-center gap-1 p-2'>
-                                <BsFillFileEarmarkSpreadsheetFill className='text-3xl text-blue-700'></BsFillFileEarmarkSpreadsheetFill>
+                                {/* <BsFillFileEarmarkSpreadsheetFill className='text-3xl text-blue-700'></BsFillFileEarmarkSpreadsheetFill> */}
+                                <img className='h-[50px]' src={revi} alt="" />
                                 <p className='font-semibold'>Total Result</p>
                                 <p className='font-semibold text-2xl text-blue-900'>{getStats.totalResult}</p>
                             </p>
                             <p className='stat-box border-2 rounded-md border-green-500 flex flex-col justify-center items-center gap-1 p-2'>
-                                <VscPass className='text-3xl text-blue-700'></VscPass>
+                                {/* <VscPass className='text-3xl text-blue-700'></VscPass> */}
+                                <img className='h-[50px]' src={pas} alt="" />
                                 <p className='font-semibold'>Passing Rate</p>
                                 <p className='font-semibold text-2xl text-blue-900'>100%</p>
                             </p>
                             <p className='stat-box border-2 rounded-md border-green-500 flex flex-col justify-center items-center gap-1 p-2'>
-                                <RxCrossCircled className='text-3xl text-blue-700'></RxCrossCircled>
+                                {/* <RxCrossCircled className='text-3xl text-blue-700'></RxCrossCircled> */}
+                                <img className='h-[50px]' src={fai} alt="" />
                                 <p className='font-semibold'>Failed Rate</p>
                                 <p className='font-semibold text-2xl text-blue-900'>0%</p>
                             </p>
