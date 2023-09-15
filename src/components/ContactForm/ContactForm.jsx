@@ -35,15 +35,18 @@ const Contact = () => {
 
   return (
     <div>
-      <h1 className="text-5xl font-bold text-center text-black-500">
-        Contact Us
+      <h1 className="text-3xl font-bold text-center text-black-500">
+        Contact with developers
       </h1>
+      <p className="text-center pt-3 text-[17px]">
+        Make us know about any bugs
+      </p>
       <div className="flex flex-col w-full lg:flex-row my-10">
-        <div className="grid flex-grow card rounded-box place-items-center">
+        <div className="grid flex-grow rounded-box place-items-center">
           <form
             ref={form}
             onSubmit={sendEmail}
-            className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100"
+            className="card flex-shrink-0 w-full max-w-sm"
           >
             <div className="card-body">
               <div className="form-control">
