@@ -13,9 +13,9 @@ const Dashboard = () => {
           <Outlet></Outlet>
           <label
             htmlFor="my-drawer-2"
-            className="btn btn-primary my-7 lg:hidden"
+            className="btn btn-success text-white my-7 lg:hidden w-[328px] mx-auto"
           >
-            Open drawer
+            Open Dashboard
           </label>
         </div>
         <div className="drawer-side">

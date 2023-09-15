@@ -20,7 +20,7 @@ const AddResult = () => {
     });
   };
   return (
-    <div className="lg:w-[70%] mx-auto">
+    <div className=" w-[100%] lg:w-[70%] mx-auto md:px-0 px-[25px]">
       <div className=""></div>
       <div className="">
         <h1 className="bg-green-200 text-center py-4 my-10 rounded text-[20px]">
@@ -32,22 +32,22 @@ const AddResult = () => {
         <div className="bg-[#EAEAEA] pb-10 rounded-md overflow-x-auto">
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="grid  grid-cols-3 gap-4 text-center px-4 mx-auto"
+            className="grid grid-cols-2 lg:grid-cols-3 md:grid-cols-3 gap-4 text-center px-4 mx-auto "
           >
-
             <div className="mt-5">
               <p className="mr-2">Name</p>
               <input
                 type="text"
                 placeholder="name"
-                className="bg-[#f68080] text-center text-black placeholder-black hover:bg-[#ffffff]  rounded-xl py-2"
+                className="w-full  text-center text-black placeholder-black   rounded-xl py-2"
                 {...register("name", { required: true })}
               />
             </div>
 
-            <div className="flex justify-center items-center mt-11">
+            <div className="mt-5">
+              <p className="mr-2">Term</p>
               <select
-                className=" rounded-xl py-2 bg-[#f68080] hover:bg-[#ffffff] text-black w-full text-center"
+                className=" rounded-xl py-2 w-full  text-black text-center"
                 {...register("Term")}
               >
                 <option value="First" disabled>
@@ -58,9 +58,10 @@ const AddResult = () => {
               </select>
             </div>
 
-            <div className="flex justify-center items-center mt-11">
+            <div className="mt-5">
+              <p className="mr-2">Section</p>
               <select
-                className="  rounded-xl py-2 bg-[#f68080] text-black w-full text-center"
+                className="  rounded-xl py-2 w-full  text-black text-center"
                 {...register("Section")}
               >
                 <option value="Section">Section</option>
@@ -83,7 +84,7 @@ const AddResult = () => {
               <input
                 type="number"
                 placeholder="123456"
-                className="bg-[#f68080] text-center text-black placeholder-black hover:bg-[#ffffff] rounded-xl py-2"
+                className="w-full  text-center text-black placeholder-black  rounded-xl py-2"
                 {...register("roll", { required: true })}
               />
             </div>
@@ -93,7 +94,7 @@ const AddResult = () => {
               <input
                 type="number"
                 placeholder="80"
-                className="bg-[#f68080] text-center text-black placeholder-black hover:bg-[#ffffff]  rounded-xl py-2"
+                className="w-full  text-center text-black placeholder-black   rounded-xl py-2"
                 {...register("bangla", { required: true })}
               />
             </div>
@@ -103,7 +104,7 @@ const AddResult = () => {
               <input
                 type="number"
                 placeholder="80"
-                className="bg-[#f68080] text-center text-black placeholder-black hover:bg-[#ffffff]  rounded-xl py-2"
+                className="w-full  text-center text-black placeholder-black   rounded-xl py-2"
                 {...register("english", { required: true })}
               />
             </div>
@@ -113,7 +114,7 @@ const AddResult = () => {
               <input
                 type="number"
                 placeholder="80"
-                className="bg-[#f68080] text-center text-black placeholder-black hover:bg-[#ffffff]  rounded-xl py-2"
+                className="w-full  text-center text-black placeholder-black   rounded-xl py-2"
                 {...register("math", { required: true })}
               />
             </div>
@@ -123,7 +124,7 @@ const AddResult = () => {
               <input
                 type="number"
                 placeholder="80"
-                className="bg-[#f68080] text-center text-black placeholder-black hover:bg-[#ffffff]  rounded-xl py-2"
+                className="w-full  text-center text-black placeholder-black   rounded-xl py-2"
                 {...register("science", { required: true })}
               />
             </div>
@@ -133,22 +134,22 @@ const AddResult = () => {
               <input
                 type="number"
                 placeholder="80"
-                className="bg-[#f68080] text-center text-black placeholder-black hover:bg-[#ffffff]  rounded-xl py-2"
+                className="w-full  text-center text-black placeholder-black   rounded-xl py-2"
                 {...register("physics", { required: true })}
               />
             </div>
 
-            <div className="mt-5 col-span-3">
+            <div className="mt-5">
               <p className="mr-2">Biology</p>
               <input
                 type="number"
                 placeholder="80"
-                className="bg-[#f68080] text-center text-black placeholder-black hover:bg-[#ffffff]  rounded-xl py-2"
+                className=" w-full  text-center text-black placeholder-black   rounded-xl py-2"
                 {...register("biology", { required: true })}
               />
             </div>
 
-            <div className="mt-6 mx-auto col-span-full">
+            <div className="mt-6 mx-auto text-center col-span-full">
               <button
                 className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-green-600 rounded-md hover:bg-green-400 focus:outline-none"
                 type="submit"
