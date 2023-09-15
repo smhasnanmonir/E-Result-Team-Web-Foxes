@@ -72,10 +72,10 @@ const RightNav = ({ open }) => {
           <Link to="/contact" className="me-5 font-bold ">
             Contact
           </Link>
-          <Link to="/differdashboard/home" className="me-10 font-bold ">
+          <Link to="/differdashboard" className="me-10 font-bold ">
             Dashboard
           </Link>
-          {user ? (
+          {/* {user ? (
               <div className="dropdown">
                 <label tabIndex={0} className="flex justify-center">
                   <img
@@ -136,7 +136,65 @@ const RightNav = ({ open }) => {
               <Link to="/login" className="btn btn-success">
                 Login
               </Link>
-            )}
+            )} */}
+            {
+              user? 
+              <div className="flex md:flex-row justify-center items-center gap-3">
+                <div className="dropdown">
+                <label tabIndex={0} className="flex justify-center">
+                  <img
+                    className="rounded-full border-4 border-green-400 h-[50px]"
+                    src={user.photoURL}
+                    alt=""
+                  />
+                </label>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content z-[1] text-black menu p-2 shadow bg-blue-800 rounded-box w-52"
+                >
+                  <li className="text-black">
+                    <Link to="/updateProfile">
+                      <LuSettings2 className="text-xl"></LuSettings2>Update
+                      Profile{" "}
+                    </Link>
+                  </li>
+                  <li className="text-black">
+                    <p>
+                      <BiSolidUserCheck className="text-xl"></BiSolidUserCheck>
+                      {user.displayName}
+                    </p>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="dropdown dropdown-bottom dropdown-end">
+              <label tabIndex={0} className=" m-1 relative">
+                <MdNotificationsActive className="text-5xl text-blue-500 p-1 border-2 rounded-full border-green-500"></MdNotificationsActive>
+                <div className="badge badge-accent badge-md p-1 rounded-full  text-center  absolute top-4 left-7">{notifications.length}</div>
+              </label>
+              <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-72">
+                {
+                  notifications.map(noti=>
+                    <li className="bg-slate-300" key={noti._id}>
+                      <Link to='/differdashboard'><SiGooglemessages></SiGooglemessages> {noti.notify}</Link>
+                      
+                    </li>
+                  ) 
+                  
+                }
+                {
+                  notifications.length == 0 ? <button className="btn">No Notifications</button> : <button onClick={handleClear} className="btn">Clear</button>
+                }
+              </ul>
+            </div>
+            <Link onClick={logout} className="btn btn-error">
+                Logout
+            </Link>
+              </div> :
+              <Link to="/login" className="btn btn-success">
+              Login
+            </Link>
+            }
         </Ul>
       </div>
     </>
