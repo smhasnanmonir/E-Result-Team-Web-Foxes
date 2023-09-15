@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import user_1 from "../../../assets/NewHomePageImg/user-1.png";
-import user_2 from "../../../assets/NewHomePageImg/user-2.png";
-import user_3 from "../../../assets/NewHomePageImg/user-3.png";
+import user_1 from "../../assets/NewHomePageImg/user-1.png";
+import user_2 from "../../assets/NewHomePageImg/user-2.png";
+import user_3 from "../../assets/NewHomePageImg/user-3.png";
 
 const ReviewSectionHome = () => {
   return (
