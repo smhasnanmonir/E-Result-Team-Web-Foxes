@@ -5,6 +5,9 @@ import { AuthContext } from "../Account/Provider/AuthProvider";
 import { LuSettings2 } from "react-icons/lu";
 import { BiSolidUserCheck } from "react-icons/bi";
 import { MdNotificationsActive } from "react-icons/md";
+import { SiGooglemessages } from "react-icons/si";
+import useNotify from "../DataFetch/useNotify";
+import useAxiosSecure from "../DataFetch/useAxiosSecure";
 
 const Ul = styled.ul`
   list-style: none;
@@ -43,9 +46,22 @@ const Ul = styled.ul`
 
 const RightNav = ({ open }) => {
   const {user,logOut} = useContext(AuthContext);
+  const [notifications, refetch] = useNotify();
+  const [axiosSecure] = useAxiosSecure();
+  console.log(notifications)
   const logout = () => {
     logOut();
   };
+
+  const handleClear = () =>{
+            axiosSecure.delete(`/clearnoti?email=${user.email}`)
+                .then(data =>{
+                    console.log(data)
+                    if(data.data.deletedCount){
+                                        refetch();
+                                    }
+                })
+  }
   return (
     <>
       <div className="z-10">
@@ -93,11 +109,21 @@ const RightNav = ({ open }) => {
               <div className="dropdown dropdown-bottom dropdown-end">
               <label tabIndex={0} className=" m-1 relative">
                 <MdNotificationsActive className="text-5xl text-blue-500 p-1 border-2 rounded-full border-green-500"></MdNotificationsActive>
-                <div className="badge badge-accent badge-md p-1 rounded-full  text-center  absolute top-4 left-7">2</div>
+                <div className="badge badge-accent badge-md p-1 rounded-full  text-center  absolute top-4 left-7">{notifications.length}</div>
               </label>
-              <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                <li><a>Your Account Updated</a></li>
-                <li><a>Marks Updated</a></li>
+              <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-72">
+                {
+                  notifications.map(noti=>
+                    <li className="bg-slate-300" key={noti._id}>
+                      <Link to='/differdashboard'><SiGooglemessages></SiGooglemessages> {noti.notify}</Link>
+                      
+                    </li>
+                  ) 
+                  
+                }
+                {
+                  notifications.length == 0 ? <button className="btn">No Notifications</button> : <button onClick={handleClear} className="btn">Clear</button>
+                }
               </ul>
             </div>
               

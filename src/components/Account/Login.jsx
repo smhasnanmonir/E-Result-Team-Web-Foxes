@@ -3,10 +3,11 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
 import { AuthContext } from "./Provider/AuthProvider";
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import Swal from "sweetalert2";
 import Lottie from "lottie-react";
 import ani from './login.json'
+import { io } from "socket.io-client";
 
 
 const Login = () => {
@@ -14,8 +15,12 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
-
     const { register, handleSubmit, formState: { errors } } = useForm();
+
+    useEffect(()=>{
+        const socket = io("https://e-result-server.vercel.app");
+        console.log(socket)
+    },[])
     const onSubmit = data => {
         console.log(data);
         console.log(errors);
