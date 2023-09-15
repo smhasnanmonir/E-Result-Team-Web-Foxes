@@ -16,6 +16,7 @@ import Admin from "./Admin";
 import ManageUser from "../pages/ManageUser/ManageUser";
 import UpdateProfile from "../components/Account/User/UpdateProfile";
 import ContactForm from "../components/ContactForm/ContactForm";
+import AdminHome from "../components/Dashboard/AdminHome";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -65,6 +66,14 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         children: [
+          {
+            path: "home",
+            element: (
+              <Admin>
+                <AdminHome></AdminHome>
+              </Admin>
+            ),
+          },
           {
             path: "userdashboard",
             element: (
