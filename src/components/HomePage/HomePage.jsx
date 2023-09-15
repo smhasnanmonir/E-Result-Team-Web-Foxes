@@ -51,13 +51,13 @@ const HomePage = () => {
         </div>
       </div>
       <div className="my-10">
-        <HomePageStudent></HomePageStudent>
+        <HomePageStudent />
       </div>
       <div className="my-10">
-        <HomePageTeacher></HomePageTeacher>
+        <HomePageTeacher />
       </div>
       <div className="my-10">
-        <Roles></Roles>
+        <Roles />
       </div>
       <div className="my-10">
         <HomeToDashboard></HomeToDashboard>
