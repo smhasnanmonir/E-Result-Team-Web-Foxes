@@ -2,12 +2,16 @@ import { Link } from "react-router-dom";
 import useRecheck from "../../components/DataFetch/useRecheck";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../components/DataFetch/useAxiosSecure";
+// import { Socket } from "socket.io-client";
 
 const ReviewResults = () => {
   const [axiosSecure] = useAxiosSecure();
   const [reCheck, refetch] = useRecheck();
   console.log(reCheck);
-  const handleFeedback = async (id) => {
+  const handleFeedback = async (id, email) => {
+    // const message = 'An update about your recheck';
+    // const userId = email;
+    // console.log(id, email, message, userId);
     const { value: text } = await Swal.fire({
       input: "textarea",
       inputLabel: "Write feedback",
@@ -21,8 +25,11 @@ const ReviewResults = () => {
     if (text) {
       let dataBody = {
         feedback: text,
+        reCheck: 'yes',
+        to: email,
+        notify : 'Got an update about your recheck'
       };
-      fetch(`https://e-result-server.vercel.app/reCheckDelete/${id}`, {
+      fetch(`https://e-result-server.vercel.app/reCheckFeedback/${id}`, {
         method: "PATCH",
         body: JSON.stringify(dataBody),
         headers: {
@@ -31,9 +38,11 @@ const ReviewResults = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
-          console.log(data?.insertedId);
-          if (data.modifiedCount > 0) {
+          console.log(data.result);
+          console.log(data?.result.modifiedCount);
+          if (data.result.modifiedCount > 0) {
+            refetch();
+            // Socket.emit('sendNotification', { userId, message });
             Swal.fire({
               title: "Feedback has been sent",
               icon: "success",
@@ -107,7 +116,7 @@ const ReviewResults = () => {
                 Edit
               </Link>
               <button
-                onClick={() => handleFeedback(reCheck?._id)}
+                onClick={() => handleFeedback(reCheck?._id,  reCheck?.email)}
                 className="px-[25px] block py-[9px] mt-[13px] bg-orange-300"
               >
                 Feedback

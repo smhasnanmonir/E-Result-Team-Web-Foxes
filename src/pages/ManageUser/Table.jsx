@@ -38,6 +38,10 @@ const Table = ({user, index, refetch}) => {
 
     const handleMakeAdmin = user =>{
         console.log(user)
+        let dataBody = {
+            to: user.email,
+            notify : 'You added as admin'
+          };
         Swal.fire({
             title: 'Are you sure?',
             text: "Set to make admin",
@@ -48,10 +52,10 @@ const Table = ({user, index, refetch}) => {
             confirmButtonText: 'Yes, Do it!'
           }).then((result) => {
             if (result.isConfirmed) {
-                axiosSecure.patch(`/userList/admin/${user._id}`)
+                axiosSecure.patch(`/userList/admin/${user._id}`, dataBody)
                 .then(data=>{
                     console.log(data)
-                    if(data.data.modifiedCount){
+                    if(data.data.result.modifiedCount){
                                         console.log(data)
                                         refetch();
                                         Swal.fire({

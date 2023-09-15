@@ -9,7 +9,8 @@ const UserDashboard = () => {
   const [allData] = DataFetch();
   const [videoData, setVideoData] = useState([]);
   const { user, loading } = useContext(AuthContext);
-  const [userRecheckAll] = useUserRecheck();
+  const [reCheckUser, refetch] = useUserRecheck();
+  refetch();
   const finalTermValue = allData[1]?.finalTerm;
   const midTermValue = allData[1]?.midTerm;
   console.log("real mid", midTermValue);
@@ -96,11 +97,11 @@ const UserDashboard = () => {
         </div>
         <div className="md:w-2/3 p-[20px]  mx-auto lg:mt-0 mt-[25px] border-2 shadow-md shadow-gray-400 lg:px-2 py-8 rounded-md h-[100%]">
           <h1 data-testid='listLength' className="text-center font-semibold text-2xl">
-            My Recheck List : {userRecheckAll.length}
+            My Recheck List : {reCheckUser.length}
           </h1>
           <div className="divider"></div>
           <div className="grid grid-cols-1 gap-1">
-            {userRecheckAll.map((issue, index) => (
+            {reCheckUser.map((issue, index) => (
               <div
                 className="flex justify-between items-center px-4 py-5 border-[1.5px] shadow-sm shadow-red-400 rounded-md"
                 key={issue._id}
