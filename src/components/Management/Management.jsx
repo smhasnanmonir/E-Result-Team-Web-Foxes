@@ -18,9 +18,9 @@ const Management = () => {
     Aos.init({ duration: 1500 });
   }, []);
   return (
-    <div className="lg:pt-0 pt-[25px] relative z-0">
-      <div className="">
-        <h1 className="text-3xl text-center my-5">Our Values</h1>
+    <div className="lg:pt-0 pt-[25px] relative z-0 ">
+      <div className="py-5" id="our-value">
+        <h1 className="text-3xl text-center font-semibold my-5 mt-10 my-text">Our Values</h1>
         <div className="grid lg:grid-cols-3 w-[90%] mx-auto items-center lk my-10">
           <div data-aos="fade-right" className="mx-auto">
             <img data-aos="zoom-in-right" src={mobile} alt="" />
@@ -48,11 +48,11 @@ const Management = () => {
           </div>
         </div>
       </div>
-      <div className="my-10">
+      <div className="py-10" id="our-partner">
         <div className=" text-center my-15">
-          <h1 className="text-3xl my-10">Our Partner</h1>
-          <p>
-            We collaborate with top University to create the <br /> most actual
+          <h1 className="text-3xl my-10 my-text font-semibold">Our Partner</h1>
+          <p className="text-center w-full md:w-1/2 mx-auto md:text-[18px] pt-[12px] px-10">
+            We collaborate with top University to create the most actual
             study programs
           </p>
         </div>

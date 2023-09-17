@@ -8,13 +8,13 @@ const RolesHomepage = () => {
     setButtonVisible(!isButtonVisible);
   };
   return (
-    <div className="relative z-0 grid place-items-center" id="role">
-      <h1 className="text-4xl font-semibold text-center my-3">
+    <div className="relative z-0 grid place-items-center role" id="role">
+      <h1 className="my-text text-4xl font-semibold text-center my-3 py-3">
         Choose your role
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 lg:mt-24">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 lg:mt-24 mx-2">
         <div
-          className={`card w-96 bg-base-100 shadow-xl lg:ml-80 card-effect ${
+          className={`card md:w-96  bg-base-100 shadow-xl lg:ml-80 card-effect ${
             isButtonVisible ? "button-visible" : ""
           }`}
           onMouseEnter={toggleButton}
@@ -40,7 +40,7 @@ const RolesHomepage = () => {
           </div>
         </div>
         <div
-          className={`card w-96 bg-base-100 shadow-xl card-effect ${
+          className={`card md:w-96 bg-base-100 shadow-xl card-effect ${
             isButtonVisible ? "button-visible" : ""
           }`}
           onMouseEnter={toggleButton}
