@@ -187,11 +187,11 @@ const RightNav = ({ open }) => {
                 }
               </ul>
             </div>
-            <Link onClick={logout} className="btn btn-error">
+            <Link onClick={logout} className="my-btn">
                 Logout
             </Link>
               </div> :
-              <Link to="/login" className="btn btn-success">
+              <Link to="/login" className="btn my-btn">
               Login
             </Link>
             }

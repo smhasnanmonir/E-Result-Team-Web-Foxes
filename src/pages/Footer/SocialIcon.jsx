@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const SocialIcon = () => {
   return (
-    <div>
+    <div className="flex flex-row md:flex-col gap-2">
       {/* facebook icon */}
       <Link to="https://www.facebook.com">
         <svg

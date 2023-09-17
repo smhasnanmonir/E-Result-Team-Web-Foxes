@@ -23,10 +23,10 @@ const HomePageStudent = () => {
       ref={ref}
     >
       <div className="">
-        <h1 className="md:text-3xl text-2xl font-semibold text-center">
+        <h1 className="md:text-3xl text-2xl font-semibold text-center my-text">
           How this works for Students
         </h1>
-        <p className="text-center lg:w-[30%] w-1/2 mx-auto text-[18px] pt-[12px]">
+        <p className="text-center w-full md:w-1/2 mx-auto md:text-[18px] pt-[12px] px-10">
           Student can see their result and there is a dashboard for them for
           further usage.
         </p>

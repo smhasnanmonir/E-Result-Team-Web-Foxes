@@ -18,8 +18,8 @@ const Nav = styled.nav`
 
 const Navbar = () => {
   return (
-    <Nav>
-        <Link to="/"><img className="h-[40px] lg:h-[50px]" src="https://i.ibb.co/n80R2cQ/eresult.png" alt="" /></Link>
+    <Nav className='my-text'>
+        <Link to="/"><img className="h-[40px] lg:h-[55px]" src="https://i.ibb.co/JCrjBVW/e-result.png" alt="" /></Link>
         <Burger />
     </Nav>
   )

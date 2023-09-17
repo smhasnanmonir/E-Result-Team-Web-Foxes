@@ -23,10 +23,10 @@ const HomePageTeacher = () => {
       ref={ref}
     >
       <div className="container">
-        <h1 className="md:text-3xl text-2xl font-semibold text-center">
+        <h1 className="md:text-3xl text-2xl font-semibold text-center my-text">
           How this works for Teachers
         </h1>
-        <p className="text-center lg:w-[30%] w-1/2 mx-auto text-[18px] pt-[12px]">
+        <p className="text-center w-full md:w-1/2 mx-auto md:text-[18px] pt-[12px] px-10">
           Teachers have a dashboard for them to manage student result easily.
         </p>
         <div className="relative flex justify-center items-center">
