@@ -82,7 +82,7 @@ const Contact = () => {
                 ></textarea>
               </div>
               <div className="form-control mt-6">
-                <input className="btn btn-success" type="submit" value="Send" />
+                <input className="my-btn" type="submit" value="Send" />
               </div>
             </div>
           </form>

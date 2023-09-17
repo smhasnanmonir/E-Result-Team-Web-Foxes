@@ -34,7 +34,7 @@ const RolesHomepage = () => {
               className={`card-actions ${isButtonVisible ? "show-button" : ""}`}
             >
               <Link to="/login">
-                <button className="btn btn-wide btn-primary">Join</button>
+                <button className="my-btn">Join</button>
               </Link>
             </div>
           </div>
@@ -60,7 +60,7 @@ const RolesHomepage = () => {
               className={`card-actions ${isButtonVisible ? "show-button" : ""}`}
             >
               <Link to="/login">
-                <button className="btn btn-wide btn-primary">Join</button>
+                <button className="my-btn">Join</button>
               </Link>
             </div>
           </div>

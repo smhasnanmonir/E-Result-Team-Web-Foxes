@@ -71,14 +71,14 @@ const Signup = () => {
     };
     
     return (
-       <div className="flex flex-col lg:flex-row justify-center items-center gap-5">
+       <div className="flex flex-col lg:flex-row justify-center items-center gap-5 px-3 py-5">
          <div className="">
             <Lottie className="lg:h-[600px]" animationData={ani}></Lottie>
         </div>
          <div className="flex justify-center items-center lg:py-[5%]">
             <form className="max-w-sm w-full text-center" onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-control">
-                    <h1 className="text-3xl font-semibold text-center my-5">Registration Now</h1>
+                    <h1 className="text-3xl font-semibold text-center my-5 border-b-2 pb-2 border-[#f4976c]">Registration Now</h1>
                     <label className="label">
                         <span className="label-text font-semibold">*Enter Your Email</span>
                     </label>
@@ -113,7 +113,7 @@ const Signup = () => {
                     <input type="file" placeholder="image" {...register("image", {})} className="file-input file-input-bordered file-input-success w-full" />
 
                     <div className="text-center mt-[4%]">
-                        <button type="submit" className="btn btn-accent">Create</button>
+                        <button type="submit" className="my-btn">Create</button>
                     </div>
                 </div>
                 
