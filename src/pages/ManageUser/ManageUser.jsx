@@ -12,7 +12,7 @@ const ManageUser = () => {
     })
     console.log(userList);
     return (
-        <div className="px-5">
+        <div className="px-5 py-5">
             <h1 className="font-semibold text-3xl text-center my-5"> Manage User</h1>
             <div className="divider"></div>
             <div className="overflow-x-auto rounded-lg table-sec">
