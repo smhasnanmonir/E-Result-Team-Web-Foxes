@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import logo from "../../assets/logo.jpg";
+// import logo from "../../assets/logo.jpg";
 import SocialIcon from "./SocialIcon";
 const Footer = () => {
   return (
-    <footer className="relative">
+    <footer className="">
       <div className="bg-[#b4dfe5] my-footer">
         <div className="footer p-10  text-black flex justify-between flex-col md:flex-row">
           <div>

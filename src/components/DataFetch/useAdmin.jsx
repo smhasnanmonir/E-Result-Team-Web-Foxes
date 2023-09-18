@@ -11,12 +11,12 @@ const useAdmin = () => {
     // console.log(user);
     const [checkAdmin, setAdmin] = useState([]);
     useEffect(() => {
-    fetch(`https://e-result-server.vercel.app/user/isAdmin?email=${user.email}`)
+    fetch(`https://e-result-server.vercel.app/user/isAdmin?email=${user ? user.email : 'team@web.fox'}`)
       .then((res) => res.json())
       .then((data) => {
         setAdmin(data.admin);
       });
-  }, [user.email]);
+  }, [user]);
   return [checkAdmin];
 };
 

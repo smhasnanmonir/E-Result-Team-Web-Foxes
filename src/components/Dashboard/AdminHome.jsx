@@ -30,13 +30,13 @@ const AdminHome = () => {
     const [getStats] = useStats();
     
     return (
-        <div className="text-center p-2 bg-green-50">
+        <div className="text-center p-2 ">
             <div className="divider"></div>
-            <h1 className="text-3xl font-semibold">Welcome, in Admin Dashboard</h1>
+            <h1 className="text-3xl font-semibold my-text">Welcome, in Admin Dashboard</h1>
             <div className="divider"></div>
             <div className="flex flex-col md:flex-row md:items-left gap-5">
                 <div className="md:w-2/5 admin-info flex flex-col justify-center items-center px-4 py-5 bg-green-300">
-                    <h1 className='text-xl'>Admin Information</h1>
+                    <h1 className='text-xl font-semibold my-text'>Admin Information</h1>
                     <div className="divider"></div>
                     <div className='flex flex-col justify-center items-center gap-2'>
                         <img className='h-[200px] rounded-full user-img' src={userInfo.photo} alt="" />
@@ -81,7 +81,7 @@ const AdminHome = () => {
                     
                 </div>
                 <div className="md:w-3/5 admin-stats bg-green-300 px-4 py-5">
-                    <h1 className='text-xl'>Web Stats</h1>
+                    <h1 className='text-xl my-text font-semibold'>Web Stats</h1>
                     <div className='divider'></div>
                     <div className='flex flex-col justify-center items-left gap-5'>
                         <div className='grid md:grid-cols-3'>

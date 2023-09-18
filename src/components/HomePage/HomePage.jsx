@@ -16,7 +16,7 @@ const HomePage = () => {
         <title>E-Result | Home</title>
       </Helmet>
       {/* <div className="lg:grid grid-cols-2 h-[90vh] w-[80%] mx-auto my-10"> */}
-      <div className="flex flex-col-reverse md:flex-row md:justify-between items-center md:gap-10 h-[90vh] w-[80%] mx-auto md:my-10 py-5"> {/*habibi */}
+      <div className="flex flex-col-reverse md:flex-row md:justify-between items-center md:gap-10 h-[90vh] w-[80%] mx-auto md:my-10 py-5 pb-10"> {/*habibi */}
         <div className="md:my-[100px] my-[30px]">
           {/* text-red-300 */}
           <h1 className="text-5xl my-text">E-Result</h1> 
