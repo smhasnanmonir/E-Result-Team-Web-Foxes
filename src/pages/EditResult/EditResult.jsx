@@ -11,14 +11,14 @@ const EditResult2 = () => {
   };
   return (
     <div className="lg:px-0 px-[25px]">
-      <div className="f-form lg:flex gap-5 w-[80%] mx-auto hidden">
-        <input
+      <div className="f-form lg:flex gap-5 md:w-[80%] mx-auto justify-center items-center">
+        <input className="w-[80%] md:w-[50%] text-center"
           type="search"
           name="search1"
           id="search1"
           placeholder="Search Box(Name)"
         />
-        <button className="btn btn-outline btn-accent">Search</button>
+        {/* <button className="btn btn-outline btn-accent">Search</button> */}
       </div>
       <div className="">
         <h1 className="bg-green-100 lg:w-[80%] text-center py-4 my-10 rounded text-[20px] mx-auto shadow-xl">
