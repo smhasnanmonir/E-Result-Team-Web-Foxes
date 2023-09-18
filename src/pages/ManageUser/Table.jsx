@@ -79,7 +79,7 @@ const Table = ({user, index, refetch}) => {
         </label>
         </td>
         <td >
-            <img className="pp h-[80px] rounded-full border-2 border-green-600" src={photo} alt="" />
+            <img className="pp h-[80px] w-[80px] rounded-full border-2 border-green-600" src={photo} alt="" />
         </td>
         <td >
         <div className="flex items-center space-x-3">

@@ -6,6 +6,8 @@ import jsPDF from "jspdf";
 import { useContext, useRef } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../components/Account/Provider/AuthProvider";
+import download from './pdf-file.png'
+import recheck from './search (1).png'
 
 const ResultPage = () => {
   const { user } = useContext(AuthContext);
@@ -158,7 +160,7 @@ const ResultPage = () => {
   };
 
   return (
-    <>
+    <div className="py-5">
       <div className="lg:px-[250px] px-[35px]" ref={pdfRef}>
         <div className="container bg-[#E4E4E4] mx-auto  rounded-xl pb-4 ">
           <div className="text-center mb-8 rounded-t-xl bg-[#ACE9D7] ">
@@ -216,28 +218,31 @@ const ResultPage = () => {
           <button
             onClick={downloadPdf}
             type="submit"
-            className=" bg-[#ACE9D7] text-black hover:bg-[#03A373]  md:w-1/3 btn btn-primary py- rounded-xl "
+            className=" bg-[#ACE9D7] text-black hover:bg-[#03A373]  md:w-1/3  rounded-xl flex justify-center items-center gap-2 py-2 px-3"
           >
-            Download Result
+            <img className="h-[40px]" src={download} alt="" />
+            <p className="font-semibold">Download</p>
           </button>
           {user ? (
             <button
               onClick={reCheckFuntion}
-              className="bg-[#fda2a2] text-black hover:bg-[#a11313]  md:w-1/3 btn btn-primary rounded-xl h-[35px]"
+              className="bg-[#e00e0e] text-white hover:bg-[#03A373] md:w-1/3 rounded-xl flex justify-center items-center gap-2 py-2 px-3"
             >
-              Apply For Recheck
+              
+              <img className="h-[40px]" src={recheck} alt="" />
+              <p className="font-semibold"> Recheck</p>
             </button>
           ) : (
             <button
               onClick={recheckforLogin}
-              className="bg-[#fdb3b3] text-black hover:bg-[#a11313]  md:w-1/3 btn btn-primary rounded-xl h-[35px]"
+              className="bg-[#ACE9D7] text-black hover:bg-[#03A373] md:w-1/3 rounded-xl"
             >
               Login for Recheck
             </button>
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
