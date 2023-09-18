@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../components/Account/Provider/AuthProvider";
 import download from './pdf-file.png'
 import recheck from './search (1).png'
+import login from './login.png'
 
 const ResultPage = () => {
   const { user } = useContext(AuthContext);
@@ -235,9 +236,10 @@ const ResultPage = () => {
           ) : (
             <button
               onClick={recheckforLogin}
-              className="bg-[#ACE9D7] text-black hover:bg-[#03A373] md:w-1/3 rounded-xl"
+              className="bg-[#870404] text-white hover:bg-[#03A373] md:w-1/3 rounded-xl flex justify-center items-center gap-2 py-2 px-3"
             >
-              Login for Recheck
+               <img className="h-[40px]" src={login} alt="" />
+                <p className="font-semibold"> Login to Recheck</p>
             </button>
           )}
         </div>
