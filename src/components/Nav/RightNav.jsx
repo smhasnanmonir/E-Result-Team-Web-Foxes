@@ -8,6 +8,7 @@ import { MdNotificationsActive } from "react-icons/md";
 import { SiGooglemessages } from "react-icons/si";
 import useNotify from "../DataFetch/useNotify";
 import useAxiosSecure from "../DataFetch/useAxiosSecure";
+import useAdmin from "../DataFetch/useAdmin";
 
 const Ul = styled.ul`
   list-style: none;
@@ -47,8 +48,9 @@ const Ul = styled.ul`
 const RightNav = ({ open }) => {
   const {user,logOut} = useContext(AuthContext);
   const [notifications, refetch] = useNotify();
+  const [checkAdmin]  = useAdmin()
   const [axiosSecure] = useAxiosSecure();
-  console.log(notifications)
+  // console.log(notifications)
   const logout = () => {
     logOut();
   };
@@ -72,7 +74,7 @@ const RightNav = ({ open }) => {
           <Link to="/contact" className="me-5 font-bold ">
             Contact
           </Link>
-          <Link to="/differdashboard" className="me-10 font-bold ">
+          <Link to={checkAdmin? '/differdashboard/home' : '/differdashboard'} className="me-10 font-bold ">
             Dashboard
           </Link>
           {/* {user ? (
@@ -183,15 +185,15 @@ const RightNav = ({ open }) => {
                   
                 }
                 {
-                  notifications.length == 0 ? <button className="btn">No Notifications</button> : <button onClick={handleClear} className="btn">Clear</button>
+                  notifications.length == 0 ? <button className="my-btn">No Notifications</button> : <button onClick={handleClear} className="btn">Clear</button>
                 }
               </ul>
             </div>
-            <Link onClick={logout} className="btn btn-error">
+            <Link onClick={logout} className="my-btn">
                 Logout
             </Link>
               </div> :
-              <Link to="/login" className="btn btn-success">
+              <Link to="/login" className="my-btn">
               Login
             </Link>
             }

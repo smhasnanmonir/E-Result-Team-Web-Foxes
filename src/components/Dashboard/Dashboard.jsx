@@ -6,23 +6,23 @@ import manage from "../../assets/settings.png";
 import "./Dashboard.css";
 const Dashboard = () => {
   return (
-    <div>
+    <div className="">
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col ">
           <Outlet></Outlet>
           <label
             htmlFor="my-drawer-2"
-            className="btn btn-success text-white my-7 lg:hidden w-[328px] mx-auto"
+            className="my-btn text-center my-7 lg:hidden md:w-[328px] mx-auto"
           >
             Open Dashboard
           </label>
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-80 h-full bg-green-50 text-base-content d-link md:pt-[50%]">
+          <ul className="menu menuc p-4 w-80 h-full bg-[#fbe8a6] text-base-content d-link md:pt-[50%] ">
             {/* Sidebar content here */}
-            <li className="bg-green-200">
+            <li>
               <span>
                 <img className="h-[45px]" src={result} alt="" />
                 <Link to="addResult" className="text-[18px]">

@@ -15,9 +15,11 @@ const HomePage = () => {
       <Helmet>
         <title>E-Result | Home</title>
       </Helmet>
-      <div className="lg:grid grid-cols-2 w-[80%] mx-auto my-10">
-        <div className="my-[100px]">
-          <h1 className="text-5xl text-red-300">E-Result</h1>
+      {/* <div className="lg:grid grid-cols-2 h-[90vh] w-[80%] mx-auto my-10"> */}
+      <div className="flex flex-col-reverse md:flex-row md:justify-between items-center md:gap-10 h-[90vh] w-[80%] mx-auto md:my-10 py-5 pb-10"> {/*habibi */}
+        <div className="md:my-[100px] my-[30px]">
+          {/* text-red-300 */}
+          <h1 className="text-5xl my-text">E-Result</h1> 
           <p className="text-4xl my-5">Education</p>
           <p>
             E-Result is an innovative online platform designed to provide
@@ -25,29 +27,29 @@ const HomePage = () => {
           </p>
           <div className="my-5">
             <button>
-              <Link className="btn" to="/information-page">
+              <Link className="my-btn" to="/information-page">
                 See Your Result
               </Link>
             </button>
           </div>
         </div>
-        <div className="">
+        <div className="my-[20px] md:my-0">
           <Lottie animationData={HomepageLottie}></Lottie>
         </div>
       </div>
-      <div className="my-5">
+      <div className="">
         <HomePageStudent></HomePageStudent>
       </div>
-      <div className="my-5">
+      <div className="">
         <HomePageTeacher></HomePageTeacher>
       </div>
-      <div className="my-5">
+      <div className="">
         <RolesHomepage></RolesHomepage>
       </div>
-      <div className="my-5">
+      <div className="">
         <Management></Management>
       </div>
-      <div className="my-5">
+      <div className="">
         <ReviewSectionHome></ReviewSectionHome>
       </div>
     </>

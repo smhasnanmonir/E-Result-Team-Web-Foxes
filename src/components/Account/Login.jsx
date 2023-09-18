@@ -7,7 +7,7 @@ import { useContext, useEffect } from "react";
 import Swal from "sweetalert2";
 import Lottie from "lottie-react";
 import ani from "./login.json";
-import { io } from "socket.io-client";
+// import { io } from "socket.io-client";
 
 const Login = () => {
   const { signin, signInGoogle } = useContext(AuthContext);
@@ -20,10 +20,10 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  useEffect(() => {
-    const socket = io("https://e-result-server.vercel.app");
-    console.log(socket);
-  }, []);
+  // useEffect(() => {
+  //   const socket = io("https://e-result-server.vercel.app");
+  //   console.log(socket);
+  // }, []);
   const onSubmit = (data) => {
     console.log(data);
     console.log(errors);
@@ -79,14 +79,14 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col-reverse lg:flex-row justify-center items-center gap-3">
+    <div className="flex flex-col-reverse lg:flex-row justify-center items-center gap-3 py-3">
       <div className="flex justify-center items-center lg:py-[5%] px-[2%] md:w-1/2">
         <form
           className="max-w-sm w-full text-center"
           onSubmit={handleSubmit(onSubmit)}
         >
           <div className="form-control">
-            <h1 className="text-3xl font-semibold text-center my-5 shadow-md py-2">
+            <h1 className="text-3xl font-semibold text-center my-5 border-b-2 border-[#f4976c] py-2">
               Login Now
             </h1>
             <label className="label">
@@ -123,12 +123,12 @@ const Login = () => {
             </div>
 
             <div className="text-center mt-[4%]">
-              <button type="submit" className="btn btn-success">
+              <button type="submit" className="my-btn">
                 Login
               </button>
             </div>
             <div className="divider">Or Sign in With</div>
-            <div className="flex justify-around items-center">
+            <div className="flex justify-around items-center gap-2">
               <div
                 onClick={handleGoogleSignin}
                 className=" bg-green-400 px-5 py-3 rounded-md flex justify-center items-center"

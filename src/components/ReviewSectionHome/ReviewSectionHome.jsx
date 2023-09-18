@@ -6,7 +6,7 @@ import user_3 from "../../assets/NewHomePageImg/user-3.png";
 const ReviewSectionHome = () => {
   return (
     <div className="my-24 overflow-hidden relative z-0">
-      <h3 className="md:text-5xl text-2xl mb-12 font-semibold text-center ">
+      <h3 className="md:text-5xl text-2xl mb-12 font-semibold text-center my-text">
         Happy <span className="text-bike-primary">Clients Says</span>
       </h3>
       <div className="grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:px-[75px] px-[25px]">
