@@ -95,7 +95,7 @@ const Table = ({user, index, refetch}) => {
             {
                 user.role === 'admin' ? <div className="badge badge-accent">Admin</div> : user.role === 'student'? <button onClick={() => handleMakeAdmin(user)} className="badge badge-success">Student</button> : <div className="badge badge-accent">Instructor</div>
             }
-            <button onClick={() => handleDelete(user)} className="my-btn md:hidden"><BsFillTrash3Fill className='text-3xl text-black'></BsFillTrash3Fill></button>
+            <button onClick={() => handleDelete(user)} className="my-btn md:hidden"><BsFillTrash3Fill className='text-3xl text-blue-900'></BsFillTrash3Fill></button>
         </td>
         <td className='hide-fixed-items'>
         <button onClick={() => handleDelete(user)} className="hide-fixed-items my-btn"><BsFillTrash3Fill className='text-3xl text-blue-900'></BsFillTrash3Fill></button>
