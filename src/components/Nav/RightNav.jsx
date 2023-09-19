@@ -146,7 +146,7 @@ const RightNav = ({ open, setOpen }) => {
             {
               user? 
               <div className="flex md:flex-row justify-center items-center gap-3">
-                <div className="dropdown">
+                <div className="dropdown dropdown-bottom">
                 <label tabIndex={0} className="flex justify-center">
                   <img
                     className="rounded-full border-4 border-green-400 h-[50px]"
@@ -156,7 +156,7 @@ const RightNav = ({ open, setOpen }) => {
                 </label>
                 <ul
                   tabIndex={0}
-                  className="dropdown-content z-[1] text-black menu p-2 shadow bg-blue-800 rounded-box w-52"
+                  className="dropdown-content my-drop z-[1] text-black menu p-2 shadow bg-blue-800 rounded-box w-52"
                 >
                   <li className="text-black">
                     <Link onClick={closeBar} to="/updateProfile">
@@ -178,18 +178,17 @@ const RightNav = ({ open, setOpen }) => {
                 <MdNotificationsActive className="text-5xl text-blue-500 p-1 border-2 rounded-full border-green-500"></MdNotificationsActive>
                 <div className="badge badge-accent badge-md p-1 rounded-full  text-center  absolute top-4 left-7">{notifications.length}</div>
               </label>
-              <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-72">
+              <ul tabIndex={0} className="dropdown-content my-drop-one z-[1] menu p-2 shadow bg-base-100 rounded-box w-72">
                 {
                   notifications.map(noti=>
-                    <li className="bg-slate-300" key={noti._id}>
-                      <Link to='/differdashboard'><SiGooglemessages></SiGooglemessages> {noti.notify}</Link>
-                      
+                    <li className="bg-slate-300 text-justify w-full" key={noti._id}>
+                      <Link onClick={closeBar} to='/differdashboard'><SiGooglemessages className="text-xl"></SiGooglemessages> {noti.notify}</Link>
                     </li>
                   ) 
                   
                 }
                 {
-                  notifications.length == 0 ? <button className="my-btn">No Notifications</button> : <button onClick={handleClear} className="btn">Clear</button>
+                  notifications.length == 0 ? <button className="my-btn">No Notifications</button> : <button onClick={handleClear} className="my-btn">Clear</button>
                 }
               </ul>
             </div>

@@ -82,14 +82,14 @@ const ReviewResults = () => {
     });
   };
   return (
-    <div>
-      <h1 className="py-[25px] text-center font-semibold">
+    <div className="px-3">
+      <h1 className="py-[25px] text-center font-semibold my-text text-3xl border-b-2 mb-5">
         These Students have applied for rechecking.
       </h1>
-      <div className="grid place-items-center lg:grid-cols-2 grid-cols-1 max-w-4xl mx-auto gap-[20px]">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-5">
         {reCheck.map((reCheck) => (
           <div
-            className="p-5 bg-fuchsia-200 w-[450px] h-full text-center rounded-md"
+            className="p-5 bg-fuchsia-200  h-full text-center rounded-md"
             key={reCheck._id}
           >
             <h1 className="text-left">

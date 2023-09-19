@@ -75,28 +75,30 @@ const Table = ({user, index, refetch}) => {
         <tr className='bg-green-100 border-2 border-green-200'>
         <td >
         <label>
-            <p className='font-semibold'>{index+1}</p>
+            <p className='font-semibold text-sm md:text-base'>{index+1}</p>
         </label>
         </td>
-        <td >
-            <img className="pp h-[80px] w-[80px] rounded-full border-2 border-green-600" src={photo} alt="" />
+        <td className='hide-fixed-items'>
+            <img className="pp md:h-[80px]  md:w-[80px]  rounded-full border-2 border-green-600" src={photo} alt="" />
         </td>
         <td >
-        <div className="flex items-center space-x-3">
+        <div className="flex flex-col items-left">
+        <img className="pp h-[50px] w-[50px] md:hidden rounded-full border-2 border-green-600" src={photo} alt="" />
             <p className='font-semibold'>{name}</p>
-            
+            <p className=' md:hidden'>{email}</p>
         </div>
         </td>
-        <td >
-        <p>{email}</p>
+        <td className='hide-fixed-items'>
+        <p className='text-sm md:text-base '>{email}</p>
         </td>
-        <td className="">
+        <td className="fixed-item">
             {
                 user.role === 'admin' ? <div className="badge badge-accent">Admin</div> : user.role === 'student'? <button onClick={() => handleMakeAdmin(user)} className="badge badge-success">Student</button> : <div className="badge badge-accent">Instructor</div>
             }
+            <button onClick={() => handleDelete(user)} className="my-btn md:hidden"><BsFillTrash3Fill className='text-3xl text-blue-900'></BsFillTrash3Fill></button>
         </td>
-        <td >
-        <button onClick={() => handleDelete(user)} className="btn btn-ghost btn-lg"><BsFillTrash3Fill className='text-3xl text-red-600'></BsFillTrash3Fill></button>
+        <td className='hide-fixed-items'>
+        <button onClick={() => handleDelete(user)} className="hide-fixed-items my-btn"><BsFillTrash3Fill className='text-3xl text-blue-900'></BsFillTrash3Fill></button>
         </td>
     </tr>
     );
