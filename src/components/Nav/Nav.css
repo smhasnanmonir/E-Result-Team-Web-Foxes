@@ -14,6 +14,8 @@
     margin: 10px 0;
     font-weight: bold;
     font-size: larger;
+    background-color: gold;
+    color: black;
 }
 .my-drop{
     background-color: #303c6c;
