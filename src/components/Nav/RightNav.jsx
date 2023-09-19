@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { AuthContext } from "../Account/Provider/AuthProvider";
 import { LuSettings2 } from "react-icons/lu";
@@ -45,7 +45,7 @@ const Ul = styled.ul`
   }
 `;
 
-const RightNav = ({ open }) => {
+const RightNav = ({ open, setOpen }) => {
   const {user,logOut} = useContext(AuthContext);
   const [notifications, refetch] = useNotify();
   const [checkAdmin]  = useAdmin()
@@ -53,13 +53,17 @@ const RightNav = ({ open }) => {
   // console.log(notifications)
   const logout = () => {
     logOut();
+    setOpen(!open);
   };
-
+  const closeBar = ()=>{
+    setOpen(!open);
+  }
   const handleClear = () =>{
             axiosSecure.delete(`/clearnoti?email=${user.email}`)
                 .then(data =>{
                     console.log(data)
                     if(data.data.deletedCount){
+                      setOpen(!open);
                                         refetch();
                                     }
                 })
@@ -67,16 +71,16 @@ const RightNav = ({ open }) => {
   return (
     <>
       <div className="z-10">
-        <Ul className="flex justify-center items-center gap-5 md:gap-2 lg:gap-3" open={open}>
-          <Link to="/" className="me-5 font-bold ">
+        <Ul className="flex justify-center items-center gap-5 md:gap-2 lg:gap-3 nav-link" open={open}>
+          <NavLink onClick={closeBar}  to="/" className="me-5 font-bold ">
             Home
-          </Link>
-          <Link to="/contact" className="me-5 font-bold ">
+          </NavLink>
+          <NavLink onClick={closeBar} to="/contact" className="me-5 font-bold ">
             Contact
-          </Link>
-          <Link to={checkAdmin? '/differdashboard/home' : '/differdashboard'} className="me-10 font-bold ">
+          </NavLink>
+          <NavLink onClick={closeBar} to={checkAdmin? '/differdashboard/home' : '/differdashboard'} className="me-10 font-bold ">
             Dashboard
-          </Link>
+          </NavLink>
           {/* {user ? (
               <div className="dropdown">
                 <label tabIndex={0} className="flex justify-center">
@@ -155,7 +159,7 @@ const RightNav = ({ open }) => {
                   className="dropdown-content z-[1] text-black menu p-2 shadow bg-blue-800 rounded-box w-52"
                 >
                   <li className="text-black">
-                    <Link to="/updateProfile">
+                    <Link onClick={closeBar} to="/updateProfile">
                       <LuSettings2 className="text-xl"></LuSettings2>Update
                       Profile{" "}
                     </Link>
@@ -193,7 +197,7 @@ const RightNav = ({ open }) => {
                 Logout
             </Link>
               </div> :
-              <Link to="/login" className="my-btn">
+              <Link onClick={closeBar} to="/login" className="my-btn">
               Login
             </Link>
             }
