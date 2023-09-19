@@ -7,10 +7,12 @@ import ResultChart from "./ResultChart";
 import DataFetch from "../../DataFetch/DataFetch";
 import useUser from "../../DataFetch/useUser";
 import { Link } from "react-router-dom";
+import useGetInfo from "../../DataFetch/useGetInfo";
 const UserDashboard = () => {
   const [allData] = DataFetch();
   const [videoData, setVideoData] = useState([]);
   const [allUser] = useUser();
+  const [userInfo] = useGetInfo();
   const { user, loading } = useContext(AuthContext);
   const [reCheckUser] = useUserRecheck();
   const userEmail = user?.email;
@@ -69,30 +71,39 @@ const UserDashboard = () => {
     }
   };
   calculateComparison(finalTotalValue, midTotalValue);
+  console.log(userInfo)
   return (
     <div className="lg:px-[50px] px-[35px] md:mb-[15%] mb-[10%]">
       <div className="md:flex py-10 gap-10">
-        <div className="md:w-1/3 mx-auto border-2 shadow-grey-300 shadow-md md:px-2 px-[25px] py-8 rounded-md md:h-[100%]">
-          <h1 className="text-center font-semibold text-2xl my-5">
-            Student Information
+        <div className="md:w-1/3 mx-auto relative bg-[#feeba5]   shadow-xl md:px-2 px-[25px] py-8 rounded-[34px] md:h-[100%]">
+
+
+        <div className="bg-green-600 z-0 md:ml-8  w-[15px] absolute top-[62px] -rotate-45 h-[5px]"></div>
+          <h1 className="text-center md:ml-8  bg-green-500 text-white inline-block font-semibold text-[10px]   -rotate-3 px-2 w-[80px] h-[14px] my-5 ">
+            Student Info
+            
           </h1>
-          <div className="divider"></div>
+          
+        
           {loading ? (
             <p>loading...</p>
           ) : (
-            <div className="flex flex-col justify-center items-center gap-5">
+            <div className="flex flex-col justify-center relative items-center gap-5">
               <img
-                className="rounded-full h-[150px]"
+                className="rounded-full border-[5px] absolute -top-16 right-2 border-white h-[90px]"
                 src={user.photoURL}
                 alt=""
               />
-              <div className="flex flex-col justify-start gap-5 mt-2">
-                <h1 className="font-semibold">
-                  Name :{" "}
-                  <span className="text-blue-700">{user.displayName}</span>
+              <div className="flex flex-col justify-start gap-5 md:mr-6 mt-12">
+                <h1 className="font-semibold ">
+                  <span className=" bg-black font-normal text-xs text-white px-2  rounded-full">Name</span>
+                  <br />
+                  <div className="text-black bg-white px-2 mt-4 ml-2 inline-block rounded-full">{user.displayName}</div>
                 </h1>
                 <p className="font-semibold">
-                  Email : <span className="text-blue-700">{user.email}</span>
+                <span className=" bg-black font-normal text-xs text-white px-2  rounded-full">Email</span>
+                <br />
+                   <div className="text-black bg-white px-2 mt-4 ml-2 inline-block rounded-full">{user.email}</div>
                 </p>
               </div>
             </div>
