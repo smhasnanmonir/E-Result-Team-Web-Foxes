@@ -5,9 +5,6 @@ import { FaHourglassHalf } from "react-icons/fa";
 import { MdDoneOutline } from "react-icons/md";
 import ResultChart from "./ResultChart";
 import DataFetch from "../../DataFetch/DataFetch";
-
-
-
 const UserDashboard = () => {
   const [allData] = DataFetch();
   const [videoData, setVideoData] = useState([]);
