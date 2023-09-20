@@ -62,7 +62,7 @@ const InformationPage = () => {
 
             <Link to={`/result-page/${rollNumber}`}>
               <div className="flex justify-center mb-10">
-                <button className=" bg-[#ACE9D7] hover:bg-[#03A373] text-black w-2/3 btn btn-primary rounded-md h-[35px]">
+                <button className="my-btn w-2/3  rounded-md">
                   Show Result
                 </button>
               </div>

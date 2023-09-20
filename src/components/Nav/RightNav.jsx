@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { AuthContext } from "../Account/Provider/AuthProvider";
 import { LuSettings2 } from "react-icons/lu";
@@ -45,7 +45,7 @@ const Ul = styled.ul`
   }
 `;
 
-const RightNav = ({ open }) => {
+const RightNav = ({ open, setOpen }) => {
   const {user,logOut} = useContext(AuthContext);
   const [notifications, refetch] = useNotify();
   const [checkAdmin]  = useAdmin()
@@ -53,13 +53,17 @@ const RightNav = ({ open }) => {
   // console.log(notifications)
   const logout = () => {
     logOut();
+    setOpen(!open);
   };
-
+  const closeBar = ()=>{
+    setOpen(!open);
+  }
   const handleClear = () =>{
             axiosSecure.delete(`/clearnoti?email=${user.email}`)
                 .then(data =>{
                     console.log(data)
                     if(data.data.deletedCount){
+                      setOpen(!open);
                                         refetch();
                                     }
                 })
@@ -67,16 +71,16 @@ const RightNav = ({ open }) => {
   return (
     <>
       <div className="z-10">
-        <Ul className="flex justify-center items-center gap-5 md:gap-2 lg:gap-3" open={open}>
-          <Link to="/" className="me-5 font-bold ">
+        <Ul className="flex justify-center items-center gap-5 md:gap-2 lg:gap-3 nav-link" open={open}>
+          <NavLink onClick={closeBar}  to="/" className="me-5 font-bold ">
             Home
-          </Link>
-          <Link to="/contact" className="me-5 font-bold ">
+          </NavLink>
+          <NavLink onClick={closeBar} to="/contact" className="me-5 font-bold ">
             Contact
-          </Link>
-          <Link to={checkAdmin? '/differdashboard/home' : '/differdashboard'} className="me-10 font-bold ">
+          </NavLink>
+          <NavLink onClick={closeBar} to={checkAdmin? '/differdashboard/home' : '/differdashboard'} className="me-10 font-bold ">
             Dashboard
-          </Link>
+          </NavLink>
           {/* {user ? (
               <div className="dropdown">
                 <label tabIndex={0} className="flex justify-center">
@@ -142,7 +146,7 @@ const RightNav = ({ open }) => {
             {
               user? 
               <div className="flex md:flex-row justify-center items-center gap-3">
-                <div className="dropdown">
+                <div className="dropdown dropdown-bottom">
                 <label tabIndex={0} className="flex justify-center">
                   <img
                     className="rounded-full border-4 border-green-400 h-[50px]"
@@ -152,10 +156,10 @@ const RightNav = ({ open }) => {
                 </label>
                 <ul
                   tabIndex={0}
-                  className="dropdown-content z-[1] text-black menu p-2 shadow bg-blue-800 rounded-box w-52"
+                  className="dropdown-content my-drop z-[1] text-black menu p-2 shadow bg-blue-800 rounded-box w-52"
                 >
                   <li className="text-black">
-                    <Link to="/updateProfile">
+                    <Link onClick={closeBar} to="/updateProfile">
                       <LuSettings2 className="text-xl"></LuSettings2>Update
                       Profile{" "}
                     </Link>
@@ -174,18 +178,17 @@ const RightNav = ({ open }) => {
                 <MdNotificationsActive className="text-5xl text-blue-500 p-1 border-2 rounded-full border-green-500"></MdNotificationsActive>
                 <div className="badge badge-accent badge-md p-1 rounded-full  text-center  absolute top-4 left-7">{notifications.length}</div>
               </label>
-              <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-72">
+              <ul tabIndex={0} className="dropdown-content my-drop-one z-[1] menu p-2 shadow bg-base-100 rounded-box w-72">
                 {
                   notifications.map(noti=>
-                    <li className="bg-slate-300" key={noti._id}>
-                      <Link to='/differdashboard'><SiGooglemessages></SiGooglemessages> {noti.notify}</Link>
-                      
+                    <li className="bg-slate-300 text-justify w-full" key={noti._id}>
+                      <Link onClick={closeBar} to='/differdashboard'><SiGooglemessages className="text-xl"></SiGooglemessages> {noti.notify}</Link>
                     </li>
                   ) 
                   
                 }
                 {
-                  notifications.length == 0 ? <button className="my-btn">No Notifications</button> : <button onClick={handleClear} className="btn">Clear</button>
+                  notifications.length == 0 ? <button className="my-btn">No Notifications</button> : <button onClick={handleClear} className="my-btn">Clear</button>
                 }
               </ul>
             </div>
@@ -193,7 +196,7 @@ const RightNav = ({ open }) => {
                 Logout
             </Link>
               </div> :
-              <Link to="/login" className="my-btn">
+              <Link onClick={closeBar} to="/login" className="my-btn">
               Login
             </Link>
             }

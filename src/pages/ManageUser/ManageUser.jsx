@@ -12,7 +12,7 @@ const ManageUser = () => {
     })
     console.log(userList);
     return (
-        <div className="px-5">
+        <div className="px-5 py-5">
             <h1 className="font-semibold text-3xl text-center my-5"> Manage User</h1>
             <div className="divider"></div>
             <div className="overflow-x-auto rounded-lg table-sec">
@@ -21,11 +21,13 @@ const ManageUser = () => {
                         <thead className="">
                         <tr className="bg-green-200 text-black border-2 border-green-200">
                             <th className="border-2 border-green-300"></th>
-                            <th className="border-2 border-green-300">Photo</th>
-                            <th className="border-2 border-green-300">Name</th>
-                            <th className="border-2 border-green-300">Email</th>
-                            <th className="border-2 border-green-300">Role</th>
-                            <th className="border-2 border-green-300">Action</th>
+                            <th className="border-2 border-green-300 md:hidden">User Info</th>
+                            <th className="border-2 border-green-300 md:hidden">Role & Action</th>
+                            <th className="border-2 border-green-300 hide-fixed-items">Photo</th>
+                            <th className="border-2 border-green-300 hide-fixed-items">Name</th>
+                            <th className="border-2 border-green-300 hide-fixed-items">Email</th>
+                            <th className="border-2 border-green-300 hide-fixed-items">Role</th>
+                            <th className="border-2 border-green-300 hide-fixed-items">Action</th>
                             
                         </tr>
                         </thead>

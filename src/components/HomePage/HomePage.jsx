@@ -8,8 +8,10 @@ import ReviewSectionHome from "../ReviewSectionHome/ReviewSectionHome";
 import HomePageStudent from "../HomePageStudent/HomePageStudent";
 import HomePageTeacher from "../HomePageTeacher/HomePageTeacher";
 import RolesHomepage from "../RolesHomepage/RolesHomepage";
+import useAdmin from "../DataFetch/useAdmin";
 
 const HomePage = () => {
+  const [checkAdmin] = useAdmin()
   return (
     <>
       <Helmet>
@@ -27,9 +29,13 @@ const HomePage = () => {
           </p>
           <div className="my-5">
             <button>
-              <Link className="my-btn" to="/information-page">
+              {
+                checkAdmin? <Link className="my-btn" to="/differdashboard/home">
+                Admin Panel
+              </Link> : <Link className="my-btn" to="/information-page">
                 See Your Result
               </Link>
+              }
             </button>
           </div>
         </div>
