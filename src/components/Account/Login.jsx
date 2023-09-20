@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { AuthContext } from "./Provider/AuthProvider";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import Swal from "sweetalert2";
 import Lottie from "lottie-react";
 import ani from "./login.json";

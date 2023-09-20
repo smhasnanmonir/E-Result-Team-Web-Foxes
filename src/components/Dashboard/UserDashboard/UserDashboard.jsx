@@ -5,22 +5,29 @@ import { FaHourglassHalf } from "react-icons/fa";
 import { MdDoneOutline } from "react-icons/md";
 import ResultChart from "./ResultChart";
 import DataFetch from "../../DataFetch/DataFetch";
+import useUser from "../../DataFetch/useUser";
+import { Link } from "react-router-dom";
+import useGetInfo from "../../DataFetch/useGetInfo";
 const UserDashboard = () => {
+  const [showInfo, setShowInfo] = useState(false);
   const [allData] = DataFetch();
   const [videoData, setVideoData] = useState([]);
+  const [allUser] = useUser();
+  const [userInfo] = useGetInfo();
   const { user, loading } = useContext(AuthContext);
-  const [reCheckUser, refetch] = useUserRecheck();
-  refetch();
-  const finalTermValue = allData[1]?.finalTerm;
-  const midTermValue = allData[1]?.midTerm;
-  console.log("real mid", midTermValue);
+  const [reCheckUser] = useUserRecheck();
+  const userEmail = user?.email;
+  const filteredStudent = allUser.find((data) => data.email == userEmail);
+  const filteredStudentResult = allData.find(
+    (data) => data.classId == filteredStudent?.roll
+  );
+  const finalTermValue = filteredStudentResult?.finalTerm;
+  const midTermValue = filteredStudentResult?.midTerm;
   useEffect(() => {
     fetch("/subjectVideo.json")
       .then((res) => res.json())
       .then((data) => setVideoData(data));
   }, []);
-  console.log(videoData);
-  console.log(videoData[0]?.Biology);
   const arrayConvert = (termValue) => {
     const termArray = [];
     if (termValue) {
@@ -43,9 +50,7 @@ const UserDashboard = () => {
     return termArray;
   };
   const finalConvertedArray = arrayConvert(finalTermValue);
-  console.log(finalConvertedArray);
   const midConvertedArray = arrayConvert(midTermValue);
-  // const midConvertedArrayForSub = arrayConvertForSub(midTermValue);
   const finalConvertedArrayForSub = arrayConvertForSub(finalTermValue);
 
   const finalTotalValue = finalConvertedArray.reduce(
@@ -66,31 +71,147 @@ const UserDashboard = () => {
     }
   };
   calculateComparison(finalTotalValue, midTotalValue);
+
+  // show more student info
+  const toggleInfo = () => {
+    setShowInfo(!showInfo);
+  };
   return (
-    <div className="lg:px-[50px] px-[35px]">
+    <div className="lg:px-[50px] px-[35px] md:mb-[15%] mb-[10%]">
       <div className="md:flex py-10 gap-10">
-        <div className="md:w-1/3 mx-auto border-2 shadow-grey-300 shadow-md md:px-2 px-[25px] py-8 rounded-md md:h-[100%]">
-          <h1 className="text-center font-semibold text-2xl my-5">
-            Student Information
+        <div className="md:w-1/3 mx-auto relative bg-[#feeba5]   shadow-xl md:px-2 px-[25px] py-8 rounded-[34px] md:h-[100%]">
+          <div className="bg-green-600 z-0 md:ml-8  w-[15px] absolute top-[62px] -rotate-45 h-[5px]"></div>
+          <h1 className="text-center md:ml-8  bg-green-500 text-white inline-block font-semibold text-[10px]   -rotate-3 px-2 w-[80px] h-[14px] my-5 ">
+            Student Info
           </h1>
-          <div className="divider"></div>
+
           {loading ? (
             <p>loading...</p>
           ) : (
-            <div className="flex flex-col justify-center items-center gap-5">
+            <div className="flex flex-col justify-center relative items-center gap-5">
               <img
-                className="rounded-full h-[150px]"
+                className="rounded-full border-[5px] absolute -top-16 right-2 border-white h-[90px]"
                 src={user.photoURL}
                 alt=""
               />
-              <div className="flex flex-col justify-start gap-5 mt-2">
-                <h1 className="font-semibold">
-                  Name :{" "}
-                  <span className="text-blue-700">{user.displayName}</span>
+              <div className="flex flex-col justify-start gap-5 md:mr-6 mt-12">
+                {/* name */}
+                <h1 className="font-semibold ">
+                  <span className=" bg-black font-normal text-xs text-white px-2  rounded-full">
+                    Name
+                  </span>
+                  <br />
+                  <div className="text-black bg-white px-2 mt-4 ml-2 inline-block rounded-full">
+                    {userInfo?.name}
+                  </div>
                 </h1>
-                <p className="font-semibold">
-                  Email : <span className="text-blue-700">{user.email}</span>
-                </p>
+                {/* email */}
+                <h1 className="font-semibold">
+                  <span className=" bg-black font-normal text-xs text-white px-2  rounded-full">
+                    Email
+                  </span>
+                  <br />
+                  <div className="text-black bg-white px-2 mt-4 ml-2 inline-block rounded-full">
+                    {userInfo?.email}
+                  </div>
+                </h1>
+                {/* roll */}
+                <div className="-mt-2">
+                  { (
+                    <h1 className="font-semibold">
+                      <span className=" bg-black font-normal text-xs text-white px-2  rounded-full">
+                        Roll
+                      </span>
+
+                      <div className="text-black text-sm bg-white px-2 mt-2 ml-2 inline-block rounded-full">
+                        {userInfo?.roll ? userInfo?.roll  : <Link  to="/updateProfile">Update Now</Link>}
+                      </div>
+                    </h1>
+                  )}
+                 
+                  
+
+                  {showInfo && (
+                    <>
+                     {/* age */}
+                   
+                     <h1 className="font-semibold">
+                      <span className=" bg-black font-normal text-xs text-white px-2   rounded-full">
+                        Age
+                      </span>
+
+                      <div className="text-black text-sm bg-white px-2 mt-4 ml-2 inline-block rounded-full">
+                        {userInfo?.age ? userInfo?.age : <Link  to="/updateProfile">Update Now</Link>}
+                      </div>
+                    </h1>
+
+                      {/* gender */}
+                      <h1 className="font-semibold">
+                        <span className=" bg-black font-normal text-xs text-white px-2   rounded-full">
+                          Gender
+                        </span>
+
+                        <div className="text-black text-sm bg-white px-2 mt-4 ml-2 inline-block rounded-full">
+                          {userInfo?.gender !== "Select Gender" ? (
+                            userInfo?.gender 
+                          ) : (
+                            <Link  to="/updateProfile">Update Now</Link>
+                          )}
+                        </div>
+                      </h1>
+                      {/* blood group */}
+                      <h1 className="font-semibold">
+                        <span className=" bg-black font-normal text-xs text-white px-2   rounded-full">
+                          Blood Group
+                        </span>
+
+                        <div className="text-black text-sm bg-white px-2 mt-4 ml-2 inline-block rounded-full">
+                          {userInfo?.blood !== "Select Group" ? (
+                            userInfo?.blood
+                          ) : (
+                            <Link  to="/updateProfile">Update Now</Link>
+                          )}
+                        </div>
+                      </h1>
+
+                      {/* Phone  */}
+                      {
+                        <h1 className="font-semibold">
+                          <span className=" bg-black font-normal text-xs text-white px-2   rounded-full">
+                            Phone
+                          </span>
+
+                          <div className="text-black text-sm bg-white px-2 mt-4 ml-2 inline-block rounded-full">
+                            {userInfo?.phone ? (
+                              userInfo?.phone
+                            ) : (
+                              <Link  to="/updateProfile">Update Now</Link>
+                            )}
+                          </div>
+                        </h1>
+                      }
+                      {/* Address */}
+                      {  (
+                        <h1 className="font-semibold">
+                          <span className=" bg-black font-normal text-xs text-white px-2   rounded-full">
+                            Address
+                          </span>
+
+                          <div className="text-black text-sm bg-white px-2 mt-4 ml-2 inline-block rounded-full">
+                            {userInfo?.address ? userInfo?.address : <Link  to="/updateProfile">Update Now</Link>}
+                          </div>
+                        </h1>
+                      )}
+                    </>
+                  )}
+
+                  <button
+                    onClick={toggleInfo}
+                    className="text-black text-sm font-semibold cursor-pointer  bg-white px-2 mt-4 inline-block rounded-full transition ease-in-out delay-75   hover:scale-110"
+                  >
+                    {showInfo ? "Less" : "More"}
+                  </button>
+                </div>
               </div>
             </div>
           )}
@@ -141,84 +262,100 @@ const UserDashboard = () => {
         </div>
       </div>
       <div>
-        <h1 className="text-2xl font-bold text-center py-[15px] bg-slate-200 mb-[20px]">
-          Result Comparison
-        </h1>
-        <div className="grid place-items-center lg:grid-cols-2 grid-cols-1 lg:px-[110px] md:px-[70px] px-[35px]">
-          <div>
-            <h1 className="text-xl font-semibold text-center">
-              Your Final term result
+        {filteredStudentResult == undefined ? (
+          <div className="grid place-items-center space-y-5">
+            <h1 className="text-2xl ">
+              Your roll number is not in our data base. Please update your
+              profile to get full experience of dashboard.
             </h1>
-            <ResultChart data={finalConvertedArray}></ResultChart>
+            <Link className="btn btn-outline" to="/updateProfile">
+              Update Profile
+            </Link>
           </div>
+        ) : (
           <div>
-            <h1 className="text-xl font-semibold text-center">
-              Your Mid term result
-            </h1>
-            <ResultChart data={midConvertedArray}></ResultChart>
-          </div>
-        </div>
-        <div className="text-center space-y-[15px]">
-          <h1 className="text-2xl font-semibold py-[10px] mb-[20px] bg-slate-200">
-            Your result analysis
-          </h1>
-          <h1 className="text-xl">
-            Your Final marks is:{" "}
-            <span className="font-semibold">{finalTotalValue}</span>
-          </h1>
-          <h1 className="text-xl">
-            Your Mid marks is:{" "}
-            <span className="font-semibold">{midTotalValue}</span>
-          </h1>
-          {finalTermValue < midTotalValue ? (
-            <div className="">
-              <h1 className="text-xl text-green-500">
-                Which is{" "}
-                <span className="font-semibold">
-                  {calculateComparison(finalTotalValue, midTotalValue)}{" "}
-                </span>
-                marks than you scored in Midterms.
-              </h1>
-            </div>
-          ) : (
             <div>
-              <h1 className="text-xl text-red-500">
-                Which is{" "}
-                <span className="font-semibold">
-                  {calculateComparison(finalTotalValue, midTotalValue)}{" "}
-                </span>
-                marks less than you scored in Midterms.
+              <h1 className="text-2xl font-bold text-center py-[15px] bg-slate-200 mb-[20px]">
+                Result Comparison
               </h1>
-            </div>
-          )}
-        </div>
-        <div className="text-center space-y-[10px] py-5">
-          <h1 className="text-2xl font-semibold py-[10px] mb-[20px] bg-slate-200">
-            Improve Yourself
-          </h1>
-          <div>
-            {finalConvertedArrayForSub?.map((sub) => (
-              <div key={sub.key1}>
-                <div className="py-2">
-                  {sub.value < 80 && (
-                    <div className="space-y-[15px] p-[45px] bg-fuchsia-100 rounded-md">
-                      <h1 className="lg:text-2xl font-medium">
-                        You have low marks in {sub.key1}
-                      </h1>
-                      <p className="md:text-xl text-red-500">
-                        Please go through the playlist
-                      </p>
-                      <iframe
-                        className="w-full md:h-[420px] h-[250px] mx-auto rounded-md border-none"
-                        src={videoData[0]?.[sub.key1]}
-                      ></iframe>
-                    </div>
-                  )}
+              <div className="grid place-items-center lg:grid-cols-2 grid-cols-1 lg:px-[110px] md:px-[70px] px-[35px]">
+                <div>
+                  <h1 className="text-xl font-semibold text-center">
+                    Your Final term result
+                  </h1>
+                  <ResultChart data={finalConvertedArray}></ResultChart>
+                </div>
+                <div>
+                  <h1 className="text-xl font-semibold text-center">
+                    Your Mid term result
+                  </h1>
+                  <ResultChart data={midConvertedArray}></ResultChart>
                 </div>
               </div>
-            ))}
+              <div className="text-center space-y-[15px]">
+                <h1 className="text-2xl font-semibold py-[10px] mb-[20px] bg-slate-200">
+                  Your result analysis
+                </h1>
+                <h1 className="text-xl">
+                  Your Final marks is:{" "}
+                  <span className="font-semibold">{finalTotalValue}</span>
+                </h1>
+                <h1 className="text-xl">
+                  Your Mid marks is:{" "}
+                  <span className="font-semibold">{midTotalValue}</span>
+                </h1>
+                {finalTermValue < midTotalValue ? (
+                  <div className="">
+                    <h1 className="text-xl text-green-500">
+                      Which is{" "}
+                      <span className="font-semibold">
+                        {calculateComparison(finalTotalValue, midTotalValue)}{" "}
+                      </span>
+                      marks than you scored in Midterms.
+                    </h1>
+                  </div>
+                ) : (
+                  <div>
+                    <h1 className="text-xl text-red-500">
+                      Which is{" "}
+                      <span className="font-semibold">
+                        {calculateComparison(finalTotalValue, midTotalValue)}{" "}
+                      </span>
+                      marks less than you scored in Midterms.
+                    </h1>
+                  </div>
+                )}
+              </div>
+              <div className="text-center space-y-[10px] py-5">
+                <h1 className="text-2xl font-semibold py-[10px] mb-[20px] bg-slate-200">
+                  Improve Yourself
+                </h1>
+                <div className="grid">
+                  {finalConvertedArrayForSub?.map((sub) => (
+                    <div key={sub.key1}>
+                      <div className="py-2">
+                        {sub.value < 80 && (
+                          <div className="space-y-[15px] p-[45px] bg-fuchsia-100 rounded-md">
+                            <h1 className="lg:text-2xl font-medium">
+                              You have low marks in {sub.key1}
+                            </h1>
+                            <p className="md:text-xl text-red-500">
+                              Please go through the playlist
+                            </p>
+                            <iframe
+                              className="w-full md:h-[420px] h-[250px] mx-auto rounded-md border-none"
+                              src={videoData[0]?.[sub.key1]}
+                            ></iframe>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
