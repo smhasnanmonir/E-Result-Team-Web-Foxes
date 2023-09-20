@@ -5,7 +5,13 @@ const AddResult = () => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
+
     console.log(data);
+    fetch(`https://e-result-server.vercel.app/allResults`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
     Swal.fire({
       title: "Submit the result",
       icon: "warning",
@@ -13,11 +19,12 @@ const AddResult = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, submit it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("Result has been submitted");
-      }
-    });
+    }).then(res => res.json())
+      .then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire("Result has been submitted");
+        }
+      });
   };
   return (
     <div className=" w-[100%] lg:w-[70%] mx-auto">
@@ -46,7 +53,7 @@ const AddResult = () => {
             </div>
 
             <div className="mt-5">
-            <p className="mr-2">Term</p>
+              <p className="mr-2">Term</p>
               <select
                 className=" rounded-xl py-2 w-full  text-black text-center"
                 {...register("Term")}
@@ -60,7 +67,7 @@ const AddResult = () => {
             </div>
 
             <div className="mt-5">
-            <p className="mr-2">Section</p>
+              <p className="mr-2">Section</p>
               <select
                 className="  rounded-xl py-2 w-full  text-black text-center"
                 {...register("Section")}
