@@ -1,14 +1,29 @@
 .dropdown-content{
-    background-color: aqua;
+    background-color: #303c6c;
+    color: gold;
+    width: 400px;
 }
 .dropdown-content li{
-    background-color: rgb(39, 235, 245);
+    margin: 10px 0;
+    background-color: #242e57;
+    color: gold;
     border-radius: 5px;
-    color: black;
     font-weight: bold;
 }
+.dropdown-content li:hover{
+    margin: 10px 0;
+    font-weight: bold;
+    font-size: larger;
+}
+.my-drop{
+    background-color: #303c6c;
+    color: gold;
+    width: 200px;
+    margin: 10px 0;
+    left: -90%;
+}
 
-@media only screen and (min-width: 768px) {
+@media only screen and (max-width: 768px) {
     .dropdown-content li{
         background-color: rgb(39, 235, 245);
         border-radius: 5px;
@@ -16,6 +31,22 @@
         font-weight: bold;
     }
     .dropdown-content{
-        background-color: rgb(21, 238, 238);
+        background-color: #303c6c;
+        color: gold;
+        width: 250px;
+    }
+    .my-drop-one{
+        background-color: #303c6c;
+        color: gold;
+        width: 250px;
+        margin: 10px 0;
+        left: -180%;
+    }
+    .my-drop{
+        background-color: #303c6c;
+        color: gold;
+        width: 200px;
+        margin: 10px 0;
+        left: -40%;
     }
 }

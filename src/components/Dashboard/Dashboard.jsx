@@ -3,6 +3,7 @@ import result from "../../assets/plus 1.png";
 import review from "../../assets/reviews 1.png";
 import edit from "../../assets/edit 1.png";
 import manage from "../../assets/settings.png";
+import home from "../../assets/smart-home.png";
 import "./Dashboard.css";
 const Dashboard = () => {
   return (
@@ -20,8 +21,16 @@ const Dashboard = () => {
         </div>
         <div className="drawer-side">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-          <ul className="menu menuc p-4 w-80 h-full bg-[#fbe8a6] text-base-content d-link md:pt-[50%] ">
+          <ul className="menu menuc p-4 w-80 h-full bg-[#fbe8a6] text-base-content d-link md:pt-[35%] ">
             {/* Sidebar content here */}
+            <li>
+              <span>
+                <img className="h-[45px]" src={home} alt="" />
+                <Link to="home" className="text-[18px]">
+                  Admin Home
+                </Link>
+              </span>
+            </li>
             <li>
               <span>
                 <img className="h-[45px]" src={result} alt="" />
