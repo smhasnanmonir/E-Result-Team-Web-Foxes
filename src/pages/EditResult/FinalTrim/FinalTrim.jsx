@@ -10,7 +10,7 @@ const FinalTrim = () => {
   const [searchText, setsearchText] = useState("");
 
   const handleSearch = () => {
-    fetch(`http://localhost:5000/resultSearchByName/${searchText}`)
+    fetch(`https://e-result-server.vercel.app/${searchText}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
