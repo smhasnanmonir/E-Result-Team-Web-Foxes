@@ -13,6 +13,7 @@ const UserDashboard = () => {
   const [allData] = DataFetch();
   const [videoData, setVideoData] = useState([]);
   const [allUser] = useUser();
+  const [userInfo] = useGetInfo();
   const { user, loading } = useContext(AuthContext);
   const [reCheckUser] = useUserRecheck();
   const userEmail = user?.email;
@@ -116,33 +117,39 @@ const UserDashboard = () => {
                 </h1>
                 {/* roll */}
                 <div className="-mt-2">
-                  { (
+                  {
                     <h1 className="font-semibold">
                       <span className=" bg-black font-normal text-xs text-white px-2  rounded-full">
                         Roll
                       </span>
 
                       <div className="text-black text-sm bg-white px-2 mt-2 ml-2 inline-block rounded-full">
-                        {userInfo?.roll ? userInfo?.roll  : <Link  to="/updateProfile">Update Now</Link>}
+                        {userInfo?.roll ? (
+                          userInfo?.roll
+                        ) : (
+                          <Link to="/updateProfile">Update Now</Link>
+                        )}
                       </div>
                     </h1>
-                  )}
-                 
-                  
+                  }
 
                   {showInfo && (
                     <>
-                     {/* age */}
-                   
-                     <h1 className="font-semibold">
-                      <span className=" bg-black font-normal text-xs text-white px-2   rounded-full">
-                        Age
-                      </span>
+                      {/* age */}
 
-                      <div className="text-black text-sm bg-white px-2 mt-4 ml-2 inline-block rounded-full">
-                        {userInfo?.age ? userInfo?.age : <Link  to="/updateProfile">Update Now</Link>}
-                      </div>
-                    </h1>
+                      <h1 className="font-semibold">
+                        <span className=" bg-black font-normal text-xs text-white px-2   rounded-full">
+                          Age
+                        </span>
+
+                        <div className="text-black text-sm bg-white px-2 mt-4 ml-2 inline-block rounded-full">
+                          {userInfo?.age ? (
+                            userInfo?.age
+                          ) : (
+                            <Link to="/updateProfile">Update Now</Link>
+                          )}
+                        </div>
+                      </h1>
 
                       {/* gender */}
                       <h1 className="font-semibold">
@@ -152,9 +159,9 @@ const UserDashboard = () => {
 
                         <div className="text-black text-sm bg-white px-2 mt-4 ml-2 inline-block rounded-full">
                           {userInfo?.gender !== "Select Gender" ? (
-                            userInfo?.gender 
+                            userInfo?.gender
                           ) : (
-                            <Link  to="/updateProfile">Update Now</Link>
+                            <Link to="/updateProfile">Update Now</Link>
                           )}
                         </div>
                       </h1>
@@ -168,7 +175,7 @@ const UserDashboard = () => {
                           {userInfo?.blood !== "Select Group" ? (
                             userInfo?.blood
                           ) : (
-                            <Link  to="/updateProfile">Update Now</Link>
+                            <Link to="/updateProfile">Update Now</Link>
                           )}
                         </div>
                       </h1>
@@ -184,23 +191,27 @@ const UserDashboard = () => {
                             {userInfo?.phone ? (
                               userInfo?.phone
                             ) : (
-                              <Link  to="/updateProfile">Update Now</Link>
+                              <Link to="/updateProfile">Update Now</Link>
                             )}
                           </div>
                         </h1>
                       }
                       {/* Address */}
-                      {  (
+                      {
                         <h1 className="font-semibold">
                           <span className=" bg-black font-normal text-xs text-white px-2   rounded-full">
                             Address
                           </span>
 
                           <div className="text-black text-sm bg-white px-2 mt-4 ml-2 inline-block rounded-full">
-                            {userInfo?.address ? userInfo?.address : <Link  to="/updateProfile">Update Now</Link>}
+                            {userInfo?.address ? (
+                              userInfo?.address
+                            ) : (
+                              <Link to="/updateProfile">Update Now</Link>
+                            )}
                           </div>
                         </h1>
-                      )}
+                      }
                     </>
                   )}
 
