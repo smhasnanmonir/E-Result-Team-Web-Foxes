@@ -13,7 +13,6 @@ const UserDashboard = () => {
   const [allData] = DataFetch();
   const [videoData, setVideoData] = useState([]);
   const [allUser] = useUser();
-  const [userInfo] = useGetInfo();
   const { user, loading } = useContext(AuthContext);
   const [reCheckUser] = useUserRecheck();
   const userEmail = user?.email;
