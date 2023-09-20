@@ -102,7 +102,7 @@ const UserDashboard = () => {
                   </span>
                   <br />
                   <div className="text-black bg-white px-2 mt-4 ml-2 inline-block rounded-full">
-                    {user.displayName || userInfo.name}
+                    {userInfo?.name}
                   </div>
                 </h1>
                 {/* email */}
@@ -112,7 +112,7 @@ const UserDashboard = () => {
                   </span>
                   <br />
                   <div className="text-black bg-white px-2 mt-4 ml-2 inline-block rounded-full">
-                    {user.email}
+                    {userInfo?.email}
                   </div>
                 </h1>
                 {/* roll */}
@@ -144,7 +144,7 @@ const UserDashboard = () => {
                         {userInfo?.age ? userInfo?.age : <Link  to="/updateProfile">Update Now</Link>}
                       </div>
                     </h1>
-                    
+
                       {/* gender */}
                       <h1 className="font-semibold">
                         <span className=" bg-black font-normal text-xs text-white px-2   rounded-full">
@@ -152,8 +152,8 @@ const UserDashboard = () => {
                         </span>
 
                         <div className="text-black text-sm bg-white px-2 mt-4 ml-2 inline-block rounded-full">
-                          {userInfo?.gender ? (
-                            userInfo?.gender
+                          {userInfo?.gender !== "Select Gender" ? (
+                            userInfo?.gender 
                           ) : (
                             <Link  to="/updateProfile">Update Now</Link>
                           )}
@@ -166,7 +166,7 @@ const UserDashboard = () => {
                         </span>
 
                         <div className="text-black text-sm bg-white px-2 mt-4 ml-2 inline-block rounded-full">
-                          {userInfo?.blood ? (
+                          {userInfo?.blood !== "Select Group" ? (
                             userInfo?.blood
                           ) : (
                             <Link  to="/updateProfile">Update Now</Link>
