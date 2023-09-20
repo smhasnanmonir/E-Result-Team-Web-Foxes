@@ -9,6 +9,7 @@ import useUser from "../../DataFetch/useUser";
 import { Link } from "react-router-dom";
 import useGetInfo from "../../DataFetch/useGetInfo";
 const UserDashboard = () => {
+  const [showInfo, setShowInfo] = useState(false);
   const [allData] = DataFetch();
   const [videoData, setVideoData] = useState([]);
   const [allUser] = useUser();
@@ -20,7 +21,6 @@ const UserDashboard = () => {
   const filteredStudentResult = allData.find(
     (data) => data.classId == filteredStudent?.roll
   );
-  console.log(filteredStudentResult);
   const finalTermValue = filteredStudentResult?.finalTerm;
   const midTermValue = filteredStudentResult?.midTerm;
   useEffect(() => {
@@ -71,20 +71,21 @@ const UserDashboard = () => {
     }
   };
   calculateComparison(finalTotalValue, midTotalValue);
+
+  // show more student info
+  const toggleInfo = () => {
+    setShowInfo(!showInfo);
+  };
   console.log(userInfo)
   return (
     <div className="lg:px-[50px] px-[35px] md:mb-[15%] mb-[10%]">
       <div className="md:flex py-10 gap-10">
         <div className="md:w-1/3 mx-auto relative bg-[#feeba5]   shadow-xl md:px-2 px-[25px] py-8 rounded-[34px] md:h-[100%]">
-
-
-        <div className="bg-green-600 z-0 md:ml-8  w-[15px] absolute top-[62px] -rotate-45 h-[5px]"></div>
+          <div className="bg-green-600 z-0 md:ml-8  w-[15px] absolute top-[62px] -rotate-45 h-[5px]"></div>
           <h1 className="text-center md:ml-8  bg-green-500 text-white inline-block font-semibold text-[10px]   -rotate-3 px-2 w-[80px] h-[14px] my-5 ">
             Student Info
-            
           </h1>
-          
-        
+
           {loading ? (
             <p>loading...</p>
           ) : (
@@ -95,16 +96,121 @@ const UserDashboard = () => {
                 alt=""
               />
               <div className="flex flex-col justify-start gap-5 md:mr-6 mt-12">
+                {/* name */}
                 <h1 className="font-semibold ">
-                  <span className=" bg-black font-normal text-xs text-white px-2  rounded-full">Name</span>
+                  <span className=" bg-black font-normal text-xs text-white px-2  rounded-full">
+                    Name
+                  </span>
                   <br />
-                  <div className="text-black bg-white px-2 mt-4 ml-2 inline-block rounded-full">{user.displayName}</div>
+                  <div className="text-black bg-white px-2 mt-4 ml-2 inline-block rounded-full">
+                    {user.displayName || userInfo.name}
+                  </div>
                 </h1>
+                {/* email */}
                 <p className="font-semibold">
-                <span className=" bg-black font-normal text-xs text-white px-2  rounded-full">Email</span>
-                <br />
-                   <div className="text-black bg-white px-2 mt-4 ml-2 inline-block rounded-full">{user.email}</div>
+                  <span className=" bg-black font-normal text-xs text-white px-2  rounded-full">
+                    Email
+                  </span>
+                  <br />
+                  <div className="text-black bg-white px-2 mt-4 ml-2 inline-block rounded-full">
+                    {user.email}
+                  </div>
                 </p>
+                {/* roll */}
+                <div className="-mt-2">
+                  { (
+                    <p className="font-semibold">
+                      <span className=" bg-black font-normal text-xs text-white px-2  rounded-full">
+                        Roll
+                      </span>
+
+                      <div className="text-black text-sm bg-white px-2 mt-2 ml-2 inline-block rounded-full">
+                        {userInfo?.roll ? userInfo?.roll  : <Link  to="/updateProfile">Update Now</Link>}
+                      </div>
+                    </p>
+                  )}
+                  {/* age */}
+                  { (
+                    <p className="font-semibold">
+                      <span className=" bg-black font-normal text-xs text-white px-2   rounded-full">
+                        Age
+                      </span>
+
+                      <div className="text-black text-sm bg-white px-2 mt-4 ml-2 inline-block rounded-full">
+                        {userInfo?.age ? userInfo?.age : <Link  to="/updateProfile">Update Now</Link>}
+                      </div>
+                    </p>
+                  )}
+
+                  {showInfo && (
+                    <>
+                      {/* gender */}
+                      <p className="font-semibold">
+                        <span className=" bg-black font-normal text-xs text-white px-2   rounded-full">
+                          Gender
+                        </span>
+
+                        <div className="text-black text-sm bg-white px-2 mt-4 ml-2 inline-block rounded-full">
+                          {userInfo?.gender ? (
+                            userInfo?.gender
+                          ) : (
+                            <Link  to="/updateProfile">Update Now</Link>
+                          )}
+                        </div>
+                      </p>
+                      {/* blood group */}
+                      <p className="font-semibold">
+                        <span className=" bg-black font-normal text-xs text-white px-2   rounded-full">
+                          Blood Group
+                        </span>
+
+                        <div className="text-black text-sm bg-white px-2 mt-4 ml-2 inline-block rounded-full">
+                          {userInfo?.blood ? (
+                            userInfo?.blood
+                          ) : (
+                            <Link  to="/updateProfile">Update Now</Link>
+                          )}
+                        </div>
+                      </p>
+
+                      {/* Phone  */}
+                      {
+                        <p className="font-semibold">
+                          <span className=" bg-black font-normal text-xs text-white px-2   rounded-full">
+                            Phone
+                          </span>
+
+                          <div className="text-black text-sm bg-white px-2 mt-4 ml-2 inline-block rounded-full">
+                            {userInfo?.phone ? (
+                              userInfo?.phone
+                            ) : (
+                              <Link  to="/updateProfile">Update Now</Link>
+                            )}
+                          </div>
+                        </p>
+                      }
+                      {/* Address */}
+                      {  (
+                        <p className="font-semibold">
+                          <span className=" bg-black font-normal text-xs text-white px-2   rounded-full">
+                            Address
+                          </span>
+
+                          <div className="text-black text-sm bg-white px-2 mt-4 ml-2 inline-block rounded-full">
+                            {userInfo?.address ? userInfo?.address : <Link  to="/updateProfile">Update Now</Link>}
+                          </div>
+                        </p>
+                      )}
+                    </>
+                  )}
+
+                  <button
+                    onClick={toggleInfo}
+                    className="text-black text-sm font-semibold cursor-pointer  bg-white px-2 mt-4 inline-block rounded-full transition ease-in-out delay-75   hover:scale-110"
+                  >
+                    {showInfo ? "Less" : "More"}
+                  </button>
+                </div>
               </div>
             </div>
           )}

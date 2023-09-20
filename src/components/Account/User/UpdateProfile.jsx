@@ -12,6 +12,7 @@ import {BiMaleFemale} from 'react-icons/bi'
 import {PiStudentFill} from 'react-icons/pi'
 import {MdBloodtype} from 'react-icons/md'
 
+
 const UpdateProfile = () => {
     const {user} = useContext(AuthContext);
     const [axiosSecure] = useAxiosSecure();
@@ -28,9 +29,11 @@ const UpdateProfile = () => {
                     showConfirmButton: false,
                     timer: 2000
                   })
+                 
             }
         });
         console.log(data)
+        
     };
     console.log(errors);
   
