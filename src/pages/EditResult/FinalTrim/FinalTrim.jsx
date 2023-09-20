@@ -7,6 +7,17 @@ const FinalTrim = () => {
   const [oneData, setOneData] = useState([]);
   const { register, handleSubmit } = useForm();
 
+  const [searchText, setsearchText] = useState("");
+
+  const handleSearch = () => {
+    fetch(`http://localhost:5000/resultSearchByName/${searchText}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setEditItem(data);
+      });
+  };
+
   console.log(editItem);
   useEffect(() => {
     fetch(`https://e-result-server.vercel.app/allResults`)
@@ -93,6 +104,16 @@ const FinalTrim = () => {
   };
   return (
     <div className="lg:w-[80%] mx-auto">
+      <div className="f-form lg:flex gap-5 md:w-[80%] mx-auto justify-center items-center mb-3">
+        <input className="w-[80%] md:w-[50%] text-center"
+          onChange={(e) => setsearchText(e.target.value)}
+          type="search"
+          name="search1"
+          id="search1"
+          placeholder="Search Box(Name)"
+        />{""}
+        <button onClick={handleSearch} className="btn btn-outline btn-accent">Search</button>
+      </div>
       <div>
         <input type="checkbox" id="my_modal_6" className="modal-toggle" />
         <div className="modal">
@@ -210,11 +231,11 @@ const FinalTrim = () => {
                 <th>
                   {calculateGrade(
                     data.finalTerm?.Bangla +
-                      data.finalTerm?.Biology +
-                      data.finalTerm?.Chemistry +
-                      data.finalTerm?.English +
-                      data.finalTerm?.Math +
-                      data.finalTerm?.Physics
+                    data.finalTerm?.Biology +
+                    data.finalTerm?.Chemistry +
+                    data.finalTerm?.English +
+                    data.finalTerm?.Math +
+                    data.finalTerm?.Physics
                   )}
                 </th>
                 <th>
