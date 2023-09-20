@@ -106,7 +106,7 @@ const UserDashboard = () => {
                   </div>
                 </h1>
                 {/* email */}
-                <p className="font-semibold">
+                <h1 className="font-semibold">
                   <span className=" bg-black font-normal text-xs text-white px-2  rounded-full">
                     Email
                   </span>
@@ -114,11 +114,11 @@ const UserDashboard = () => {
                   <div className="text-black bg-white px-2 mt-4 ml-2 inline-block rounded-full">
                     {user.email}
                   </div>
-                </p>
+                </h1>
                 {/* roll */}
                 <div className="-mt-2">
                   { (
-                    <p className="font-semibold">
+                    <h1 className="font-semibold">
                       <span className=" bg-black font-normal text-xs text-white px-2  rounded-full">
                         Roll
                       </span>
@@ -126,11 +126,16 @@ const UserDashboard = () => {
                       <div className="text-black text-sm bg-white px-2 mt-2 ml-2 inline-block rounded-full">
                         {userInfo?.roll ? userInfo?.roll  : <Link  to="/updateProfile">Update Now</Link>}
                       </div>
-                    </p>
+                    </h1>
                   )}
-                  {/* age */}
-                  { (
-                    <p className="font-semibold">
+                 
+                  
+
+                  {showInfo && (
+                    <>
+                     {/* age */}
+                   
+                     <h1 className="font-semibold">
                       <span className=" bg-black font-normal text-xs text-white px-2   rounded-full">
                         Age
                       </span>
@@ -138,13 +143,10 @@ const UserDashboard = () => {
                       <div className="text-black text-sm bg-white px-2 mt-4 ml-2 inline-block rounded-full">
                         {userInfo?.age ? userInfo?.age : <Link  to="/updateProfile">Update Now</Link>}
                       </div>
-                    </p>
-                  )}
-
-                  {showInfo && (
-                    <>
+                    </h1>
+                    
                       {/* gender */}
-                      <p className="font-semibold">
+                      <h1 className="font-semibold">
                         <span className=" bg-black font-normal text-xs text-white px-2   rounded-full">
                           Gender
                         </span>
@@ -156,9 +158,9 @@ const UserDashboard = () => {
                             <Link  to="/updateProfile">Update Now</Link>
                           )}
                         </div>
-                      </p>
+                      </h1>
                       {/* blood group */}
-                      <p className="font-semibold">
+                      <h1 className="font-semibold">
                         <span className=" bg-black font-normal text-xs text-white px-2   rounded-full">
                           Blood Group
                         </span>
@@ -170,11 +172,11 @@ const UserDashboard = () => {
                             <Link  to="/updateProfile">Update Now</Link>
                           )}
                         </div>
-                      </p>
+                      </h1>
 
                       {/* Phone  */}
                       {
-                        <p className="font-semibold">
+                        <h1 className="font-semibold">
                           <span className=" bg-black font-normal text-xs text-white px-2   rounded-full">
                             Phone
                           </span>
@@ -186,11 +188,11 @@ const UserDashboard = () => {
                               <Link  to="/updateProfile">Update Now</Link>
                             )}
                           </div>
-                        </p>
+                        </h1>
                       }
                       {/* Address */}
                       {  (
-                        <p className="font-semibold">
+                        <h1 className="font-semibold">
                           <span className=" bg-black font-normal text-xs text-white px-2   rounded-full">
                             Address
                           </span>
@@ -198,7 +200,7 @@ const UserDashboard = () => {
                           <div className="text-black text-sm bg-white px-2 mt-4 ml-2 inline-block rounded-full">
                             {userInfo?.address ? userInfo?.address : <Link  to="/updateProfile">Update Now</Link>}
                           </div>
-                        </p>
+                        </h1>
                       )}
                     </>
                   )}
