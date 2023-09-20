@@ -76,7 +76,6 @@ const UserDashboard = () => {
   const toggleInfo = () => {
     setShowInfo(!showInfo);
   };
-  console.log(userInfo)
   return (
     <div className="lg:px-[50px] px-[35px] md:mb-[15%] mb-[10%]">
       <div className="md:flex py-10 gap-10">
