@@ -11,7 +11,7 @@ const AddResult = () => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
-    })
+    }).then(res => res.json())
     Swal.fire({
       title: "Submit the result",
       icon: "warning",
@@ -19,7 +19,7 @@ const AddResult = () => {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, submit it!",
-    }).then(res => res.json())
+    })
       .then((result) => {
         if (result.isConfirmed) {
           Swal.fire("Result has been submitted");
