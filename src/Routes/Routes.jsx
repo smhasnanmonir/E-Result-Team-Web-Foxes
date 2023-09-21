@@ -17,10 +17,12 @@ import ManageUser from "../pages/ManageUser/ManageUser";
 import UpdateProfile from "../components/Account/User/UpdateProfile";
 import ContactForm from "../components/ContactForm/ContactForm";
 import AdminHome from "../components/Dashboard/AdminHome";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
