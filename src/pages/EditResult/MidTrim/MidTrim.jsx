@@ -10,7 +10,7 @@ const Midtrim = () => {
   const [searchText, setsearchText] = useState("");
 
   const handleSearch = () => {
-    fetch(`https://e-result-server.vercel.app/${searchText}`)
+    fetch(`https://e-result-server.vercel.app/resultSearchByName/${searchText}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
