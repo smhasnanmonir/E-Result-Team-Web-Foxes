@@ -6,6 +6,11 @@ const AddResult = () => {
 
   const onSubmit = (data) => {
     console.log(data);
+    fetch(`https://e-result-server.vercel.app/allResults`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    }).then((res) => res.json());
     Swal.fire({
       title: "Submit the result",
       icon: "warning",
@@ -20,7 +25,7 @@ const AddResult = () => {
     });
   };
   return (
-    <div className=" w-[100%] lg:w-[70%] mx-auto md:px-0 px-[25px]">
+    <div className=" w-[100%] lg:w-[70%] mx-auto">
       <div className=""></div>
       <div className="">
         <h1 className="bg-green-200 text-center py-4 my-10 rounded text-[20px]">
